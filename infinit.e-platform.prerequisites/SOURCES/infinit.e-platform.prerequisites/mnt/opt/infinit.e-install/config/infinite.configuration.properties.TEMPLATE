@@ -4,7 +4,9 @@
 # Basic Infinit.e Settings 
 ################################################################################
 # Default admin and test user passwords
+# Admin: admin_infinite@ikanow.com
 admin.password=infinit.e!2012
+# Test User: test_user@ikanow.com
 test.user.password=infinit.e!2012
 
 ################################################################################
@@ -12,7 +14,7 @@ test.user.password=infinit.e!2012
 url.root=http://127.0.0.1/api/
 
 ################################################################################
-# Access timeout
+# Access timeout in seconds
 access.timeout=1800
 
 ################################################################################
@@ -22,7 +24,7 @@ app.saas.trusted.dns=
 
 ################################################################################
 # Amazon services properties
-# use.aws: 0=false, 1=true
+# Values: 0=false, 1=true
 use.aws=0
 s3.url=
 
@@ -39,8 +41,9 @@ log.files.mail.to=
 
 ################################################################################
 # API Search Test Terms and Expected Results
-# .terms="*" "something" "something" ...
-api.search.test.terms="*" "obama" "politics" "music" "sports" "football" "soccer" "google"
+# List of terms formatted like: "*" "something" "something"
+api.search.test.terms=
+# e.g. Number 0 - N			
 api.search.expected.results=0
 
 ################################################################################
@@ -52,28 +55,33 @@ aws.secret.key=
 s3.gpg.passphrase=
 
 ################################################################################
-# MongoDB Settings
-################################################################################
-# Server Address/IP, e.g.: db.server=127.0.0.1
-db.server=127.0.0.1
-db.port=27017
-db.cluster.subnet=10.
-db.capacity=10000000
-# db.sharded: 0=false, 1=true
-db.sharded=0
+# MongoDB Properties
+db.server=
+db.port= 
+db.capacity=
+db.legacy_naming_version=V0S1
+access.timeout=
 
 ################################################################################
 # Elasticsearch Properties
 ################################################################################
 # Cluster name and URL
-elastic.cluster=infinite-zen
-elastic.url=localhost:9300
+elastic.cluster=
+elastic.url=
 ################################################################################
 # Discovery mode = aws or zen:
-elastic.node.discovery=zen
+elastic.node.discovery=
 ################################################################################
 # ES nodes, e.g.: elastic.search.nodes='NODE1:9300','NODE2:9300','NODE3:9300'
 elastic.search.nodes=
+
+#####################################################
+# Harvester Properties
+harvester.types=File,Database,Feed
+harvest.feed.wait=500
+harvest.mintime.ms=300000
+harvest.maxdocs_persource=5000
+harvest.threads=file:1,database:1,feed:4
 
 #####################################################
 # Hadoop config path
