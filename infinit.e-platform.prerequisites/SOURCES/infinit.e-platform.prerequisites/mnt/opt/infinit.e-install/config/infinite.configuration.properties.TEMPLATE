@@ -14,10 +14,6 @@ test.user.password=infinit.e!2012
 url.root=http://127.0.0.1/api/
 
 ################################################################################
-# Access timeout in seconds
-access.timeout=1800
-
-################################################################################
 # Software as a service (SAAS) settings
 app.saas=false
 app.saas.trusted.dns=
@@ -69,11 +65,14 @@ access.timeout=
 elastic.cluster=
 elastic.url=
 ################################################################################
-# Discovery mode = aws or zen:
+# Discovery mode = ec2 or zen:
 elastic.node.discovery=
 ################################################################################
 # ES nodes, e.g.: elastic.search.nodes='NODE1:9300','NODE2:9300','NODE3:9300'
 elastic.search.nodes=
+################################################################################
+# mlockall = should equal true except if running on a machine with < 4GB of RAM
+bootstrap.mlockall=true
 
 #####################################################
 # Harvester Properties
@@ -114,5 +113,3 @@ ui.end.point.url=
 # Google maps API key for the root URL of the sight (http://localhost/)
 # Register for a key at: http://code.google.com/apis/maps/signup.html
 google.maps.api.key=
-
-
