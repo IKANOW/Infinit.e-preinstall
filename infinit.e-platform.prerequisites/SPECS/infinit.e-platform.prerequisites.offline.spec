@@ -160,7 +160,6 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/xorg-x11-xauth-1.0.1-2.1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/zip-2.31-2.el5.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/xorg-x11-xfs-1.0.2-5.el5_6.1.x86_64.rpm
-
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/cyrus-sasl-gssapi-2.1.22-5.el5_4.3.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hadoop-hive-0.7.1+42.27-2.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-about-1.2.0.0+114.4-2.noarch.rpm
@@ -199,6 +198,7 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/rpm-build-4.4.2.3-22.el5_7.2.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/s3cmd-1.0.0-4.1.i386.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/s3cmd-1.0.0-4.1.x86_64.rpm
+%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/scm-installer.bin
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/splunk-4.2.4-110225-linux-2.6-x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/tomcat6-6.0.29-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/tomcat6-admin-webapps-6.0.29-1.jpp5.noarch.rpm

@@ -55,6 +55,7 @@ infinit.e-platform.prerequisites.online
 # rpms to install
 ###########################################################################
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/splunk-4.2.4-110225-linux-2.6-x86_64.rpm
+%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/scm-installer.bin
 
 ###########################################################################
 # s3cmd gpgkey

@@ -137,6 +137,9 @@ if [ "$NODE_TYPE" = "APINode" ]; then
 	yes | yum install hue -y
 	mkdir /mnt/opt/hadoop-infinite/
 	mkdir /mnt/opt/hadoop-infinite/mapreduce
+	
+	cd /mnt/opt/infinit.e-install/rpms
+	chmod u+x scm-installer.bin
 fi
 
 
@@ -147,8 +150,13 @@ yes | yum update -y
 
 
 echo "################################################################################"
-echo "IMPORTANT:"
+echo "IMPORTANT NOTES:"
 echo "Copy /mnt/opt/infinit.e-install/config/infinite.configuration.properties.TEMPLATE to"
 echo "/mnt/opt/infinit.e-install/config/infinite.configuration.properties and edit the"
 echo "properties contained within the file to match your deployment environment."
+echo "################################################################################"
+echo "Complete HADOOP installing via the following commands:"
+echo "cd /mnt/opt/infinit.e-install/rpms"
+echo "sudo setenforce 0"
+echo "./scm-installer.bin"
 echo "################################################################################"
