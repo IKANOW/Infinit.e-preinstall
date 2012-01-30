@@ -99,11 +99,6 @@ echo "Install MongoDB -"
 cp $INSTALL_FILES_DIR/etc/yum.repos.d/10gen-mongodb.repo /etc/yum.repos.d/
 yes | yum update -y
 yes | yum install mongo-10gen mongo-10gen-server -y
-
-################################################################################
-echo "Start mongod service"
-################################################################################
-service mongod start
 sleep 10
 
 ################################################################################

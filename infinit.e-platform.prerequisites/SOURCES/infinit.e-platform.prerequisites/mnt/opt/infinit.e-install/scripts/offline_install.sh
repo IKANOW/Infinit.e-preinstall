@@ -116,11 +116,6 @@ echo "Install MongoDB -"
 cd $INSTALL_FILES_DIR/rpms
 yes | yum localinstall mongo-10gen-*.rpm --nogpgcheck
 yes | yum localinstall mongo-10gen-server-*.rpm --nogpgcheck
-
-################################################################################
-echo "Start mongod service"
-################################################################################
-service mongod start
 sleep 10
 
 ################################################################################
