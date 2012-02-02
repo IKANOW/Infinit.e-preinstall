@@ -1,0 +1,3 @@
+[cloudera]
+name = Cloudera Local Repo Hadoop and Hue installs
+baseurl = file:///mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat/5/x86_64/cloudera-manager/3/
