@@ -7,9 +7,9 @@
 INSTALL_MODE=$1
 
 ################################################################################
-echo "Copy repo files needed for offline installation to /etc/yum.repos.d"
+echo "Copy repo file needed for offline installation to /etc/yum.repos.d"
 ################################################################################
-cp /mnt/opt/hadoop-infinite/etc/yum.repos.d/* /etc/yum.repos.d/
+cp /mnt/opt/hadoop-infinite/etc/yum.repos.d/cloudera.repo /etc/yum.repos.d/
 
 ################################################################################
 echo "Add hadoop group and user"
@@ -26,6 +26,7 @@ createrepo /mnt/opt/hadoop-infinite/rpms
 echo "Install rpms via yum localinstall"
 ################################################################################
 cd /mnt/opt/hadoop-infinite/rpms
+yes | yum localinstall createrepo-0.4.11-3.el5.noarch.rpm --nogpgcheck
 yes | yum localinstall hadoop-0.20-0.20.2+923.194-1.noarch.rpm --nogpgcheck
 yes | yum localinstall hadoop-0.20-native-0.20.2+923.194-1.x86_64.rpm --nogpgcheck
 yes | yum localinstall hadoop-0.20-sbin-0.20.2+923.194-1.x86_64.rpm --nogpgcheck
@@ -33,7 +34,7 @@ yes | yum localinstall hue-plugins-1.2.0.0+114.20-1.noarch.rpm --nogpgcheck
 yes | yum localinstall hadoop-zookeeper-3.3.4+19.3-1.noarch.rpm --nogpgcheck
 yes | yum localinstall hadoop-hbase-0.90.4+49.137-1.noarch.rpm --nogpgcheck
 yes | yum localinstall oozie-2.3.2+27.12-1.noarch.rpm --nogpgcheck
-yes | yum localinstall oozie-client-2.3.2+27.12-1.noarch.rpm --nogpgcheck
+#yes | yum localinstall oozie-client-2.3.2+27.12-1.noarch.rpm --nogpgcheck
 yes | yum localinstall hue-1.2.0.0+114.20-1.noarch.rpm --nogpgcheck
 sleep 5
 
@@ -56,7 +57,6 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	################################################################################
 	echo "Create cloudera-manager directories"
 	################################################################################
-	mkdir /mnt/opt/hadoop-infinite
 	mkdir /mnt/opt/hadoop-infinite/webroot/cloudera-manager
 	mkdir /mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat
 	mkdir /mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat/5
