@@ -60,7 +60,6 @@ infinit.e-hadoop-installer.offline
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/cloudera-manager-plugins-3.7.2.143-1.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/cloudera-manager-server-3.7.2.143-1.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/cloudera-manager-server-db-3.7.2.143-1.noarch.rpm
-%attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/createrepo-0.4.11-3.el5.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/cyrus-sasl-gssapi-2.1.22-5.el5_4.3.x86_64.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hadoop-0.20-0.20.2+923.194-1.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hadoop-0.20-native-0.20.2+923.194-1.x86_64.rpm
@@ -85,7 +84,6 @@ infinit.e-hadoop-installer.offline
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/libxslt-1.1.17-2.el5_2.2.x86_64.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/oozie-2.3.2+27.12-1.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/oozie-client-2.3.2+27.12-1.noarch.rpm
-%attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/pgdg-redhat-9.1-4.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/redhat-lsb-4.0-2.1.4.el5.x86_64.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/RPM-GPG-KEY-cloudera
 
