@@ -135,23 +135,4 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	chmod +x scm-installer.bin
 	./scm-installer.bin
 
-	################################################################################
-	#echo "Install cloudera-manager server components and postgresql DB"
-	################################################################################
-	#cd /mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat/5/x86_64/cloudera-manager/3/
-	#yes | yum localinstall cloudera-manager-daemons-3.7.2.143-1.noarch.rpm --nogpgcheck
-	#yes | yum localinstall cloudera-manager-server-3.7.2.143-1.noarch.rpm --nogpgcheck
-	#yes | yum localinstall cloudera-manager-server-db-3.7.2.143-1.noarch.rpm --nogpgcheck
-	#/etc/init.d/cloudera-scm-server-db initdb
-	#/usr/share/cmf/schema/scm_prepare_database.sh postgresql -u temp -p temp scm scm scm
-	#yes | yum localinstall cloudera-manager-agent-3.7.2.143-1.x86_64.rpm --nogpgcheck
-	################################################################################
-	#echo ""
-	################################################################################
-	################################################################################
-	#echo "Start cloudera-manager server and agents"
-	################################################################################
-	#/etc/init.d/cloudera-scm-server start
-	#/etc/init.d/cloudera-scm-agent start
-	
 fi

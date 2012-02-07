@@ -10,6 +10,7 @@ Group: 		Infinit.e
 Vendor: 	IKANOW, LLC.
 URL: 		http://www.ikanow.com
 BuildArch: 	noarch
+Requires: 	jdk >= 1.6
 %description
 infinit.e-hadoop-installer.offline
 ###########################################################################
