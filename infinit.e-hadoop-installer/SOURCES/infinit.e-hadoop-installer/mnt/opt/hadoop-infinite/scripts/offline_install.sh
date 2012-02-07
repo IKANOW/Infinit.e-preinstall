@@ -25,7 +25,7 @@ yes | yum localinstall createrepo-0.4.11-3.el5.noarch.rpm --nogpgcheck
 createrepo /mnt/opt/hadoop-infinite/rpms
 
 ################################################################################
-echo "Install rpms via yum localinstall"
+echo "Install hadoop and hue rpms via yum localinstall"
 ################################################################################
 cd /mnt/opt/hadoop-infinite/rpms
 yes | yum localinstall redhat-lsb-4.0-2.1.4.el5.x86_64.rpm --nogpgcheck
@@ -54,7 +54,7 @@ yes | yum localinstall hue-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
 sleep 5
 
 ################################################################################
-# Create directories for Infinit.e mapreduce projects
+echo "Create directories for Infinit.e mapreduce projects"
 ################################################################################
 mkdir /mnt/opt/hadoop-infinite/mapreduce
 
@@ -84,8 +84,8 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	################################################################################
 	cd /mnt/opt/hadoop-infinite/rpms/
 	yes | yum localinstall postgresql-libs-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
-	yes | yum localinstall postgresql-server-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
 	yes | yum localinstall postgresql-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
+	yes | yum localinstall postgresql-server-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
 	sleep 5
 	
 	################################################################################
