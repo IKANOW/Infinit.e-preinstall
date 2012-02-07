@@ -113,7 +113,7 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	sleep 5
 
 	################################################################################
-	echo "Make archives.cloudera.com resolve to 127.0.0.1 /etc/hosts"
+	#echo "Make archives.cloudera.com resolve to 127.0.0.1 /etc/hosts"
 	################################################################################
 	cp /etc/hosts /etc/hosts.backup
 	HOST_FOUND="FALSE"
@@ -123,10 +123,10 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	fi
 
 	################################################################################
-	echo "Start nano webserver to make cloudera-manager directories available via http"
+	echo "Start SimpleWebServer webserver to make cloudera-manager directories available via http"
 	################################################################################
 	cd /mnt/opt/hadoop-infinite/webroot/
-	java -jar nano.jar
+	nohup java -jar SimpleWebServer.jar &
 	
 	################################################################################
 	echo "Make scm-installer executable and run it to install cloudera-manager"
@@ -134,4 +134,24 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	cd /mnt/opt/hadoop-infinite/
 	chmod +x scm-installer.bin
 	./scm-installer.bin
+
+	################################################################################
+	#echo "Install cloudera-manager server components and postgresql DB"
+	################################################################################
+	#cd /mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat/5/x86_64/cloudera-manager/3/
+	#yes | yum localinstall cloudera-manager-daemons-3.7.2.143-1.noarch.rpm --nogpgcheck
+	#yes | yum localinstall cloudera-manager-server-3.7.2.143-1.noarch.rpm --nogpgcheck
+	#yes | yum localinstall cloudera-manager-server-db-3.7.2.143-1.noarch.rpm --nogpgcheck
+	#/etc/init.d/cloudera-scm-server-db initdb
+	#/usr/share/cmf/schema/scm_prepare_database.sh postgresql -u temp -p temp scm scm scm
+	#yes | yum localinstall cloudera-manager-agent-3.7.2.143-1.x86_64.rpm --nogpgcheck
+	################################################################################
+	#echo ""
+	################################################################################
+	################################################################################
+	#echo "Start cloudera-manager server and agents"
+	################################################################################
+	#/etc/init.d/cloudera-scm-server start
+	#/etc/init.d/cloudera-scm-agent start
+	
 fi

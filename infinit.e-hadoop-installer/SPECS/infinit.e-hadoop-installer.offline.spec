@@ -92,6 +92,6 @@ infinit.e-hadoop-installer.offline
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/RPM-GPG-KEY-cloudera
 
 ###########################################################################
-# Nano webserver
+# SimpleWebServer webserver
 ###########################################################################
-%attr(-,root,root) /mnt/opt/hadoop-infinite/webroot/nano.jar
+%attr(-,root,root) /mnt/opt/hadoop-infinite/webroot/SimpleWebServer.jar
