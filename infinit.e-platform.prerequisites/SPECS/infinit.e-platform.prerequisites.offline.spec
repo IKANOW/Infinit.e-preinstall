@@ -161,18 +161,6 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/zip-2.31-2.el5.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/xorg-x11-xfs-1.0.2-5.el5_6.1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/cyrus-sasl-gssapi-2.1.22-5.el5_4.3.x86_64.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hadoop-hive-0.7.1+42.27-2.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-about-1.2.0.0+114.4-2.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-beeswax-1.2.0.0+114.4-2.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-common-1.2.0.0+114.4-2.x86_64.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-filebrowser-1.2.0.0+114.4-2.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-help-1.2.0.0+114.4-2.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-jobbrowser-1.2.0.0+114.4-2.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-jobsub-1.2.0.0+114.4-2.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-plugins-1.2.0.0+114.4-2.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-proxy-1.2.0.0+114.4-2.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-shell-1.2.0.0+114.4-2.x86_64.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/hue-useradmin-1.2.0.0+114.4-2.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/dependencies/libxslt-1.1.17-2.el5_2.2.x86_64.rpm
 
 ###########################################################################
@@ -188,8 +176,6 @@ infinit.e-platform.prerequisites.offline
 ###########################################################################
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/curl-7.15.5-9.el5_7.4.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/elasticsearch-0.18.7-1.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/hadoop-0.20-0.20.2+923.142-1.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/hue-1.2.0.0+114.4-2.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/jpackage-utils-5.0.0-2.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/jre-6u29-linux-x64-rpm.bin
@@ -198,7 +184,6 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/rpm-build-4.4.2.3-22.el5_7.2.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/s3cmd-1.0.0-4.1.i386.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/s3cmd-1.0.0-4.1.x86_64.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/scm-installer.bin
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/splunk-4.2.4-110225-linux-2.6-x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/tomcat6-6.0.29-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/tomcat6-admin-webapps-6.0.29-1.jpp5.noarch.rpm

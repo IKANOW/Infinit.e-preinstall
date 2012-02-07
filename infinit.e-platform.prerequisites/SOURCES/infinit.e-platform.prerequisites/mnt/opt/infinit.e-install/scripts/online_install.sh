@@ -126,24 +126,6 @@ yes | yum install curl -y
 
 
 ################################################################################
-echo "Install hadoop for APINodes Only -"
-################################################################################
-if [ "$NODE_TYPE" = "APINode" ]; then
-	groupadd hadoop
-	useradd -g hadoop -p hduser hduser
-	cd /etc/yum.repos.d
-  	wget 'http://archive.cloudera.com/redhat/cdh/cloudera-cdh3.repo'
-	yes | yum install hadoop -y
-	yes | yum install hue -y
-	mkdir /mnt/opt/hadoop-infinite/
-	mkdir /mnt/opt/hadoop-infinite/mapreduce
-	
-	cd /mnt/opt/infinit.e-install/rpms
-	chmod u+x scm-installer.bin
-fi
-
-
-################################################################################
 echo "Update the Yum repository one last time"
 ################################################################################
 yes | yum update -y
@@ -154,9 +136,4 @@ echo "IMPORTANT NOTES:"
 echo "Copy /mnt/opt/infinit.e-install/config/infinite.configuration.properties.TEMPLATE to"
 echo "/mnt/opt/infinit.e-install/config/infinite.configuration.properties and edit the"
 echo "properties contained within the file to match your deployment environment."
-echo "################################################################################"
-echo "Complete HADOOP installing via the following commands:"
-echo "cd /mnt/opt/infinit.e-install/rpms"
-echo "sudo setenforce 0"
-echo "./scm-installer.bin"
 echo "################################################################################"

@@ -142,29 +142,9 @@ cd $INSTALL_FILES_DIR/rpms
 yes | yum localinstall curl-*.rpm --nogpgcheck
 
 
-################################################################################
-echo "Install hadoop for APINodes Only -"
-################################################################################
-if [ "$NODE_TYPE" = "APINode" ]; then
-	groupadd hadoop
-	useradd -g hadoop -p hduser hduser
-	cd $INSTALL_FILES_DIR/rpms
-	yes | yum localinstall hadoop-*.rpm --nogpgcheck
-	yes | yum localinstall hue-*.rpm --nogpgcheck
-	mkdir /mnt/opt/hadoop-infinite/
-	mkdir /mnt/opt/hadoop-infinite/mapreduce
-	cp /mnt/opt/infinit.e-install/rpms
-	chmod u+x scm-installer.bin
-fi
-
 echo "################################################################################"
 echo "IMPORTANT:"
 echo "Copy /mnt/opt/infinit.e-install/config/infinite.configuration.properties.TEMPLATE to"
 echo "/mnt/opt/infinit.e-install/config/infinite.configuration.properties and edit the"
 echo "properties contained within the file to match your deployment environment."
-echo "################################################################################"
-echo "Complete HADOOP installing via the following commands:"
-echo "cd /mnt/opt/infinit.e-install/rpms"
-echo "sudo setenforce 0"
-echo "./scm-installer.bin"
 echo "################################################################################"
