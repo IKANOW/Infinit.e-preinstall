@@ -7,9 +7,9 @@
 INSTALL_MODE=$1
 
 ################################################################################
-echo "Copy repo file needed for offline installation to /etc/yum.repos.d"
+#echo "Copy repo file needed for offline installation to /etc/yum.repos.d"
 ################################################################################
-cp /mnt/opt/hadoop-infinite/etc/yum.repos.d/cloudera.repo /etc/yum.repos.d/
+#cp /mnt/opt/hadoop-infinite/etc/yum.repos.d/cloudera.repo /etc/yum.repos.d/
 
 ################################################################################
 echo "Add hadoop group and user"
@@ -28,6 +28,7 @@ createrepo /mnt/opt/hadoop-infinite/rpms
 echo "Install rpms via yum localinstall"
 ################################################################################
 cd /mnt/opt/hadoop-infinite/rpms
+yes | yum localinstall redhat-lsb-4.0-2.1.4.el5.x86_64.rpm --nogpgcheck
 yes | yum localinstall hadoop-0.20-0.20.2+923.194-1.noarch.rpm --nogpgcheck
 yes | yum localinstall hadoop-0.20-native-0.20.2+923.194-1.x86_64.rpm --nogpgcheck
 yes | yum localinstall hadoop-0.20-sbin-0.20.2+923.194-1.x86_64.rpm --nogpgcheck
@@ -78,17 +79,14 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	mkdir /mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat/5/x86_64/cloudera-manager/3
 	sleep 5
 	
-	#cd /mnt/opt/hadoop-infinite/rpms/
-	#yes | yum localinstall postgresql91-libs-9.1.1-1PGDG.rhel5.x86_64.rpm --nogpgcheck
-	#yes | yum localinstall postgresql91-9.1.1-1PGDG.rhel5.x86_64.rpm --nogpgcheck
-	#yes | yum localinstall postgresql91-server-9.1.1-1PGDG.rhel5.x86_64.rpm --nogpgcheck
-	#service postgresql-9.1 initdb 
-	#service postgresql-9.1 start
-	
-	#cd /mnt/opt/hadoop-infinite/rpms/
-	#yes | yum localinstall cloudera-manager-daemons-3.7.2.143-1.noarch.rpm --nogpgcheck
-	#yes | yum localinstall cloudera-manager-server-3.7.2.143-1.noarch.rpm --nogpgcheck
-	#yes | yum localinstall cloudera-manager-server-db-3.7.2.143-1.noarch.rpm --nogpgcheck
+	################################################################################
+	echo "Install postgresql-server 8.1"
+	################################################################################
+	cd /mnt/opt/hadoop-infinite/rpms/
+	yes | yum localinstall postgresql-libs-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
+	yes | yum localinstall postgresql-server-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
+	yes | yum localinstall postgresql-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
+	sleep 5
 	
 	################################################################################
 	echo "Move the RPMs to:"
@@ -111,8 +109,8 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	################################################################################
 	echo "Create repo of files in cloudera-manager directory"
 	################################################################################
-	#createrepo /mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat/5/x86_64/cloudera-manager/3/RPMS
-	#sleep 5
+	createrepo /mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat/5/x86_64/cloudera-manager/3/
+	sleep 5
 
 	################################################################################
 	echo "Make archives.cloudera.com resolve to 127.0.0.1 /etc/hosts"
@@ -123,12 +121,7 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	if [[ $HOST_FOUND="FALSE" ]]; then
     	sed -i '/127.0.0.1/s|$| archive.cloudera.com|' /etc/hosts
 	fi
-	
-	################################################################################
-	echo "Install postgressql package"
-	################################################################################
-	yum install postgresql-server
-	
+
 	################################################################################
 	echo "Start nano webserver to make cloudera-manager directories available via http"
 	################################################################################
