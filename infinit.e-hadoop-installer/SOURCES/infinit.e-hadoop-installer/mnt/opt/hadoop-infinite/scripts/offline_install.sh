@@ -134,5 +134,10 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	cd /mnt/opt/hadoop-infinite/
 	chmod +x scm-installer.bin
 	./scm-installer.bin
+	
+	################################################################################
+	echo "Remove cloudera related repo files"
+	################################################################################
+	rm -rf /etc/yum.repos.d/cloudera*
 
 fi
