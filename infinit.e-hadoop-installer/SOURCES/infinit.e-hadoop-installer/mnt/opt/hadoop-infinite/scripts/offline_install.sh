@@ -135,8 +135,4 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	chmod +x scm-installer.bin
 	./scm-installer.bin
 
-	################################################################################
-	echo "Stop SimpleWebServer via killall -9 java"
-	################################################################################
-	killall -9 java
 fi
