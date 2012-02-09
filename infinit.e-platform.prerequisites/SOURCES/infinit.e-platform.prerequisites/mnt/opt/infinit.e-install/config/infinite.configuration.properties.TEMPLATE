@@ -70,6 +70,9 @@ s3.gpg.passphrase=
 # (server/port should normally point to localhost:27017), where API nodes have a mongos
 db.server=localhost
 db.port= 27017
+# db.cluster.subnet - used for non-EC2 installations to help mongodb configurations
+# identify proper host ip addresses, e.g. 127.0.0.
+db.cluster.subnet=
 # The max number of documents to store (eg 10M). Docs will be dropped in order of age.
 # (Not currently supported):
 db.capacity=10000000
