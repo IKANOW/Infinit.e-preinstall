@@ -70,6 +70,8 @@ s3.gpg.passphrase=
 # (server/port should normally point to localhost:27017), where API nodes have a mongos
 db.server=localhost
 db.port= 27017
+# MongoDB config server or servers (must be 1 or 3 comma separated IPs), non-AWS installations
+db.config.servers=
 # db.sharded - 0 = false and 1 = true
 db.sharded=0
 # db.cluster.subnet - used for non-EC2 installations to help mongodb configurations
