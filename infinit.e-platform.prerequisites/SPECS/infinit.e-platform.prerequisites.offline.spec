@@ -201,8 +201,8 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-6.0.29-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-admin-webapps-6.0.29-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-webapps-6.0.29-1.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/yum-downloadonly-1.1.16-16.el5.centos.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/yum-priorities-1.1.16-16.el5.centos.noarch.rpm
+#%attr(-,root,root) /mnt/opt/infinite-install/rpms/yum-downloadonly-1.1.16-16.el5.centos.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/yum-priorities-1.1.16-16.el5.noarch.rpm
 
 ###########################################################################
 # s3cmd gpgkey
