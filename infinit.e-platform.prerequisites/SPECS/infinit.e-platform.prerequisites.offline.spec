@@ -30,11 +30,10 @@ infinit.e-platform.prerequisites.offline
 	if [ "$RPM_INSTALL_PREFIX" != "/opt" ]; then
 		echo "(Creating links from /opt to $RPM_INSTALL_PREFIX)"
 	 	if [ -d /opt/infinite-install ] && [ ! -h /opt/infinite-install ]; then
-			echo "Error: /opt/infinite-install"
+			echo "Error: /opt/infinite-install exits"
 			exit 1
 		else
 			ln -sf $RPM_INSTALL_PREFIX/infinite-install /opt
-			chown -h tomcat.tomcat /opt/infinite-install 
 		fi 
 	fi
 	
