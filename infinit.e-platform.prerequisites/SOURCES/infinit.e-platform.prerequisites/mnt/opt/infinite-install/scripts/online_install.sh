@@ -74,7 +74,10 @@ sleep 5
 ################################################################################
 echo "Install Tomcat -"
 ################################################################################
-rpm -Uvh http://plone.lucidsolutions.co.nz/linux/centos/images/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
+# rpm -Uvh http://plone.lucidsolutions.co.nz/linux/centos/images/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
+cd $INSTALL_FILES_DIR/rpms
+rpm -Uvh jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
+
 cd /etc/yum.repos.d
 wget 'http://www.jpackage.org/jpackage50.repo'
 yes | yum update -y
