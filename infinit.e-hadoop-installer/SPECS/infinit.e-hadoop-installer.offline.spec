@@ -10,6 +10,7 @@ Group: 		Infinit.e
 Vendor: 	IKANOW, LLC.
 URL: 		http://www.ikanow.com
 BuildArch: 	noarch
+Prefix: /mnt/opt
 Requires: 	jdk >= 1.6
 %description
 infinit.e-hadoop-installer.offline
@@ -26,6 +27,17 @@ infinit.e-hadoop-installer.offline
 # 
 ###########################################################################
 %post
+	# Handle relocation:
+	if [ "$RPM_INSTALL_PREFIX" != "/opt" ]; then
+		echo "(Creating links from /opt to $RPM_INSTALL_PREFIX)"
+	 	if [ -d /opt/hadoop-infinite ] && [ ! -h /opt/hadoop-infinite ]; then
+			echo "Error: /opt/infinite-install exits"
+			exit 1
+		else
+			ln -sf $RPM_INSTALL_PREFIX/hadoop-infinite /opt
+		fi 
+	fi
+	
 	if [ $1 -eq 1 ]; then
 		cp /mnt/opt/hadoop-infinite/scripts/offline_install.sh /mnt/opt/hadoop-infinite/install.sh	
 	fi
