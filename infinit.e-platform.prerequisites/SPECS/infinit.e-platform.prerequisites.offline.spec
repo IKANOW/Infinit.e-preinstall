@@ -178,7 +178,8 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/elasticsearch-0.18.7-1.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/jpackage-utils-5.0.0-2.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/jre-6u29-linux-x64-rpm.bin
+%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/jre-6u30-linux-x64-rpm.bin
+%attr(-,root,root) /mnt/opt/infinit.e-install/rpms/jdk-6u30-linux-x64.bin
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/mongo-10gen-2.0.2-mongodb_1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/mongo-10gen-server-2.0.2-mongodb_1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinit.e-install/rpms/rpm-build-4.4.2.3-22.el5_7.2.x86_64.rpm

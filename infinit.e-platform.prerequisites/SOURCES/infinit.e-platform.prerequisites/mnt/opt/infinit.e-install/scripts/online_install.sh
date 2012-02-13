@@ -61,9 +61,13 @@ sleep 5
 
 
 ################################################################################
-echo "Install Java -"
+echo "Install Java JRE and JDK -"
 ################################################################################
-yes | yum install java -y
+cd $INSTALL_FILES_DIR/rpms
+chmod a+x jre-*-linux-x64-rpm.bin
+sh jre-*-linux-x64-rpm.bin
+chmod a+x jdk-*-linux-x64-rpm.bin
+sh jdk-*-linux-x64-rpm.bin
 sleep 5
 
 
@@ -104,9 +108,9 @@ sleep 10
 ################################################################################
 # echo "untar geo collection and add it to the MongoDB server via mongorestore"
 ################################################################################
-# cd $INSTALL_FILES_DIR/data/feature
-# tar -zxvf geo.bson.tar.gz
-# mongorestore $INSTALL_FILES_DIR/data/feature/geo.bson
+#cd $INSTALL_FILES_DIR/data/feature
+#tar -zxvf geo.bson.tar.gz
+#mongorestore $INSTALL_FILES_DIR/data/feature/geo.bson
 
 
 ################################################################################
