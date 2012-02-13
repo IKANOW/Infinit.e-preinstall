@@ -105,13 +105,6 @@ yes | yum update -y
 yes | yum install mongo-10gen mongo-10gen-server -y
 sleep 10
 
-################################################################################
-# echo "untar geo collection and add it to the MongoDB server via mongorestore"
-################################################################################
-#cd $INSTALL_FILES_DIR/data/feature
-#tar -zxvf geo.bson.tar.gz
-#mongorestore $INSTALL_FILES_DIR/data/feature/geo.bson
-
 
 ################################################################################
 echo "Install elasticsearch for APINodes Only -"
