@@ -178,10 +178,10 @@ infinit.e-platform.prerequisites.offline
 ###########################################################################
 # yum repo files for dependencies
 ###########################################################################
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/repodata/filelists.xml.gz
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/repodata/other.xml.gz
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/repodata/primary.xml.gz
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/repodata/repomd.xml
+#%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/repodata/filelists.xml.gz
+#%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/repodata/other.xml.gz
+#%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/repodata/primary.xml.gz
+#%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/repodata/repomd.xml
 
 ###########################################################################
 # rpms to install
