@@ -10,6 +10,7 @@ Group: 		Infinit.e
 Vendor: 	IKANOW, LLC.
 URL: 		http://www.ikanow.com
 BuildArch: 	noarch
+Prefix: /mnt/opt
 %description
 infinit.e-platform.prerequisites.online
 ###########################################################################
