@@ -67,7 +67,7 @@ cd $INSTALL_FILES_DIR/rpms
 chmod a+x jre-*-linux-x64-rpm.bin
 sh jre-*-linux-x64-rpm.bin
 chmod a+x jdk-*-linux-x64-rpm.bin
-sh jdk-*-linux-x64-rpm.bin
+sh jdk-*-linux-x64.bin
 sleep 5
 
 
