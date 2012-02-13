@@ -26,11 +26,11 @@ echo "Off-line (Disconnected) Installation: $NODE_TYPE"
 ################################################################################
 # Directory install files are copied too
 ################################################################################
-INSTALL_FILES_DIR="/mnt/opt/infinit.e-install"
+INSTALL_FILES_DIR="/mnt/opt/infinite-install"
 
 
 ################################################################################
-echo "Create yum repo for /mnt/opt/infinit.e-install/rpms/dependencies -"
+echo "Create yum repo for /mnt/opt/infinite-install/rpms/dependencies -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms/dependencies
 yes | yum localinstall libxml2-python-*.rpm --nogpgcheck
@@ -139,7 +139,7 @@ yes | yum localinstall curl-*.rpm --nogpgcheck
 
 echo "################################################################################"
 echo "IMPORTANT:"
-echo "Copy /mnt/opt/infinit.e-install/config/infinite.configuration.properties.TEMPLATE to"
-echo "/mnt/opt/infinit.e-install/config/infinite.configuration.properties and edit the"
+echo "Copy /mnt/opt/infinite-install/config/infinite.configuration.properties.TEMPLATE to"
+echo "/mnt/opt/infinite-install/config/infinite.configuration.properties and edit the"
 echo "properties contained within the file to match your deployment environment."
 echo "################################################################################"
