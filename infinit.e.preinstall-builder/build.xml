@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="infinit.e.preinstall" default="build">
+
+	<property name="infinit.e-prereqs.rpm.location" value="${basedir}/../infinit.e-platform.prerequisites"/>	
+	<property name="infinit.e-elasticsearch.rpm.location" value="${basedir}/../infinit.e-elasticsearch.rpm"/>	
+	<property name="infinit.e-hadoop.rpm.location" value="${basedir}/../infinit.e-hadoop-installer"/>	
+	
+	<target name="build" description="Run build for all sub projects">
+		<ant antfile="${infinit.e-prereqs.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-prereqs.rpm.location}"/>
+		</ant>
+		<ant antfile="${infinit.e-elasticsearch.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-elasticsearch.rpm.location}"/>
+		</ant>
+		<ant antfile="${infinit.e-hadoop.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-hadoop.rpm.location}"/>
+		</ant>
+	</target>
+
+</project>
