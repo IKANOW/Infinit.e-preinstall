@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="elasticsearch-0.17.9" default="rpm" basedir=".">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="elasticsearch" default="rpm" basedir=".">
 	<!-- ================================= 
 		     Properties              
 	================================= -->
@@ -22,15 +22,6 @@
 					global="true"
 					defaultValue="${ant.project.name}_tmp"
 		/>
-	
-	<!-- Versioning: these are not set again if already set -->
-
-	<property name="bamboo.majorBuild" value="0"/>
-	<property name="bamboo.minorBuild" value="16"/>
-	<property name="bamboo.custom.svn.revision.number" value="2"/>
-	
-	<property name="infinite_version" value="${bamboo.majorBuild}.${bamboo.minorBuild}"/>
-	<property name="infinite_release" value="${bamboo.custom.svn.revision.number}"/>
 	
 	<!-- ================================= 
 		     target: clean              
