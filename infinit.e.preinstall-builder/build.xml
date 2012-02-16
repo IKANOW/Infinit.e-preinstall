@@ -12,6 +12,7 @@
 	<property name="infinit.e-prereqs.rpm.location" value="${basedir}/../infinit.e-platform.prerequisites"/>	
 	<property name="infinit.e-elasticsearch.rpm.location" value="${basedir}/../infinit.e-elasticsearch.rpm"/>	
 	<property name="infinit.e-hadoop.rpm.location" value="${basedir}/../infinit.e-hadoop-installer"/>	
+	<property name="infinit.e-raid-amazon.rpm.location" value="${basedir}/../infinit.e-raid-amazon.rpm"/>	
 	
 	<target name="clean" description="Generic clean">
 		<delete dir="repo"/>
@@ -26,6 +27,9 @@
 		</ant>
 		<ant antfile="${infinit.e-hadoop.rpm.location}/build.xml">
 			<property name="basedir" value="${infinit.e-hadoop.rpm.location}"/>
+		</ant>
+		<ant antfile="${infinit.e-raid-amazon.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-raid-amazon.rpm.location}"/>
 		</ant>
 	</target>
 
