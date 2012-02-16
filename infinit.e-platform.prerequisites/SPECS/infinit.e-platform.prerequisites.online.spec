@@ -20,7 +20,7 @@ infinit.e-platform.prerequisites.online
 ###########################################################################
 %prep
 	# (create build files)
-	zcat $RPM_SOURCE_DIR/infinit.e-platform.prerequisites-online.tgz | tar -xvf --exclude geo.bson.tar.gz -
+	zcat $RPM_SOURCE_DIR/infinit.e-platform.prerequisites-online.tgz | tar -xvf -
 
 ###########################################################################
 # 
@@ -79,5 +79,3 @@ infinit.e-platform.prerequisites.online
 ###########################################################################
 # Data files
 ###########################################################################
-# Commented out from online install 
-#%attr(-,root,root) /mnt/opt/infinite-install/data/feature/geo.bson.tar.gz
