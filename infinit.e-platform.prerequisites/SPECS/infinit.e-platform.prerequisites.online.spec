@@ -20,7 +20,7 @@ infinit.e-platform.prerequisites.online
 ###########################################################################
 %prep
 	# (create build files)
-	zcat $RPM_SOURCE_DIR/infinit.e-platform.prerequisites-online.tgz | tar -xvf -
+	zcat $RPM_SOURCE_DIR/infinit.e-platform.prerequisites-online.tgz | tar -xvf --exclude geo.bson.tar.gz -
 
 ###########################################################################
 # 
