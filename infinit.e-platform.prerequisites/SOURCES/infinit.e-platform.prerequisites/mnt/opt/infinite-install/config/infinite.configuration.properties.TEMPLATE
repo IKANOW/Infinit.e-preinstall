@@ -81,6 +81,14 @@ db.cluster.subnet=
 # The max number of documents to store (eg 10M). Docs will be dropped in order of age.
 # (Not currently supported):
 db.capacity=10000000
+# The location from which to fetch the geo.bson dump used for feature.geo
+# can start s3://, http:// or https://, else is assumed to be a file
+# (In offline mode it's always here:)
+#db.geo_archive=/opt/infinite-install/data/feature/geo.bson.tar.gz
+#Example online locations
+#db.geo_archive=http://www.ikanow.com/infinit.e-preinstall/geo.bson.tar.gz
+#db.geo_archive=s3://config.saas.infinite.ikanow.com/geo.bson.tar.gz
+db.geo_archive=
 
 ################################################################################
 # UI inactivity timeout (in seconds)
