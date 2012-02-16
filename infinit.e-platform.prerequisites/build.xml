@@ -112,7 +112,8 @@
 		<tar tarfile="${dir.src}/${ant.project.name}-online.tgz" 
 		       basedir="${dir.src}/${ant.project.name}" 
 			   compression="gzip"
-		       excludes="**/.svn, **/geo.bson.tar.gz" 
+		       includes="**"
+		       excludes=".svn" 
 		/>		
 		<copy file="${dir.specs}/${ant.project.name}.online.spec" tofile="${dir.specs}/${ant.project.name}.online_tmp.spec"/>
 		<replace file="${dir.specs}/${ant.project.name}.online_tmp.spec">
