@@ -39,6 +39,7 @@
 			<fileset dir="${infinit.e-prereqs.rpm.location}/RPMS/noarch/" includes="*online*.rpm"/>
 			<fileset dir="${infinit.e-hadoop.rpm.location}/RPMS/noarch/" includes="*online*.rpm"/>
 			<fileset dir="${infinit.e-elasticsearch.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
+			<fileset dir="${infinit.e-raid-amazon.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
 		</copy>
 		<exec executable="createrepo">
 			<arg value="repo"/>
