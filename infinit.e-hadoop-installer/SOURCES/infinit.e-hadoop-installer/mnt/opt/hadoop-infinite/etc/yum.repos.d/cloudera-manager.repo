@@ -1,0 +1,5 @@
+[cloudera-manager]
+name=Cloudera Manager
+baseurl=http://archive.cloudera.com/cloudera-manager/redhat/5/x86_64/cloudera-manager/3/
+gpgkey=http://archive.cloudera.com/cloudera-manager/redhat/5/x86_64/cloudera-manager/RPM-GPG-KEY-cloudera
+gpgcheck=1

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="infinit.e.preinstall" default="createrepo">
+
+	<!-- Versioning: these are not set again if already set -->
+	<property name="bamboo.majorBuild" value="localBuild"/>
+	<property name="bamboo.minorBuild" value="0"/>
+	<property name="bamboo.custom.svn.revision.number" value="0"/>
+	
+	<property name="infinite_version" value="${bamboo.majorBuild}.${bamboo.minorBuild}"/>
+	<property name="infinite_release" value="${bamboo.custom.svn.revision.number}"/>
+
+	<property name="infinit.e-prereqs.rpm.location" value="${basedir}/../infinit.e-platform.prerequisites"/>	
+	<property name="infinit.e-elasticsearch.rpm.location" value="${basedir}/../infinit.e-elasticsearch.rpm"/>	
+	<property name="infinit.e-hadoop.rpm.location" value="${basedir}/../infinit.e-hadoop-installer"/>	
+	<property name="infinit.e-raid-amazon.rpm.location" value="${basedir}/../infinit.e-raid-amazon.rpm"/>	
+	
+	<target name="clean" description="Generic clean">
+		<delete dir="repo"/>
+	</target>
+		
+	<target name="build" depends="clean" description="Run build for all sub projects">
+		<ant antfile="${infinit.e-prereqs.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-prereqs.rpm.location}"/>
+		</ant>
+		<ant antfile="${infinit.e-elasticsearch.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-elasticsearch.rpm.location}"/>
+		</ant>
+		<ant antfile="${infinit.e-hadoop.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-hadoop.rpm.location}"/>
+		</ant>
+		<ant antfile="${infinit.e-raid-amazon.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-raid-amazon.rpm.location}"/>
+		</ant>
+	</target>
+
+	<target name="createrepo" depends="build" description="Create yum repo for RPMs">
+		<mkdir dir="repo"/>
+		<copy todir="repo">
+			<fileset dir="${infinit.e-prereqs.rpm.location}/RPMS/noarch/" includes="*online*.rpm"/>
+			<fileset dir="${infinit.e-hadoop.rpm.location}/RPMS/noarch/" includes="*online*.rpm"/>
+			<fileset dir="${infinit.e-elasticsearch.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
+			<fileset dir="${infinit.e-raid-amazon.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
+		</copy>
+		<exec executable="createrepo">
+			<arg value="repo"/>
+		</exec>
+		<zip destfile="infinit.e-preinstall-repo-${infinite_version}-{infinite_release}.zip" basedir="repo"/>
+	</target>
+	
+</project>

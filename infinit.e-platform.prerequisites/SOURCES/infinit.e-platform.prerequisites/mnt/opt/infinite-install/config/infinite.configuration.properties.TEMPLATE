@@ -1,0 +1,177 @@
+################################################################################
+# infinite.configuration.properties
+################################################################################
+# Basic Infinit.e Settings 
+################################################################################
+# Default admin and test user passwords
+# Admin: admin_infinite@ikanow.com
+#CHANGE THIS:
+admin.password=infinit.e!2012
+# Test User: test_user@ikanow.com
+#CHANGE THIS:
+test.user.password=infinit.e!2012
+
+################################################################################
+# Software as a service (SAAS) settings
+# If true, allows admin requests that come from trusted sources to have admin privileges: 
+app.saas=false
+# A list of trusted DNS/IP addresses (eg from CMS):
+app.saas.trusted.dns=
+
+################################################################################
+# Amazon services properties
+# Values: 0=false, 1=true
+# If deployed on an EC2 cluster set this to 1:
+use.aws=0
+# This is the root s3 bucket name to be used for backups:
+# (The following names are used: mongo.<s3.url>, elasticsearch.<s3.url> .. daily backups in the same region
+#  backup.mongo.<s3.url>, backup.elasticsearch.<s3.url> ... monthly backups in a different region
+#  Note these dirs need to be set up manually)
+s3.url=
+
+################################################################################
+# EMail Server Settings
+# The server to be used for mail transactions (eg smtp.google.com):
+mail.server=
+# Base-64 encoded SHA-256 hash of username:
+mail.username=
+# Base-64 encoded SHA-256 hash of password:
+mail.password=
+# This URL is used as the base for links included in the 
+# So should point to an accessible REST endpoint (eg the same as ui.end.point.url below)
+url.root=http://MY_REST_ENDPOINT/api/
+
+################################################################################
+# EMail Addresses for log files etc.
+# All emails come from this user:
+log.files.mail.from=
+# System alert emails come from this user:
+log.files.mail.to=
+
+################################################################################
+# API Search Test Terms and Expected Results
+# List of terms formatted like: "*" "something" "something":
+# (The continuous testing randomly selects one of these for querying the API)
+api.search.test.terms="*"
+# The expected results (max 100), if a different number comes back, the system alerts:
+api.search.expected.results=0
+
+################################################################################
+# Amazon AWS Settings
+################################################################################
+# AWS keys (only needed if use.aws=1)
+aws.access.key=
+aws.secret.key=
+# Used for s3cmd, see their web page for details: 
+s3.gpg.passphrase=
+
+################################################################################
+# MongoDB Properties
+# (server/port should normally point to localhost:27017), where API nodes have a mongos
+db.server=localhost
+db.port= 27017
+# MongoDB config server or servers (must be 1 or 3 comma separated IPs), non-AWS installations
+db.config.servers=
+db.replica.sets=
+# db.sharded - 0 = false and 1 = true
+db.sharded=0
+# db.cluster.subnet - used for non-EC2 installations to help mongodb configurations
+# identify proper host ip addresses, e.g. 127.0.0.
+db.cluster.subnet=
+# The max number of documents to store (eg 10M). Docs will be dropped in order of age.
+# (Not currently supported):
+db.capacity=10000000
+# The location from which to fetch the geo.bson dump used for feature.geo
+# can start s3://, http:// or https://, else is assumed to be a file
+# (In offline mode it's always here:)
+#db.geo_archive=/opt/infinite-install/data/feature/geo.bson.tar.gz
+#Example online locations
+#db.geo_archive=http://www.ikanow.com/infinit.e-preinstall/geo.bson.tar.gz
+#db.geo_archive=s3://config.saas.infinite.ikanow.com/geo.bson.tar.gz
+db.geo_archive=
+
+################################################################################
+# UI inactivity timeout (in seconds)
+access.timeout=1800
+
+################################################################################
+# Elasticsearch Properties
+################################################################################
+# Cluster name and URL
+# Any unique name within the EC2 cluster/subnet: 
+elastic.cluster=
+# (Should normally be localhost:9300, unless an API node is running with no index node) 
+elastic.url=localhost:9300
+################################################################################
+# Discovery mode = ec2 (if running on AWS) or zen (specify a list of IPs below):
+elastic.node.discovery=
+################################################################################
+# ES nodes, e.g.: elastic.search.nodes='NODE1:9300','NODE2:9300','NODE3:9300':
+# Needed if discovery.mode=zen, a set of IPs to try (>= 1 must be running elasticsearch)
+elastic.search.nodes=
+################################################################################
+# mlockall = should equal true except if running on a machine with < 4GB of RAM
+bootstrap.mlockall=true
+
+#####################################################
+# Harvester Properties
+# Comma-separated-list from File,Database,Feed (note Database and Feed need jars not bundled with the RPM)
+harvester.types=File,Database,Feed
+# Web crawling etiquette: the time to way between consecutive accesses to the same time (10s is standard)
+harvest.feed.wait=10000
+# The minimum time between consecutive harvests (avoids thrashing FS/DB/RSS when there's nothing to get)
+harvest.mintime.ms=300000
+# Restricts the number of docs that can be harvested per cycle for memory reasons:
+harvest.maxdocs_persource=5000
+# Threading configuration type:num_threads (type from above):
+# (eg for RSS heavy increase the "feed", for DB heavy increase the "file" etc. Beyond 20 there is limited benefit). 
+harvest.threads=file:5,database:5,feed:20
+
+#####################################################
+# Hadoop config path
+hadoop.configpath=/mnt/opt/hadoop-infinite/mapreduce/
+
+################################################################################
+# Alchemy/Open Calais Properties
+################################################################################
+# Alchemy and Open Calais Keys:
+# (Obtain from alchemyapi.com or opencalais.com)
+extractor.key.alchemyapi=
+extractor.key.opencalais=
+################################################################################
+# Entity extraction type selection: opencalais or alchemyapi or none
+# ("opencalais" has a much higher limit than "alchemyapi" (1000/day) so is recommended for free use
+#  "alchemyapi" extracts sentiment, "opencalais" extracts entity associations Note this can be overridden per source)
+extractor.entity.default=
+# Text extraction type selection: boilerplate or alchemyapi or none
+# ("alchemyapi" is much better, but has the limit discussed above. Note this can be overridden per source)
+extractor.text.default=
+################################################################################
+# Alchemy extraction level
+# 1==people postproc, 2==geo postproc, 3==both
+# (This uses some hard-coded heuristics to work around known AlchemyAPI errors)
+app.alchemy.postproc=3
+
+################################################################################
+# Interface Related Properties for the AppConstants.js file found in:
+# /mnt/opt/infinite-tomcat/interface-engine/webapps/ROOT/
+################################################################################
+# For SaaS applications, the URL of the web page (eg containing CMS links for forgot password/logout etc):
+# (Can be left blank otherwise)
+ui.domain.url=
+# The REST end point of the server (or a DNS/AWS load balancer across multiple rest end points):
+# (Will normally end "/api/") 
+ui.end.point.url=http://MY_REST_ENDPOINT/api/
+
+# Forgot password URL: (SaaS only, ie integrated with a CMS)
+# (relative to ui.domain.url):
+ui.forgot.password=forgot-password/
+# Logout URL: (SaaS only, ie integrated with a CMS)
+# (relative to ui.domain.url):
+ui.logout=?action=logout
+
+################################################################################
+# Google maps API key:
+# Register for a key at: http://code.google.com/apis/maps/signup.html
+# Using the URL that appears in the browser bar (normally the same as "MY_REST_ENDPOINT"
+google.maps.api.key=
