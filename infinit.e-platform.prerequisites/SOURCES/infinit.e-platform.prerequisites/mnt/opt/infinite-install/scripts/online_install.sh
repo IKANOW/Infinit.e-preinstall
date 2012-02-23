@@ -113,7 +113,6 @@ sleep 10
 echo "Install elasticsearch for APINodes Only -"
 ################################################################################
 if [ "$NODE_TYPE" = "APINode" ]; then
-	cp $INSTALL_FILES_DIR/etc/yum.repos.d/ikanow-infinite.repo /etc/yum.repos.d/
 	yes | yum install elasticsearch -y
 	sleep 5
 fi
