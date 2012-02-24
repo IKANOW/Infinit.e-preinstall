@@ -79,4 +79,5 @@ infinit.e-platform.prerequisites.online
 # Data files
 ###########################################################################
 # Commented out from online install 
+%dir /mnt/opt/infinite-install/data/feature
 #%attr(-,root,root) /mnt/opt/infinite-install/data/feature/geo.bson.tar.gz
