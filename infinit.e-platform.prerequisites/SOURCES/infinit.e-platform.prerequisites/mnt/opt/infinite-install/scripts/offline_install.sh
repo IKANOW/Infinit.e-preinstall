@@ -79,6 +79,7 @@ chmod a+x jre-*-linux-x64-rpm.bin
 sh jre-*-linux-x64-rpm.bin
 chmod a+x jdk-*-linux-x64-rpm.bin
 sh jdk-*-linux-x64.bin
+mv jdk1.6.*/ /usr/java/
 sleep 5
 
 
