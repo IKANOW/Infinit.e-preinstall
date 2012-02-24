@@ -121,7 +121,9 @@ sudo chown `id -u` /data/db
 echo "Install MongoDB -"
 ################################################################################
 cp $INSTALL_FILES_DIR/etc/yum.repos.d/10gen-mongodb.repo /etc/yum.repos.d/
-yes | yum update -y
+if [ "$2" != "--fast" ]; then
+	yes | yum update -y
+fi
 yes | yum install mongo-10gen mongo-10gen-server -y
 sleep 10
 
@@ -148,7 +150,9 @@ yes | yum install curl -y
 ################################################################################
 echo "Update the Yum repository one last time"
 ################################################################################
-yes | yum update -y
+if [ "$2" != "--fast" ]; then
+	yes | yum update -y
+fi
 
 
 echo "################################################################################"
