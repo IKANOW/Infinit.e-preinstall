@@ -61,7 +61,6 @@ infinit.e-platform.prerequisites.online
 # yum repo files
 ###########################################################################
 %attr(-,root,root) /mnt/opt/infinite-install/etc/yum.repos.d/10gen-mongodb.repo
-%attr(-,root,root) /mnt/opt/infinite-install/etc/yum.repos.d/ikanow-infinite.repo
 
 ###########################################################################
 # rpms to install
@@ -80,4 +79,5 @@ infinit.e-platform.prerequisites.online
 # Data files
 ###########################################################################
 # Commented out from online install 
+%dir /mnt/opt/infinite-install/data/feature
 #%attr(-,root,root) /mnt/opt/infinite-install/data/feature/geo.bson.tar.gz

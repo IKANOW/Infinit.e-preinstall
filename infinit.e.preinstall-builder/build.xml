@@ -44,7 +44,7 @@
 		<exec executable="createrepo">
 			<arg value="repo"/>
 		</exec>
-		<zip destfile="infinit.e-preinstall-repo-${infinite_version}-{infinite_release}.zip" basedir="repo"/>
+		<zip destfile="infinit.e-preinstall-repo-${infinite_version}-${infinite_release}.zip" basedir="repo"/>
 	</target>
 	
 </project>
