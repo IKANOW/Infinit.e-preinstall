@@ -112,12 +112,6 @@ extractor.text.default=
 # The REST end point of the server (or a DNS/AWS load balancer across multiple rest end points):
 # (Will normally end "/api/") 
 ui.end.point.url=http://MY_REST_ENDPOINT/api/
-# Forgot password URL: (SaaS only, ie integrated with a CMS)
-# (relative to ui.domain.url):
-ui.forgot.password=forgot-password/
-# Logout URL: (SaaS only, ie integrated with a CMS)
-# (relative to ui.domain.url):
-ui.logout=?action=logout
 
 #-------------------------------------------------------------------------------
 # 1.15] Maps API key:
@@ -251,6 +245,12 @@ app.alchemy.postproc=3
 # For SaaS applications, the URL of the web page (eg containing CMS links for forgot password/logout etc):
 # (Can be left blank otherwise)
 ui.domain.url=
+# Forgot password URL: (SaaS only, ie integrated with a CMS)
+# (relative to ui.domain.url):
+ui.forgot.password=forgot-password/
+# Logout URL: (SaaS only, ie integrated with a CMS)
+# (relative to ui.domain.url):
+ui.logout=?action=logout
 
 #-------------------------------------------------------------------------------
 # 2.15] Maps API key:
