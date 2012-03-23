@@ -233,7 +233,7 @@ extractor.key.opencalais=
 extractor.entity.default=none
 # Text extraction type selection: boilerplate or alchemyapi or none
 # ("alchemyapi" is much better, but has the limit discussed above. Note this can be overridden per source)
-extractor.text.default=none
+extractor.text.default=boilerplate
 #----------------------------------------------
 # Alchemy extraction level
 # 1==people postproc, 2==geo postproc, 3==both
