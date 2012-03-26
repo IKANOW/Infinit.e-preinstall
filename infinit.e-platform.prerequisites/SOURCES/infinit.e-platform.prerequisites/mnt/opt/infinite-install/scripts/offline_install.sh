@@ -35,7 +35,7 @@ echo "Create yum repo for /mnt/opt/infinite-install/rpms/dependencies -"
 cd $INSTALL_FILES_DIR/rpms/dependencies
 yes | yum localinstall libxml2-python-*.rpm --nogpgcheck
 yes | yum localinstall createrepo-*.rpm --nogpgcheck
-createrepo $INSTALL_FILES_DIR/rpms/
+createrepo $INSTALL_FILES_DIR/rpms/dependencies
 sleep 5
 
 

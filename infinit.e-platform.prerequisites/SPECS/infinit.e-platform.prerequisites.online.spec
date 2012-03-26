@@ -50,7 +50,8 @@ infinit.e-platform.prerequisites.online
 ###########################################################################
 # Configuration template files
 ###########################################################################
-%attr(-,root,root) /mnt/opt/infinite-install/config/infinite.configuration.properties.TEMPLATE
+%attr(-,root,root) /mnt/opt/infinite-install/config/infinite.configuration.properties.TEMPLATE.OFFLINE
+%attr(-,root,root) /mnt/opt/infinite-install/config/infinite.configuration.properties.TEMPLATE.ONLINE
 
 ###########################################################################
 # Install scripts
