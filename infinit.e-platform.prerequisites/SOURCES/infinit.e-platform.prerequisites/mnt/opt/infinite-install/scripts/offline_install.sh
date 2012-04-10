@@ -98,14 +98,6 @@ yes | yum localinstall tomcat6-webapps-*.rpm --nogpgcheck
 chkconfig tomcat6 off
 sleep 5
 
-
-################################################################################
-echo "Install Splunk from INSTALL_FILES_DIR/rpms -"
-################################################################################
-cd $INSTALL_FILES_DIR/rpms
-rpm -i splunk*.rpm
-
-
 ################################################################################
 echo "Install MongoDB -"
 ################################################################################

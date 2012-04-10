@@ -69,7 +69,6 @@ infinit.e-platform.prerequisites.online
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/jre-6u30-linux-x64-rpm.bin
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/jdk-6u30-linux-x64.bin
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/splunk-4.2.4-110225-linux-2.6-x86_64.rpm
 
 ###########################################################################
 # s3cmd gpgkey

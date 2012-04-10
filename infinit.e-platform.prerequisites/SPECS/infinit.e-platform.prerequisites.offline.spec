@@ -197,7 +197,6 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/rpm-build-4.4.2.3-22.el5_7.2.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/s3cmd-1.0.0-4.1.i386.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/s3cmd-1.0.0-4.1.x86_64.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/splunk-4.2.4-110225-linux-2.6-x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-6.0.29-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-admin-webapps-6.0.29-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-webapps-6.0.29-1.jpp5.noarch.rpm

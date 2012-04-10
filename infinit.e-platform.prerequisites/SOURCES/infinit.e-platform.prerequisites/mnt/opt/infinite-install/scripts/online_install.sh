@@ -10,7 +10,7 @@
 # Commandline arguments
 ################################################################################
 # $1 - APINode or DBNode (API is default) 
-# $2 is "--fast" to bypassing installing latest java/jpackage/splunk (for AMIs)
+# $2 is "--fast" to bypassing installing latest java/jpackage (for AMIs)
 ################################################################################
 NODE_TYPE="APINode"
 if [ $# -gt 0 ]; then
@@ -100,15 +100,6 @@ if [ "$2" != "--fast" ]; then
 	sleep 5
 fi
 
-
-################################################################################
-echo "Install Splunk from INSTALL_FILES_DIR/rpms -"
-################################################################################
-if [ "$2" != "--fast" ]; then
-
-	cd $INSTALL_FILES_DIR/rpms
-	rpm -i splunk*.rpm
-fi
 
 ################################################################################
 echo "Install MongoDB -"
