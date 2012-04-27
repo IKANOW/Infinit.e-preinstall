@@ -38,7 +38,7 @@ mail.server=
 mail.username=
 # Base-64 encoded SHA-256 hash of password:
 mail.password=
-# This URL is used as the base for links included in the 
+# This URL is used as the base for links included in emails
 # So should point to an accessible REST endpoint (eg the same as ui.end.point.url below)
 url.root=http://MY_REST_ENDPOINT/api/
 
