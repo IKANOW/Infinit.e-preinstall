@@ -87,7 +87,7 @@ infinit.e-hadoop-installer.offline
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hue-common-1.2.0.0+114.4-2.x86_64.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hue-filebrowser-1.2.0.0+114.4-2.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hue-hadoop-auth-plugin-3.7.2.1-1.noarch.rpm
-%attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hue-help-1.2.0.0+114.4-2.noarch.rpm
+%attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hue-shelp-1.2.0.0+114.4-2.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hue-jobbrowser-1.2.0.0+114.4-2.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hue-jobsub-1.2.0.0+114.4-2.noarch.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/hue-oozie-auth-plugin-3.7.2.1-1.noarch.rpm
@@ -103,6 +103,11 @@ infinit.e-hadoop-installer.offline
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/postgresql-server-8.1.23-1.el5_7.3.x86_64.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/redhat-lsb-4.0-2.1.4.el5.x86_64.rpm
 %attr(-,root,root) /mnt/opt/hadoop-infinite/rpms/RPM-GPG-KEY-cloudera
+
+###########################################################################
+# jars
+###########################################################################
+%attr(-,root,root) /mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar
 
 ###########################################################################
 # SimpleWebServer webserver

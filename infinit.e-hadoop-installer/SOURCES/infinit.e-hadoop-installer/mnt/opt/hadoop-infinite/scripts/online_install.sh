@@ -7,10 +7,27 @@
 INSTALL_MODE=$1
 
 ################################################################################
+echo "modprobe capability"
+################################################################################
+modprobe capability
+
+################################################################################
 echo "Add hadoop group and user"
 ################################################################################
 groupadd hadoop
 useradd -g hadoop -p hduser hduser
+
+################################################################################
+echo "Copy mongo-2.7.2.jar to /usr/lib/hadoop/lib"
+################################################################################
+cp /mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar /usr/lib/hadoop/lib
+	
+################################################################################
+echo "Create directories required by Hadoop"
+################################################################################
+mkdir /mnt/opt/hadoop-infinite/mapreduce/xmlFiles/
+mkdir /mnt/opt/hadoop-infinite/mapreduce/jars/
+mkdir /mnt/opt/hadoop-infinite/mapreduce/hadoop/
 
 ################################################################################
 echo "Install cloudera-cdh3.repo and perform yum installs on hadoop and hue"

@@ -54,6 +54,11 @@ infinit.e-hadoop-installer.online
 %attr(-,root,root) /mnt/opt/hadoop-infinite/scm-installer.bin
 
 ###########################################################################
+# jars
+###########################################################################
+%attr(-,root,root) /mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar
+
+###########################################################################
 # Install scripts
 ###########################################################################
 %attr(-,root,root) /mnt/opt/hadoop-infinite/scripts/online_install.sh

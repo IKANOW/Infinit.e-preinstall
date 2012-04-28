@@ -12,6 +12,11 @@ INSTALL_MODE=$1
 #cp /mnt/opt/hadoop-infinite/etc/yum.repos.d/cloudera.repo /etc/yum.repos.d/
 
 ################################################################################
+echo "modprobe capability"
+################################################################################
+modprobe capability
+
+################################################################################
 echo "Add hadoop group and user"
 ################################################################################
 groupadd hadoop
@@ -98,6 +103,18 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	cp RPM-GPG-KEY-cloudera /mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat/5/x86_64/cloudera-manager
 	mv *.rpm /mnt/opt/hadoop-infinite/webroot/cloudera-manager/redhat/5/x86_64/cloudera-manager/3/
 	sleep 5
+	
+	################################################################################
+	echo "Copy mongo-2.7.2.jar to /usr/lib/hadoop/lib"
+	################################################################################
+	cp /mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar /usr/lib/hadoop/lib
+
+	################################################################################
+	echo "Create directories required by Hadoop"
+	################################################################################
+	mkdir /mnt/opt/hadoop-infinite/mapreduce/xmlFiles/
+	mkdir /mnt/opt/hadoop-infinite/mapreduce/jars/
+	mkdir /mnt/opt/hadoop-infinite/mapreduce/hadoop/
 
 	################################################################################
 	echo "Move .repo files to /etc/yum.repos.d"
