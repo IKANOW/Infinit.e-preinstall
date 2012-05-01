@@ -18,18 +18,6 @@ groupadd hadoop
 useradd -g hadoop -p hduser hduser
 
 ################################################################################
-echo "Copy mongo-2.7.2.jar to /usr/lib/hadoop/lib"
-################################################################################
-cp /mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar /usr/lib/hadoop/lib
-	
-################################################################################
-echo "Create directories required by Hadoop"
-################################################################################
-mkdir /mnt/opt/hadoop-infinite/mapreduce/xmlFiles/
-mkdir /mnt/opt/hadoop-infinite/mapreduce/jars/
-mkdir /mnt/opt/hadoop-infinite/mapreduce/hadoop/
-
-################################################################################
 echo "Install cloudera-cdh3.repo and perform yum installs on hadoop and hue"
 ################################################################################
 cd /etc/yum.repos.d
@@ -42,6 +30,18 @@ echo "Disable autostart for Hue and Oozie"
 ################################################################################
 /sbin/chkconfig hue off
 /sbin/chkconfig oozie off
+
+################################################################################
+echo "Copy mongo-2.7.2.jar to /usr/lib/hadoop/lib"
+################################################################################
+cp /mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar /usr/lib/hadoop/lib
+	
+################################################################################
+echo "Create directories required by Hadoop"
+################################################################################
+mkdir -p /mnt/opt/hadoop-infinite/mapreduce/xmlFiles/
+mkdir -p /mnt/opt/hadoop-infinite/mapreduce/jars/
+mkdir -p /mnt/opt/hadoop-infinite/mapreduce/hadoop/
 
 ################################################################################
 # Install the cloudera manager applications
