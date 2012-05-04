@@ -38,7 +38,7 @@ mail.server=
 mail.username=
 # Base-64 encoded SHA-256 hash of password:
 mail.password=
-# This URL is used as the base for links included in the 
+# This URL is used as the base for links included in emails
 # So should point to an accessible REST endpoint (eg the same as ui.end.point.url below)
 url.root=http://MY_REST_ENDPOINT/api/
 
@@ -83,6 +83,11 @@ elastic.cluster=
 # ES nodes, e.g.: elastic.search.nodes='NODE1:9300','NODE2:9300','NODE3:9300':
 # Needed if discovery.mode=zen (not EC2/AWS), a set of IPs to try (>= 1 must be running elasticsearch)
 elastic.search.nodes=
+# If any node sees less than this number of connections, it will take itself down
+# For a single node, should be 0 (default), for a 2-node system, should be 1, for larger clusters
+# ideally would be CLUSTER_SIZE - #REPLICAS (and >= 2), but 2 is workable if the size is not fixed.
+# (If this is set too low then split brain situations may not be detected)
+elastic.search.min_peers=0
 
 #-------------------------------------------------------------------------------
 # 1.11] Harvester Properties
@@ -198,16 +203,22 @@ elastic.node.discovery=zen
 bootstrap.mlockall=true
 # (Should normally be localhost:9300, unless an API node is running with no index node) 
 elastic.url=localhost:9300
+# Number of replicas: 1 is best for small clusters (fails if >1 node down), 2 for bigger clusters
+elastic.max_replicas=1
 
 #-------------------------------------------------------------------------------
 # 2.11] Harvester Properties
 #-------------------------------------------------------------------------------
 # Comma-separated-list from File,Database,Feed (note Database and Feed need jars not bundled with the RPM)
 harvester.types=File,Database,Feed
-# Web crawling etiquette: the time to way between consecutive accesses to the same time (10s is standard)
+# Web crawling etiquette: the time to way between consecutive accesses to the same site (10s is standard)
 harvest.feed.wait=10000
-# The minimum time between consecutive harvests (avoids thrashing FS/DB/RSS when there's nothing to get)
+# Web crawling etiquette: the default user agent to use
+harvest.feed.useragent=
+# This is the system-wide minimum, ie cannot be overridden per source
 harvest.mintime.ms=300000
+# This is the per-source default, ie can be overridden (defaults to system parameter above if not set)
+harvest.source.mintime.ms=
 # Restricts the number of docs that can be harvested per cycle for memory reasons:
 harvest.maxdocs_persource=5000
 # Threading configuration type:num_threads (type from above):
