@@ -9,6 +9,7 @@ License: 	None
 Group: 		Infinit.e
 Vendor: 	IKANOW, LLC.
 URL: 		http://www.ikanow.com
+Requires: 	tomcat6
 BuildArch: 	noarch
 Prefix: /mnt/opt
 %description

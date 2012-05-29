@@ -21,6 +21,8 @@ echo "Add hadoop group and user"
 ################################################################################
 groupadd hadoop
 useradd -g hadoop -p hduser hduser
+# (Also need to add tomcat as a hadoop-permitted user)
+usermod -G hadoop tomcat
 
 ################################################################################
 echo "Create local yum repository"
