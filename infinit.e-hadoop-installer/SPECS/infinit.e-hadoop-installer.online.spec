@@ -9,6 +9,7 @@ License: 	None
 Group: 		Infinit.e
 Vendor: 	IKANOW, LLC.
 URL: 		http://www.ikanow.com
+Requires: 	tomcat6
 BuildArch: 	noarch
 Prefix: /mnt/opt
 %description
@@ -47,18 +48,20 @@ infinit.e-hadoop-installer.online
 %files
 %define _unpackaged_files_terminate_build 0
 %define _binaries_in_noarch_packages_terminate_build 0
+%defattr(-,tomcat,tomcat)
+%dir /mnt/opt/hadoop-infinite/
 
 ###########################################################################
 # Cloudera-manager installation application
 ###########################################################################
-%attr(-,root,root) /mnt/opt/hadoop-infinite/scm-installer.bin
+/mnt/opt/hadoop-infinite/scm-installer.bin
 
 ###########################################################################
 # jars
 ###########################################################################
-%attr(-,root,root) /mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar
+/mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar
 
 ###########################################################################
 # Install scripts
 ###########################################################################
-%attr(-,root,root) /mnt/opt/hadoop-infinite/scripts/online_install.sh
+/mnt/opt/hadoop-infinite/scripts/online_install.sh

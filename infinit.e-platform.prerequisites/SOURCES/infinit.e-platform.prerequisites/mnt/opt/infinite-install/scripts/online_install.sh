@@ -137,6 +137,11 @@ echo "Install curl -"
 ################################################################################
 yes | yum install curl -y
 
+################################################################################
+echo "Install extra Python dependency needed for MongoDB monitoring"
+################################################################################
+cd $INSTALL_FILES_DIR/rpms
+rpm -Uvh python-devel-2.4.3-27.el5_5.3.x86_64.rpm
 
 ################################################################################
 echo "Update the Yum repository one last time"

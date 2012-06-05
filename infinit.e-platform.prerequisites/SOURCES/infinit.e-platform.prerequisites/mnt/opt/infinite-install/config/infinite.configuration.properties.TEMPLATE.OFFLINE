@@ -228,7 +228,7 @@ harvest.threads=file:5,database:5,feed:20
 #-------------------------------------------------------------------------------
 # 2.12] Hadoop config path
 #-------------------------------------------------------------------------------
-hadoop.configpath=/mnt/opt/hadoop-infinite/mapreduce/
+hadoop.configpath=/mnt/opt/hadoop-infinite/mapreduce
 
 #-------------------------------------------------------------------------------
 # 2.13] Entity Extractor Properties

@@ -16,6 +16,8 @@ echo "Add hadoop group and user"
 ################################################################################
 groupadd hadoop
 useradd -g hadoop -p hduser hduser
+# (Also need to add tomcat as a hadoop-permitted user)
+usermod -G hadoop tomcat
 
 ################################################################################
 echo "Install cloudera-cdh3.repo and perform yum installs on hadoop and hue"
