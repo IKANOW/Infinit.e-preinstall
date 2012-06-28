@@ -267,6 +267,6 @@ ui.logout=?action=logout
 #-------------------------------------------------------------------------------
 # 2.15] Maps API key:
 #-------------------------------------------------------------------------------
-# Not needed for MapQuest open API
-google.maps.api.key=
+# Just needs to be a dummy value for MapQuest open API
+google.maps.api.key=dummy
 
