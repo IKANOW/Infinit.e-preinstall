@@ -160,3 +160,6 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	rm -rf /etc/yum.repos.d/cloudera*
 
 fi
+
+# Final permissions tidy up:
+chown -R tomcat.tomcat /mnt/opt/hadoop-infinite/mapreduce/
