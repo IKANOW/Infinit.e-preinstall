@@ -45,7 +45,8 @@ mail.username=
 mail.password=
 # This URL is used as the base for links included in emails
 # So should point to an accessible REST endpoint (eg the same as ui.end.point.url below)
-url.root=http://MY_REST_ENDPOINT/api/
+# If this is left commented out, it defaults to the browser domain (ie location of GUI)
+#url.root=http://MY_REST_ENDPOINT/api/
 
 #-------------------------------------------------------------------------------
 # 1.5] EMail Addresses for log files etc.

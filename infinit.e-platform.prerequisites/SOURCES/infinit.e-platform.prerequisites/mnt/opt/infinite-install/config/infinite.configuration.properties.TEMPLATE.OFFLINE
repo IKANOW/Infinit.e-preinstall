@@ -107,7 +107,8 @@ elastic.search.min_peers=0
 #-------------------------------------------------------------------------------
 # The REST end point of the server (or a DNS/AWS load balancer across multiple rest end points):
 # (Will normally end "/api/") 
-ui.end.point.url=http://MY_REST_ENDPOINT/api/
+# If this is left commented out, it defaults to the browser domain (ie location of GUI)
+#ui.end.point.url=http://MY_REST_ENDPOINT/api/
 
 #-------------------------------------------------------------------------------
 # 1.15] Maps API key:
