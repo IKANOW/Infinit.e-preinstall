@@ -28,6 +28,11 @@ test.user.password=infinit.e!2012
 #-------------------------------------------------------------------------------
 # 1.3] Amazon services properties
 #-------------------------------------------------------------------------------
+# This is the root s3 bucket name to be used for backups (use.aws=1 only):
+# (The following names are used: mongo.<s3.url>, elasticsearch.<s3.url> .. daily backups in the same region
+#  backup.mongo.<s3.url>, backup.elasticsearch.<s3.url> ... monthly backups in a different region
+#  Note these dirs need to be set up manually)
+s3.url=
 
 #-------------------------------------------------------------------------------
 # 1.4] EMail Server Settings
@@ -40,7 +45,8 @@ mail.username=
 mail.password=
 # This URL is used as the base for links included in emails
 # So should point to an accessible REST endpoint (eg the same as ui.end.point.url below)
-url.root=http://MY_REST_ENDPOINT/api/
+# If this is left commented out, it defaults to the browser domain (ie location of GUI)
+#url.root=http://MY_REST_ENDPOINT/api/
 
 #-------------------------------------------------------------------------------
 # 1.5] EMail Addresses for log files etc.
@@ -57,21 +63,19 @@ log.files.mail.to=
 #-------------------------------------------------------------------------------
 # 1.7] Amazon AWS Settings
 #-------------------------------------------------------------------------------
+# AWS keys (only needed if use.aws=1)
+aws.access.key=
+aws.secret.key=
 
 #-------------------------------------------------------------------------------
 # 1.8] MongoDB Properties
 #-------------------------------------------------------------------------------
-# MongoDB config server or servers (must be 1 or 3 comma separated IPs), non-EC2/AWS installations only
-db.config.servers=
-db.replica.sets=
-#----------------------------------------------
-# db.cluster.subnet - used for non-EC2/AWS only installations to help mongodb configurations
-# identify proper host ip addresses, e.g. 127.0.0.
-db.cluster.subnet=
 
 #-------------------------------------------------------------------------------
-# 1.9] UI inactivity timeout (in seconds)
+# 1.9] UI settings
 #-------------------------------------------------------------------------------
+# The passphrase for the toncat.keystore, if SSL is installed (leave blank otherwise)
+ssl.passphrase=
 
 #-------------------------------------------------------------------------------
 # 1.10] Elasticsearch Properties
@@ -79,10 +83,6 @@ db.cluster.subnet=
 # Cluster name 
 # Any unique name within the EC2 cluster/subnet: 
 elastic.cluster=
-#----------------------------------------------
-# ES nodes, e.g.: elastic.search.nodes='NODE1:9300','NODE2:9300','NODE3:9300':
-# Needed if discovery.mode=zen (not EC2/AWS), a set of IPs to try (>= 1 must be running elasticsearch)
-elastic.search.nodes=
 # If any node sees less than this number of connections, it will take itself down
 # For a single node, should be 0 (default), for a 2-node system, should be 1, for larger clusters
 # ideally would be CLUSTER_SIZE - #REPLICAS (and >= 2), but 2 is workable if the size is not fixed.
@@ -100,6 +100,18 @@ elastic.search.min_peers=0
 #-------------------------------------------------------------------------------
 # 1.13] Entity Extractor Properties
 #-------------------------------------------------------------------------------
+# Alchemy and Open Calais Keys:
+# (Obtain from alchemyapi.com or opencalais.com)
+extractor.key.alchemyapi=
+extractor.key.opencalais=
+#----------------------------------------------
+# Entity extraction type selection: opencalais or alchemyapi or none
+# ("opencalais" has a much higher limit than "alchemyapi" (1000/day) so is recommended for free use
+#  "alchemyapi" extracts sentiment, "opencalais" extracts entity associations Note this can be overridden per source)
+extractor.entity.default=opencalais
+# Text extraction type selection: boilerplate or alchemyapi or none
+# ("alchemyapi" is much better, but has the limit discussed above. Note this can be overridden per source)
+extractor.text.default=boilerplate
 
 #-------------------------------------------------------------------------------
 # 1.14] Interface Related Properties for the AppConstants.js file found in:
@@ -136,12 +148,7 @@ app.saas.trusted.dns=
 #-------------------------------------------------------------------------------
 # Values: 0=false, 1=true
 # If deployed on an EC2 cluster set this to 1:
-use.aws=0
-# This is the root s3 bucket name to be used for backups (use.aws=1 only):
-# (The following names are used: mongo.<s3.url>, elasticsearch.<s3.url> .. daily backups in the same region
-#  backup.mongo.<s3.url>, backup.elasticsearch.<s3.url> ... monthly backups in a different region
-#  Note these dirs need to be set up manually)
-s3.url=
+use.aws=1
 
 #-------------------------------------------------------------------------------
 # 2.4] EMail Server Settings
@@ -163,9 +170,6 @@ api.search.expected.results=0
 #-------------------------------------------------------------------------------
 # 2.7] Amazon AWS Settings
 #-------------------------------------------------------------------------------
-# AWS keys (only needed if use.aws=1)
-aws.access.key=
-aws.secret.key=
 # Used for s3cmd, see their web page for details: 
 s3.gpg.passphrase=
 
@@ -180,25 +184,36 @@ db.sharded=0
 # The max number of documents to store (eg 10M). Docs will be dropped in order of age.
 # (Not currently supported):
 db.capacity=10000000
+# MongoDB config server or servers (must be 1 or 3 comma separated IPs), non-EC2/AWS installations only
+db.config.servers=
+db.replica.sets=
+#----------------------------------------------
+# db.cluster.subnet - used for non-EC2/AWS only installations to help mongodb configurations
+# identify proper host ip addresses, e.g. 127.0.0.
+db.cluster.subnet=
 #----------------------------------------------
 # The location from which to fetch the geo.bson dump used for feature.geo
-# can start s3://, http:// or https://, else is assumed to be a file
-# (In offline mode it's always here:)
-db.geo_archive=/opt/infinite-install/data/feature/geo.bson.tar.gz
-#Example HTTP locations
-#db.geo_archive=http://www.ikanow.com/infinit.e-preinstall/geo.bson.tar.gz
+# can start s3://, http:// or https://, else is assumed to be a file, eg
+#db.geo_archive=s3://config.saas.infinite.ikanow.com/geo.bson.tar.gz
+# Can always be retrieved here
+db.geo_archive=http://www.ikanow.com/infinit.e-preinstall/geo.bson.tar.gz
 
 #-------------------------------------------------------------------------------
-# 2.9] UI inactivity timeout (in seconds)
+# 2.9] UI settings
 #-------------------------------------------------------------------------------
+# Inactivity timeout in seconds
 access.timeout=1800
 
 #-------------------------------------------------------------------------------
 # 2.10] Elasticsearch Properties
-#-------------------------------------------------------------------------------
 #----------------------------------------------
 # Discovery mode = ec2 (if running on AWS) or zen (specify a list of IPs below):
-elastic.node.discovery=zen
+elastic.node.discovery=ec2
+#----------------------------------------------
+# ES nodes, e.g.: elastic.search.nodes='NODE1:9300','NODE2:9300','NODE3:9300':
+# Needed if discovery.mode=zen (not EC2/AWS), a set of IPs to try (>= 1 must be running elasticsearch)
+elastic.search.nodes=
+#-------------------------------------------------------------------------------
 # mlockall = should equal true except if running on a machine with < 4GB of RAM
 bootstrap.mlockall=true
 # (Should normally be localhost:9300, unless an API node is running with no index node) 
@@ -215,6 +230,7 @@ harvester.types=File,Database,Feed
 harvest.feed.wait=10000
 # Web crawling etiquette: the default user agent to use
 harvest.feed.useragent=
+# The minimum time between consecutive harvests (avoids thrashing FS/DB/RSS when there's nothing to get)
 # This is the system-wide minimum, ie cannot be overridden per source
 harvest.mintime.ms=300000
 # This is the per-source default, ie can be overridden (defaults to system parameter above if not set)
@@ -233,19 +249,6 @@ hadoop.configpath=/mnt/opt/hadoop-infinite/mapreduce
 #-------------------------------------------------------------------------------
 # 2.13] Entity Extractor Properties
 #-------------------------------------------------------------------------------
-# Alchemy and Open Calais Keys:
-# (Obtain from alchemyapi.com or opencalais.com)
-extractor.key.alchemyapi=
-extractor.key.opencalais=
-#----------------------------------------------
-# Entity extraction type selection: opencalais or alchemyapi or none
-# ("opencalais" has a much higher limit than "alchemyapi" (1000/day) so is recommended for free use
-#  "alchemyapi" extracts sentiment, "opencalais" extracts entity associations Note this can be overridden per source)
-extractor.entity.default=none
-# Text extraction type selection: boilerplate or alchemyapi or none
-# ("alchemyapi" is much better, but has the limit discussed above. Note this can be overridden per source)
-extractor.text.default=boilerplate
-#----------------------------------------------
 # Alchemy extraction level
 # 1==people postproc, 2==geo postproc, 3==both
 # (This uses some hard-coded heuristics to work around known AlchemyAPI errors)
@@ -268,5 +271,6 @@ ui.logout=?action=logout
 #-------------------------------------------------------------------------------
 # 2.15] Maps API key:
 #-------------------------------------------------------------------------------
-# Not needed for MapQuest open API
-google.maps.api.key=
+# Just needs to be a dummy value for MapQuest open API
+google.maps.api.key=dummy
+

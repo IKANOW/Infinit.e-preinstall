@@ -50,8 +50,8 @@ infinit.e-platform.prerequisites.offline
 ###########################################################################
 # Configuration template files
 ###########################################################################
-%attr(-,root,root) /mnt/opt/infinite-install/config/infinite.configuration.properties.TEMPLATE.OFFLINE
-%attr(-,root,root) /mnt/opt/infinite-install/config/infinite.configuration.properties.TEMPLATE.ONLINE
+%attr(-,root,root) /mnt/opt/infinite-install/config/infinite.configuration.properties.TEMPLATE.STANDALONE
+%attr(-,root,root) /mnt/opt/infinite-install/config/infinite.configuration.properties.TEMPLATE.AWS
 
 ###########################################################################
 # Install scripts
