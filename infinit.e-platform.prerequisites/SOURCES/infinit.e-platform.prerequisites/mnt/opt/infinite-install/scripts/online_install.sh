@@ -82,6 +82,9 @@ if [ "$2" != "--fast" ]; then
 	sleep 5
 fi
 
+#RH installs makes /usr/bin/java point to /etc/alternatives/java (which points to some old version)
+ln -sf /usr/java/default/bin/java /usr/bin/java 
+
 ################################################################################
 echo "Install Tomcat -"
 ################################################################################

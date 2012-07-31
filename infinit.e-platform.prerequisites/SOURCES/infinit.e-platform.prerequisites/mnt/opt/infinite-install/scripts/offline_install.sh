@@ -82,6 +82,8 @@ sh jdk-*-linux-x64.bin
 mv jdk1.6.*/ /usr/java/
 sleep 5
 
+#RH installs makes /usr/bin/java point to /etc/alternatives/java (which points to some old version)
+ln -sf /usr/java/default/bin/java /usr/bin/java 
 
 ################################################################################
 echo "Install Tomcat -"
