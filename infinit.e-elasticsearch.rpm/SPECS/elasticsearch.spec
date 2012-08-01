@@ -85,7 +85,6 @@ true
 
 # plugins
 %{__mkdir} -p %{buildroot}%{_javadir}/%{name}/plugins
-##########TODO
 
 # sysconfig and init
 %{__mkdir} -p %{buildroot}%{_sysconfdir}/rc.d/init.d
@@ -106,10 +105,6 @@ true
 zcat %{SOURCE10} | tar -xvf - -C %{buildroot}%{_javadir}/%{name}/plugins
 zcat %{SOURCE11} | tar -xvf - -C %{buildroot}%{_javadir}/%{name}/plugins
 
-# Uninstall old files here so they don't get checked
-cd ..
-rm -rf $RPM_BUILD_ROOT/elasticsearch-%{version}/
-
 %pre
 # create elasticsearch group
 if ! getent group elasticsearch >/dev/null; then
@@ -125,18 +120,18 @@ fi
 %post
 /sbin/chkconfig --add elasticsearch
 
-%clean
-echo "(Bypass clean)"
-
 %preun
 if [ $1 -eq 0 ]; then
   /sbin/service elasticsearch stop >/dev/null 2>&1
   /sbin/chkconfig --del elasticsearch
 fi
 
-#ACP (removed %clean section, didn't seem to work)
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %files
+%define _unpackaged_files_terminate_build 0
+%define _binaries_in_noarch_packages_terminate_build 0
 %defattr(-,root,root,-)
 %{_sysconfdir}/rc.d/init.d/elasticsearch
 %config(noreplace) %{_sysconfdir}/sysconfig/elasticsearch
