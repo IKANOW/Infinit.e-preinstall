@@ -42,6 +42,8 @@
 			<fileset dir="${infinit.e-raid-amazon.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
 		</copy>
 		<exec executable="createrepo">
+			<arg value="-s"/>
+			<arg value="sha"/>
 			<arg value="repo"/>
 		</exec>
 		<zip destfile="infinit.e-preinstall-repo-${infinite_version}-${infinite_release}.zip" basedir="repo"/>
