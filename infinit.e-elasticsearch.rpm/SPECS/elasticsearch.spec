@@ -125,6 +125,9 @@ fi
 %post
 /sbin/chkconfig --add elasticsearch
 
+%clean
+echo "(Bypass clean)"
+
 %preun
 if [ $1 -eq 0 ]; then
   /sbin/service elasticsearch stop >/dev/null 2>&1
