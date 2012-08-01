@@ -54,7 +54,6 @@ unzip %{SOURCE9}
 true
 
 %install
-rm -rf $RPM_BUILD_ROOT
 
 %{__mkdir} -p %{buildroot}%{_javadir}/%{name}/bin
 %{__install} -p -m 755 bin/elasticsearch %{buildroot}%{_javadir}/%{name}/bin
