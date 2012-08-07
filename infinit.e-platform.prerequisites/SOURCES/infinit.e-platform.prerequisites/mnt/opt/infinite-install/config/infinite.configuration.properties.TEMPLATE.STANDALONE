@@ -261,9 +261,9 @@ extractor.key.opencalais=
 # ("opencalais" has a much higher limit than "alchemyapi" (1000/day) so is recommended for free use
 #  "alchemyapi" extracts sentiment, "opencalais" extracts entity associations Note this can be overridden per source)
 extractor.entity.default=none
-# Text extraction type selection: boilerplate or alchemyapi or none
+# Text extraction type selection: boilerpipe or alchemyapi or tika or none
 # ("alchemyapi" is much better, but has the limit discussed above. Note this can be overridden per source)
-extractor.text.default=boilerplate
+extractor.text.default=boilerpipe
 #----------------------------------------------
 # Alchemy extraction level
 # 1==people postproc, 2==geo postproc, 3==both

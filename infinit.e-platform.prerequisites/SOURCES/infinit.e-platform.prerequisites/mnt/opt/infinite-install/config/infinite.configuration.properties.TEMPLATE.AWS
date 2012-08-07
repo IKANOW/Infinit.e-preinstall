@@ -117,9 +117,9 @@ extractor.key.opencalais=
 # ("opencalais" has a much higher limit than "alchemyapi" (1000/day) so is recommended for free use
 #  "alchemyapi" extracts sentiment, "opencalais" extracts entity associations Note this can be overridden per source)
 extractor.entity.default=opencalais
-# Text extraction type selection: boilerplate or alchemyapi or none
+# Text extraction type selection: boilerpipe or alchemyapi or tika or none
 # ("alchemyapi" is much better, but has the limit discussed above. Note this can be overridden per source)
-extractor.text.default=boilerplate
+extractor.text.default=boilerpipe
 
 #-------------------------------------------------------------------------------
 # 1.14] Interface Related Properties for the AppConstants.js file found in:
