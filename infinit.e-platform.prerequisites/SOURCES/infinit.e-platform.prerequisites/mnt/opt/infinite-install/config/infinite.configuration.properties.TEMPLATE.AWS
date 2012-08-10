@@ -14,11 +14,13 @@
 # 1.1] Basic Infinit.e Settings 
 #-------------------------------------------------------------------------------
 # Default admin and test user passwords
-# Admin: admin_infinite@ikanow.com
+# Admin: infinite_default@ikanow.com
 #CHANGE THIS:
+admin.email=infinite_default@ikanow.com
 admin.password=infinit.e!2012
 # Test User: test_user@ikanow.com
 #CHANGE THIS:
+test.user.email=test_user@ikanow.com
 test.user.password=infinit.e!2012
 
 #-------------------------------------------------------------------------------
