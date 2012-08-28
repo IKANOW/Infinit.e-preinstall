@@ -260,9 +260,11 @@ extractor.key.alchemyapi=
 extractor.key.opencalais=
 #----------------------------------------------
 # Entity extraction type selection: opencalais or alchemyapi or none
-# ("opencalais" has a much higher limit than "alchemyapi" (1000/day) so is recommended for free use
+# ("textrank" uses the statistical properties of the document to pull out phrases likely to be of significance.
+#  It works behind-the-firewall and requires no license.
+#  "opencalais" has a much higher limit than "alchemyapi" (1000/day) so is recommended for free use
 #  "alchemyapi" extracts sentiment, "opencalais" extracts entity associations Note this can be overridden per source)
-extractor.entity.default=none
+extractor.entity.default=textrank
 # Text extraction type selection: boilerpipe or alchemyapi or tika or none
 # ("alchemyapi" is much better, but has the limit discussed above. Note this can be overridden per source)
 extractor.text.default=boilerpipe
