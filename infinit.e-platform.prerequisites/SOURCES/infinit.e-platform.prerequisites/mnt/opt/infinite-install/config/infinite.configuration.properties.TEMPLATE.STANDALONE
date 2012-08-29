@@ -14,11 +14,13 @@
 # 1.1] Basic Infinit.e Settings 
 #-------------------------------------------------------------------------------
 # Default admin and test user passwords
-# Admin: admin_infinite@ikanow.com
+# Admin: infinite_default@ikanow.com
 #CHANGE THIS:
+admin.email=infinite_default@ikanow.com
 admin.password=infinit.e!2012
 # Test User: test_user@ikanow.com
 #CHANGE THIS:
+test.user.email=test_user@ikanow.com
 test.user.password=infinit.e!2012
 
 #-------------------------------------------------------------------------------
@@ -40,7 +42,8 @@ mail.username=
 mail.password=
 # This URL is used as the base for links included in emails
 # So should point to an accessible REST endpoint (eg the same as ui.end.point.url below)
-url.root=http://MY_REST_ENDPOINT/api/
+# If this is left commented out, it defaults to the browser domain (ie location of GUI)
+#url.root=http://MY_REST_ENDPOINT/api/
 
 #-------------------------------------------------------------------------------
 # 1.5] EMail Addresses for log files etc.
@@ -74,6 +77,10 @@ db.cluster.subnet=
 #-------------------------------------------------------------------------------
 # The passphrase for the toncat.keystore, if SSL is installed (leave blank otherwise)
 ssl.passphrase=
+# Regexes to allow/block REST commands from remote clients
+# eg "^/api/(auth/login|auth/logout/knowledge)"
+#remote.access.allow=
+#remote.access.deny=
 
 #-------------------------------------------------------------------------------
 # 1.10] Elasticsearch Properties
@@ -96,8 +103,12 @@ elastic.search.min_peers=0
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# 1.12] Hadoop config path
+# 1.12] Hadoop properties
 #-------------------------------------------------------------------------------
+# This limits the number of jobs that be concurrently submitted to the Hadoop cluster
+# by the processing engine (other jobs remain at pending until a slot is available)
+# There is no default, 10 is recommended until the size of your cluster is known.
+hadoop.max_concurrent=10
 
 #-------------------------------------------------------------------------------
 # 1.13] Entity Extractor Properties
@@ -222,15 +233,21 @@ harvest.feed.useragent=
 # This is the system-wide minimum, ie cannot be overridden per source
 harvest.mintime.ms=300000
 # This is the per-source default, ie can be overridden (defaults to system parameter above if not set)
+# (Use if you want to pick up a source quickly first time through)
 harvest.source.mintime.ms=
 # Restricts the number of docs that can be harvested per cycle for memory reasons:
 harvest.maxdocs_persource=5000
 # Threading configuration type:num_threads (type from above):
 # (eg for RSS heavy increase the "feed", for DB heavy increase the "file" etc. Beyond 20 there is limited benefit). 
 harvest.threads=file:5,database:5,feed:20
+# This controls the batch size of sources picked up by a thread, this does not normally need to be changed (its default is shown).
+# (It can be reduced in cases where a small number of very long-running sources need to be harvested)
+#harvest.distribtion.batch.harvest=20
+# This disables entity and association aggregation. For almost all applications you will not want to set this
+#harvest.disable_aggregation=false
 
 #-------------------------------------------------------------------------------
-# 2.12] Hadoop config path
+# 2.12] Hadoop Properties
 #-------------------------------------------------------------------------------
 hadoop.configpath=/mnt/opt/hadoop-infinite/mapreduce
 
@@ -243,12 +260,14 @@ extractor.key.alchemyapi=
 extractor.key.opencalais=
 #----------------------------------------------
 # Entity extraction type selection: opencalais or alchemyapi or none
-# ("opencalais" has a much higher limit than "alchemyapi" (1000/day) so is recommended for free use
+# ("textrank" uses the statistical properties of the document to pull out phrases likely to be of significance.
+#  It works behind-the-firewall and requires no license.
+#  "opencalais" has a much higher limit than "alchemyapi" (1000/day) so is recommended for free use
 #  "alchemyapi" extracts sentiment, "opencalais" extracts entity associations Note this can be overridden per source)
-extractor.entity.default=none
-# Text extraction type selection: boilerplate or alchemyapi or none
+extractor.entity.default=textrank
+# Text extraction type selection: boilerpipe or alchemyapi or tika or none
 # ("alchemyapi" is much better, but has the limit discussed above. Note this can be overridden per source)
-extractor.text.default=boilerplate
+extractor.text.default=boilerpipe
 #----------------------------------------------
 # Alchemy extraction level
 # 1==people postproc, 2==geo postproc, 3==both
