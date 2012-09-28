@@ -258,6 +258,9 @@ harvest.threads=file:5,database:5,feed:20
 #harvest.distribtion.batch.harvest=20
 # This disables entity and association aggregation. For almost all applications you will not want to set this
 #harvest.disable_aggregation=false
+# This parameter uses the Java Security Manager to prevent scripts accessing local network services (at the expense of some performance)
+# It can be turned off for uses of the platform where sources must be approved before being added (etc)
+harvest.security=true
 
 #-------------------------------------------------------------------------------
 # 2.12] Hadoop Properties
