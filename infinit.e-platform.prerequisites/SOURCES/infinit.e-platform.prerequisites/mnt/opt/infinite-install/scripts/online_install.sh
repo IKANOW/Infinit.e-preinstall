@@ -70,9 +70,9 @@ echo "Install s3cmd -"
 cd /etc/yum.repos.d
 
 if uname -r | grep -q "^3"; then
-	wget http://s3tools.org/repo/CentOS_6/s3tools.repo
+	wget http://s3tools.org/repo/RHEL_6/s3tools.repo
 else
-	wget http://s3tools.org/repo/CentOS_5/s3tools.repo
+	wget http://s3tools.org/repo/RHEL_5/s3tools.repo
 fi
 yes | yum install s3cmd -y
 sleep 5
