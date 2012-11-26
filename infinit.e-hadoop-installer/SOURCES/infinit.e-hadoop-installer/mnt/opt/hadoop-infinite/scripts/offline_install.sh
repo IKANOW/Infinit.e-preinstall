@@ -145,6 +145,10 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	################################################################################
 	echo "Make scm-installer executable and run it to install cloudera-manager"
 	################################################################################
+	#(on some OS versions appear to need different permissions)
+	mkdir -p /var/run/postgresql
+	chmod a+wrx /var/run/postgresql
+	
 	cd /mnt/opt/hadoop-infinite/
 	chmod +x scm-installer.bin
 	./scm-installer.bin
