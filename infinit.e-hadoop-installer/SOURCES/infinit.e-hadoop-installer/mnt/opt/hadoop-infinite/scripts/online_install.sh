@@ -53,5 +53,3 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	chmod +x scm-installer.bin
 	./scm-installer.bin
 fi
-# Final permissions tidy up:
-chown -R tomcat.tomcat /mnt/opt/hadoop-infinite/mapreduce/

@@ -61,11 +61,6 @@ yes | yum localinstall hue-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
 sleep 5
 
 ################################################################################
-echo "Create directories for Infinit.e mapreduce projects"
-################################################################################
-mkdir /mnt/opt/hadoop-infinite/mapreduce
-
-################################################################################
 echo "Disable autostart for Hue and Oozie"
 ################################################################################
 /sbin/chkconfig hue off
@@ -160,6 +155,3 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	rm -rf /etc/yum.repos.d/cloudera*
 
 fi
-
-# Final permissions tidy up:
-chown -R tomcat.tomcat /mnt/opt/hadoop-infinite/mapreduce/
