@@ -23,7 +23,7 @@ usermod -G hadoop tomcat
 echo "Install cloudera-cdh3.repo and perform yum installs on hadoop and hue"
 ################################################################################
 cd /etc/yum.repos.d
-if uname -r | grep -q "^3"; then
+if cat /etc/redhat-release | grep -iq "centos.*release 6"; then
 	wget 'http://archive.cloudera.com/redhat/6/x86_64/cdh/cloudera-cdh3.repo'
 else
 	wget 'http://archive.cloudera.com/redhat/cdh/cloudera-cdh3.repo'

@@ -72,7 +72,7 @@ echo "Install s3cmd -"
 ################################################################################
 cd /etc/yum.repos.d
 
-if uname -r | grep -q "^3"; then
+if cat /etc/redhat-release | grep -iq "centos.*release 6"; then
 	wget http://s3tools.org/repo/RHEL_6/s3tools.repo
 else
 	wget http://s3tools.org/repo/RHEL_5/s3tools.repo
