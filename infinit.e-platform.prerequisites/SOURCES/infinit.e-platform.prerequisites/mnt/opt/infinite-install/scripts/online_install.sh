@@ -25,9 +25,7 @@ fi
 echo "Online Installation: $NODE_TYPE"
 
 FASTARG=$2
-# For Amazon build, always use "slow" (which is actually pretty fast anyway, Amazon is pretty up-to-date)
 if uname -a | grep -q amzn; then
-	FASTARG=""
 	echo "CentOS Linux release 6 (Amazon Linux)" > /etc/redhat-release
 		#(Amazon is close enough to Redhat for us to make this present, ie it's not debian etc)
 		#(this precise string is required for Cloudera hadoop to install) 
