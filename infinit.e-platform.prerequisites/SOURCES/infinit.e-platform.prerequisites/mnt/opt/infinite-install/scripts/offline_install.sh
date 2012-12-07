@@ -99,6 +99,8 @@ yes | yum localinstall tomcat6-admin-webapps-*.rpm --nogpgcheck
 yes | yum localinstall tomcat6-webapps-*.rpm --nogpgcheck
 chkconfig tomcat6 off
 sleep 5
+# Some versions of tomcat appear to force tomcat user to /sbin/nologin, so change it back:
+chsh -s /bin/sh tomcat
 
 ################################################################################
 echo "Install MongoDB -"

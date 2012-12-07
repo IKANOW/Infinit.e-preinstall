@@ -27,18 +27,24 @@ Infinit.e RAID installation for Amazon EC2 m1.xlarge instances
 #
 # THIS IS AN INSTALL ONLY
 #
+		EXT="ext3"
+		if df | grep -q "xvda"; then
+			EXT="ext4"
+		fi
+
 		umount /mnt
 		mdadm --create /dev/md0 --run --level=0 --chunk=256 --raid-devices=4 /dev/sdb /dev/sdc /dev/sdd /dev/sde
 		pvcreate /dev/md0
 		vgcreate data_vg /dev/md0
 		lvcreate -l 100%vg -n data_vol data_vg
-		mkfs.ext3 -m 0 /dev/data_vg/data_vol
-		mount -t ext3 /dev/data_vg/data_vol /mnt/
+		mkfs.${EXT} -m 0 /dev/data_vg/data_vol
+		mount -t ${EXT} /dev/data_vg/data_vol /mnt/
 		
 		touch /etc/mdadm.conf
 		grep -F "/dev/md0" /etc/mdadm.conf || mdadm -Es | grep md0 >> /etc/mdadm.conf
+		sed -i s/"^\/dev\/xvdb"/"\#\/dev\/xvdb"/ /etc/fstab
 		sed -i s/"^\/dev\/sdb"/"\#\/dev\/sdb"/ /etc/fstab
-		grep -F "/dev/data_vg/data_vol" /etc/fstab || echo "/dev/data_vg/data_vol  /mnt      ext3    defaults        1 2" >> /etc/fstab
+		grep -F "/dev/data_vg/data_vol" /etc/fstab || echo "/dev/data_vg/data_vol  /mnt      ${EXT}    defaults        0 2" >> /etc/fstab
 	fi
 	if [ $1 -eq 2 ]; then
 #

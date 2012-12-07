@@ -106,6 +106,10 @@ elastic.search.min_peers=0
 # by the processing engine (other jobs remain at pending until a slot is available)
 # There is no default, 10 is recommended until the size of your cluster is known.
 hadoop.max_concurrent=10
+# Set to false to run full hadoop clusters, set to true to run single-instance
+# versions (ie not scalable, still requires infinit.e-hadoop-installer RPM, but doesn't require
+# complex Hadoop configuration) 
+hadoop.local_mode=true
 
 #-------------------------------------------------------------------------------
 # 1.13] Entity Extractor Properties

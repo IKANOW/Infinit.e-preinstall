@@ -26,7 +26,6 @@ infinit.e-platform.prerequisites.offline
 # 
 ###########################################################################
 %post
-	# Handle relocation:
 	if [ "$RPM_INSTALL_PREFIX" != "/opt" ]; then
 		echo "(Creating links from /opt to $RPM_INSTALL_PREFIX)"
 	 	if [ -d /opt/infinite-install ] && [ ! -h /opt/infinite-install ]; then
@@ -195,18 +194,11 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/mongo-10gen-2.0.2-mongodb_1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/mongo-10gen-server-2.0.2-mongodb_1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/rpm-build-4.4.2.3-22.el5_7.2.x86_64.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/s3cmd-1.0.0-4.1.i386.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/s3cmd-1.0.0-4.1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-6.0.29-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-admin-webapps-6.0.29-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-webapps-6.0.29-1.jpp5.noarch.rpm
 #%attr(-,root,root) /mnt/opt/infinite-install/rpms/yum-downloadonly-1.1.16-16.el5.centos.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/yum-priorities-1.1.16-16.el5.noarch.rpm
-
-###########################################################################
-# s3cmd gpgkey
-###########################################################################
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/repomd.xml.key
 
 ###########################################################################
 # Data files

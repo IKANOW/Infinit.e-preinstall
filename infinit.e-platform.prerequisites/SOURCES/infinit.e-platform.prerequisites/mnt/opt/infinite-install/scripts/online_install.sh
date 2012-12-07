@@ -4,13 +4,14 @@
 ################################################################################
 # API Node   - Tested, Red Hat 5.5 1/11/2012
 # DB Node    - Tested, Red Hat 5.5 1/11/2012
+# API/DB     - Tested, Amazon Linux 2012.09 (equivalent to RHEL6/CentOS6)
 ################################################################################
 
 ################################################################################
 # Commandline arguments
 ################################################################################
 # $1 - APINode or DBNode (API is default) 
-# $2 is "--fast" to bypassing installing latest java/jpackage (for AMIs)
+# $FASTARG is "--fast" to bypassing installing latest java/jpackage (for AMIs)
 ################################################################################
 NODE_TYPE="APINode"
 if [ $# -gt 0 ]; then
@@ -23,6 +24,12 @@ if [ $# -gt 0 ]; then
 fi
 echo "Online Installation: $NODE_TYPE"
 
+FASTARG=$2
+if uname -a | grep -q amzn; then
+	echo "CentOS Linux release 6 (Amazon Linux)" > /etc/redhat-release
+		#(Amazon is close enough to Redhat for us to make this present, ie it's not debian etc)
+		#(this precise string is required for Cloudera hadoop to install) 
+fi
 
 ################################################################################
 # Directory install files are copied too
@@ -33,7 +40,7 @@ INSTALL_FILES_DIR="/mnt/opt/infinite-install"
 ################################################################################
 echo "Create yum repo for /mnt/opt/infinite-install/rpms/dependencies -"
 ################################################################################
-if [ "$2" != "--fast" ]; then
+if [ "$FASTARG" != "--fast" ]; then
 
 	yes | yum install createrepo -y
 	sleep 5
@@ -42,7 +49,7 @@ fi
 ################################################################################
 echo "Install rpm-build -"
 ################################################################################
-if [ "$2" != "--fast" ]; then
+if [ "$FASTARG" != "--fast" ]; then
 
 	yes | yum install rpm-build -y
 	sleep 5
@@ -51,7 +58,7 @@ fi
 ################################################################################
 echo "Install jpackage-utils (jpackage.org) and yum-priorities -"
 ################################################################################
-if [ "$2" != "--fast" ]; then
+if [ "$FASTARG" != "--fast" ]; then
 
 	yes | yum install jpackage-utils -y
 	yes | yum install yum-priorities -y
@@ -62,7 +69,12 @@ fi
 echo "Install s3cmd -"
 ################################################################################
 cd /etc/yum.repos.d
-wget http://s3tools.org/repo/CentOS_5/s3tools.repo
+
+if cat /etc/redhat-release | grep -iq "centos.*release 6"; then
+	wget http://s3tools.org/repo/RHEL_6/s3tools.repo
+else
+	wget http://s3tools.org/repo/RHEL_5/s3tools.repo
+fi
 yes | yum install s3cmd -y
 sleep 5
 
@@ -71,7 +83,7 @@ sleep 5
 echo "Install Java JRE and JDK -"
 ################################################################################
 
-if [ "$2" != "--fast" ]; then
+if [ "$FASTARG" != "--fast" ]; then
 
 	cd $INSTALL_FILES_DIR/rpms
 	chmod a+x jre-*-linux-x64-rpm.bin
@@ -89,7 +101,7 @@ ln -sf /usr/java/default/bin/java /usr/bin/java
 echo "Install Tomcat -"
 ################################################################################
 
-if [ "$2" != "--fast" ]; then
+if [ "$FASTARG" != "--fast" ]; then
 
 	# rpm -Uvh http://plone.lucidsolutions.co.nz/linux/centos/images/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
 	cd $INSTALL_FILES_DIR/rpms
@@ -102,6 +114,8 @@ if [ "$2" != "--fast" ]; then
 	chkconfig tomcat6 off
 	sleep 5
 fi
+# Some versions of tomcat appear to force tomcat user to /sbin/nologin, so change it back:
+chsh -s /bin/sh tomcat
 
 
 ################################################################################
@@ -115,7 +129,7 @@ sudo chown `id -u` /data/db
 echo "Install MongoDB -"
 ################################################################################
 cp $INSTALL_FILES_DIR/etc/yum.repos.d/10gen-mongodb.repo /etc/yum.repos.d/
-if [ "$2" != "--fast" ]; then
+if [ "$FASTARG" != "--fast" ]; then
 	yes | yum update -y
 fi
 yes | yum install mongo-10gen mongo-10gen-server -y
@@ -149,7 +163,7 @@ rpm -Uvh python-devel-2.4.3-27.el5_5.3.x86_64.rpm
 ################################################################################
 echo "Update the Yum repository one last time"
 ################################################################################
-if [ "$2" != "--fast" ]; then
+if [ "$FASTARG" != "--fast" ]; then
 	yes | yum update -y
 fi
 
