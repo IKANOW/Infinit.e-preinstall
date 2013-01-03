@@ -15,7 +15,7 @@
 #     but it's been edited a fair bit.
 
 Name:           elasticsearch
-Version:        0.18.7
+Version:        0.18.7.1
 Release:        1
 Summary:        A distributed, highly available, RESTful search engine
 BuildArch:      noarch
@@ -33,6 +33,7 @@ Source9:        http://elasticsearch.googlecode.com/svn/plugins/lang-javascript/
 #ACP (Add some new sources:)
 Source10:		elasticsearch-plugins-bigdesk.tar.gz
 Source11:		elasticsearch-plugins-head.tar.gz
+Source12:		elasticsearch-analysis-icu-1.1.0.zip
  
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -104,6 +105,8 @@ true
 #ACP (add new plugins)
 zcat %{SOURCE10} | tar -xvf - -C %{buildroot}%{_javadir}/%{name}/plugins
 zcat %{SOURCE11} | tar -xvf - -C %{buildroot}%{_javadir}/%{name}/plugins
+%{__mkdir} -p %{buildroot}%{_javadir}/%{name}/plugins/elasticsearch-analysis-icu
+unzip %{SOURCE12} -d %{buildroot}%{_javadir}/%{name}/plugins/elasticsearch-analysis-icu
 
 %pre
 # create elasticsearch group
@@ -160,5 +163,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_javadir}/elasticsearch/plugins/head
 %{_javadir}/elasticsearch/plugins/head/*
+
+%dir %{_javadir}/elasticsearch/plugins/elasticsearch-analysis-icu
+%{_javadir}/elasticsearch/plugins/elasticsearch-analysis-icu/*
 
 #ACP: (removed changelog - file has changed sufficiently I didn't want to cause confusion)
