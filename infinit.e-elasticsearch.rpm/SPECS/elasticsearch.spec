@@ -16,7 +16,7 @@
 
 Name:           elasticsearch
 Version:        0.18.7
-Release:        3
+Release:        4
 Summary:        A distributed, highly available, RESTful search engine
 BuildArch:      noarch
 
@@ -34,6 +34,7 @@ Source9:        http://elasticsearch.googlecode.com/svn/plugins/lang-javascript/
 Source10:		elasticsearch-plugins-bigdesk.tar.gz
 Source11:		elasticsearch-plugins-head.tar.gz
 Source12:		elasticsearch-analysis-icu-1.1.0.zip
+Source13:		elasticsearch_compatibility-0.18.jar
  
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -63,6 +64,7 @@ true
 
 #libs
 %{__mkdir} -p %{buildroot}%{_javadir}/%{name}/lib/sigar
+%{__install} -p -m 644 %{SOURCE13} %{buildroot}%{_javadir}/%{name}/lib
 %{__install} -p -m 644 lib/*.jar %{buildroot}%{_javadir}/%{name}/lib
 %{__install} -p -m 644 lib/sigar/*.jar %{buildroot}%{_javadir}/%{name}/lib/sigar
 %ifarch i386
