@@ -59,7 +59,7 @@ log.files.mail.from=
 log.files.mail.to=
 
 #-------------------------------------------------------------------------------
-# 1.6] API Search Test Terms and Expected Results
+# 1.6] API Settings
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
@@ -175,13 +175,17 @@ use.aws=1
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# 2.6] API Search Test Terms and Expected Results
+# 2.6] API Settings
 #-------------------------------------------------------------------------------
+# API Search Test Terms and Expected Results:
 # List of terms formatted like: "*" "something" "something":
 # (The continuous testing randomly selects one of these for querying the API)
 api.search.test.terms="*"
 # The expected results (max 100), if a different number comes back, the system alerts:
 api.search.expected.results=0
+# For smaller clusters with many documents, Lucene faceting may use too much memory, if so
+# set this parameter to "low". ("none" disables all aggregations, "full" uses Lucene facets where possible)
+api.aggregation.accuracy=full
 
 #-------------------------------------------------------------------------------
 # 2.7] Amazon AWS Settings
@@ -265,6 +269,9 @@ harvest.threads=file:5,database:5,feed:20
 # This parameter uses the Java Security Manager to prevent scripts accessing local network services (at the expense of some performance)
 # It can be turned off for uses of the platform where sources must be approved before being added (etc)
 harvest.security=true
+# This is a comma-separated list of hosts in the following format "http://<HOST>[:<PORT>]" or "socks://<HOST>:<PORT>"
+# When specified, all requests for external content from the harvester are proxied (round-robin) through the specified hosts 
+harvest.proxy=
 
 #-------------------------------------------------------------------------------
 # 2.12] Hadoop Properties

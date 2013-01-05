@@ -16,7 +16,7 @@
 
 Name:           elasticsearch
 Version:        0.18.7
-Release:        1
+Release:        5
 Summary:        A distributed, highly available, RESTful search engine
 BuildArch:      noarch
 
@@ -33,6 +33,8 @@ Source9:        http://elasticsearch.googlecode.com/svn/plugins/lang-javascript/
 #ACP (Add some new sources:)
 Source10:		elasticsearch-plugins-bigdesk.tar.gz
 Source11:		elasticsearch-plugins-head.tar.gz
+Source12:		elasticsearch-analysis-icu-1.1.0.zip
+Source13:		elasticsearch_compatibility-0.18.jar
  
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -62,6 +64,7 @@ true
 
 #libs
 %{__mkdir} -p %{buildroot}%{_javadir}/%{name}/lib/sigar
+%{__install} -p -m 644 %{SOURCE13} %{buildroot}%{_javadir}/%{name}/lib
 %{__install} -p -m 644 lib/*.jar %{buildroot}%{_javadir}/%{name}/lib
 %{__install} -p -m 644 lib/sigar/*.jar %{buildroot}%{_javadir}/%{name}/lib/sigar
 %ifarch i386
@@ -70,6 +73,20 @@ true
 %ifarch x86_64
 %{__install} -p -m 644 lib/sigar/libsigar-amd64-linux.so %{buildroot}%{_javadir}/%{name}/lib/sigar
 %endif
+
+# Create symlinks:
+cd %{buildroot}%{_javadir}/%{name}/lib/
+for i in `ls *.jar`; do
+	LINK_NAME=`echo $i | sed s/"-[0-9.]*\.jar"/".jar"/`
+	ln -sf $i $LINK_NAME
+done
+cd -
+cd %{buildroot}%{_javadir}/%{name}/lib/sigar
+for i in `ls *.jar`; do
+	LINK_NAME=`echo $i | sed s/"-[0-9.]*\.jar"/".jar"/`
+	ln -sf $i $LINK_NAME
+done
+cd -
 
 # config
 %{__mkdir} -p %{buildroot}%{_sysconfdir}/elasticsearch
@@ -104,6 +121,8 @@ true
 #ACP (add new plugins)
 zcat %{SOURCE10} | tar -xvf - -C %{buildroot}%{_javadir}/%{name}/plugins
 zcat %{SOURCE11} | tar -xvf - -C %{buildroot}%{_javadir}/%{name}/plugins
+%{__mkdir} -p %{buildroot}%{_javadir}/%{name}/plugins/elasticsearch-analysis-icu
+unzip %{SOURCE12} -d %{buildroot}%{_javadir}/%{name}/plugins/elasticsearch-analysis-icu
 
 %pre
 # create elasticsearch group
@@ -160,5 +179,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_javadir}/elasticsearch/plugins/head
 %{_javadir}/elasticsearch/plugins/head/*
+
+%dir %{_javadir}/elasticsearch/plugins/elasticsearch-analysis-icu
+%{_javadir}/elasticsearch/plugins/elasticsearch-analysis-icu/*
 
 #ACP: (removed changelog - file has changed sufficiently I didn't want to cause confusion)
