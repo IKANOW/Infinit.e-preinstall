@@ -16,7 +16,7 @@
 
 Name:           elasticsearch
 Version:        0.18.7
-Release:        5
+Release:        6
 Summary:        A distributed, highly available, RESTful search engine
 BuildArch:      noarch
 
