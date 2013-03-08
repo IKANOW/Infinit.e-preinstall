@@ -16,7 +16,7 @@
 
 Name:           elasticsearch
 Version:        0.18.7
-Release:        9
+Release:        10
 Summary:        A distributed, highly available, RESTful search engine
 BuildArch:      noarch
 
@@ -67,12 +67,7 @@ true
 %{__install} -p -m 644 %{SOURCE13} %{buildroot}%{_javadir}/%{name}/lib
 %{__install} -p -m 644 lib/*.jar %{buildroot}%{_javadir}/%{name}/lib
 %{__install} -p -m 644 lib/sigar/*.jar %{buildroot}%{_javadir}/%{name}/lib/sigar
-%ifarch i386
-%{__install} -p -m 644 lib/sigar/libsigar-x86-linux.so %{buildroot}%{_javadir}/%{name}/lib/sigar
-%endif
-%ifarch x86_64
-%{__install} -p -m 644 lib/sigar/libsigar-amd64-linux.so %{buildroot}%{_javadir}/%{name}/lib/sigar
-%endif
+%{__install} -p -m 644 lib/sigar/libsigar-*-linux.so %{buildroot}%{_javadir}/%{name}/lib/sigar
 
 # Create symlinks:
 cd %{buildroot}%{_javadir}/%{name}/lib/
