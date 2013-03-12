@@ -3,7 +3,7 @@
 # Spec file for Infinit.e system configuration.
 #
 Summary: Infinit.e installation RPM
-Name: infinit.e-raid-amazon
+Name: infinit.e-install
 Version: INFINITE_VERSION
 Release: online
 License: None
