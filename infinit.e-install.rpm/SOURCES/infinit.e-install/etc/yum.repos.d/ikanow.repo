@@ -1,0 +1,4 @@
+[ikanow_prereqs]
+name=Infinit.e Pre-Reqs Repository
+baseurl=http://www.ikanow.com/infinit.e-preinstall-repo
+gpgcheck=0
