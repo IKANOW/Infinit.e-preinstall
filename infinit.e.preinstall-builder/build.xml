@@ -13,7 +13,8 @@
 	<property name="infinit.e-elasticsearch.rpm.location" value="${basedir}/../infinit.e-elasticsearch.rpm"/>	
 	<property name="infinit.e-hadoop.rpm.location" value="${basedir}/../infinit.e-hadoop-installer"/>	
 	<property name="infinit.e-raid-amazon.rpm.location" value="${basedir}/../infinit.e-raid-amazon.rpm"/>	
-	
+	<property name="infinit.e-install.rpm.location" value="${basedir}/../infinit.e-install.rpm"/>	
+		
 	<target name="clean" description="Generic clean">
 		<delete dir="repo"/>
 	</target>
@@ -31,9 +32,13 @@
 		<ant antfile="${infinit.e-raid-amazon.rpm.location}/build.xml">
 			<property name="basedir" value="${infinit.e-raid-amazon.rpm.location}"/>
 		</ant>
+		<ant antfile="${infinit.e-install.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-install.rpm.location}"/>
+		</ant>
 	</target>
 
 	<target name="createrepo" depends="build" description="Create yum repo for RPMs">
+	    <!--  ONLINE -->
 		<mkdir dir="repo"/>
 		<copy todir="repo">
 			<fileset dir="${infinit.e-prereqs.rpm.location}/RPMS/noarch/" includes="*online*.rpm"/>
@@ -47,6 +52,15 @@
 			<arg value="repo"/>
 		</exec>
 		<zip destfile="infinit.e-preinstall-repo-${infinite_version}-${infinite_release}.zip" basedir="repo"/>
+	    <!--  OFFLINE -->
+		<mkdir dir="offlinerepo"/>
+		<copy todir="offlinerepo">
+			<fileset dir="${infinit.e-prereqs.rpm.location}/RPMS/noarch/" includes="offline"/>
+			<fileset dir="${infinit.e-hadoop.rpm.location}/RPMS/noarch/" includes="*offline*.rpm"/>
+			<fileset dir="${infinit.e-elasticsearch.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
+			<fileset dir="${infinit.e-install.rpm.location}/ARTIFACTS/" includes="*.sh"/>
+		</copy>
+		<zip destfile="infinit.e-preinstall-bundle.zip" basedir="offlinerepo"/>			    
 	</target>
 	
 </project>
