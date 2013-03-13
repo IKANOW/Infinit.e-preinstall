@@ -76,9 +76,8 @@ while [ true ]; do
 		if [ "$yc" = "c" ]; then
 			mongo social --eval 'db.person.drop()'
 			mongo social --eval 'db.community.drop()'
-			mongo security --eval 'db.authentication.drop()'
-			mongo gui --eval 'db.setup.drop()'
 		fi
+		mongo gui --eval 'db.setup.drop()'
 		
 		tar xzvf preload_data.tgz
 		mongorestore saved/
