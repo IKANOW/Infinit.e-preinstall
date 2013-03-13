@@ -60,7 +60,7 @@
 			<fileset dir="${infinit.e-elasticsearch.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
 			<fileset dir="${infinit.e-install.rpm.location}/ARTIFACTS/" includes="*.sh"/>
 		</copy>
-		<zip destfile="infinit.e-preinstall-bundle.zip" basedir="offlinerepo"/>			    
+		<tar destfile="infinit.e-preinstall-bundle.tar" basedir="offlinerepo"/>			    
 	</target>
 	
 </project>
