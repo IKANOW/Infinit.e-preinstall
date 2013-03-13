@@ -87,10 +87,11 @@ while [ true ]; do
 			mongo social --eval 'db.community.update({"isSystemCommunity":false,"isPersonalCommunity":false},{$set:{members:[],numberOfMembers:0}},false,true)'
 		fi		
 		
-		java -jar /opt/infinite-home/lib/infinit.e.mongo-indexer.jar --doc --verify --query '{}' --limit 2000
-		java -jar /opt/infinite-home/lib/infinit.e.mongo-indexer.jar --doc --query '{}' --skip 2000
+		/etc/init.d/infinite-px-engine stop
+		java -jar /opt/infinite-home/lib/infinit.e.mongo-indexer.jar --doc --verify --query '{}' 
 		java -jar /opt/infinite-home/lib/infinit.e.mongo-indexer.jar --assoc --rebuild --query '{}'
 		java -jar /opt/infinite-home/lib/infinit.e.mongo-indexer.jar --entity --rebuild --query '{}'
+		/etc/init.d/infinite-px-engine start
 				
 		mkdir -p /mnt/infinite_data/enron
 		cd /mnt/infinite_data/enron
