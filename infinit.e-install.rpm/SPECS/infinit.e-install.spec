@@ -64,7 +64,7 @@ Infinit.e installation RPM
 # INSTALL *AND* UPGRADE
 #	
 	echo "Now run /opt/infinite-install/install-infinite.sh to install Infinit.e (with sudo if non-root) - note you will be prompted a few times during the install process."
-	echo "Ensure you have at least 20GB of disk space"	
+	echo "Ensure you have at least 20GB of disk space; and either 8GB of RAM, or >=4GB + enabled swap space"	
 	
 %preun
 #
