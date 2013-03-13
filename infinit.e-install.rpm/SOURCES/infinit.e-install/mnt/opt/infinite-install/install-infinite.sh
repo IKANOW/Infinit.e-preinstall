@@ -110,6 +110,7 @@ while [ true ]; do
 			echo
 			echo "You will need to add your users to the newly created communities from the '/manager' webapp"
 		fi	
+		break;
 	elif [ "$yn" = "n" ]; then
 		break;
 	else
