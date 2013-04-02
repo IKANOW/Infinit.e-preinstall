@@ -15,8 +15,8 @@
 #     but it's been edited a fair bit.
 
 Name:           elasticsearch
-Version:        0.18.7
-Release:        10
+Version:        0.19.11
+Release:        3
 Summary:        A distributed, highly available, RESTful search engine
 BuildArch:      noarch
 
@@ -29,12 +29,12 @@ Source2:        logrotate.d-elasticsearch
 Source3:        config-logging.yml
 Source4:        sysconfig-elasticsearch
 #ACP (Remove some unused sources)
-Source9:        http://elasticsearch.googlecode.com/svn/plugins/lang-javascript/elasticsearch-lang-javascript-%{version}.zip
+Source9:        http://elasticsearch.googlecode.com/svn/plugins/lang-javascript/elasticsearch-lang-javascript-1.2.0.zip
 #ACP (Add some new sources:)
 Source10:		elasticsearch-plugins-bigdesk.tar.gz
 Source11:		elasticsearch-plugins-head.tar.gz
-Source12:		elasticsearch-analysis-icu-1.1.0.zip
-Source13:		elasticsearch_compatibility-0.18.jar
+Source12:		elasticsearch-analysis-icu-1.7.0.zip
+Source13:		elasticsearch_compatibility-0.19.jar
  
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -110,7 +110,7 @@ cd -
 #ACP (removed unused plugins)
 
 # plugin-lang-javascript (includes js jars)
-%{__install} -D -m 755 elasticsearch-lang-javascript-%{version}.jar %{buildroot}%{_javadir}/%{name}/plugins/lang-javascript/elasticsearch-lang-javascript.jar
+%{__install} -D -m 755 elasticsearch-lang-javascript-1.2.0.jar %{buildroot}%{_javadir}/%{name}/plugins/lang-javascript/elasticsearch-lang-javascript.jar
 %{__install} -D -m 755 rhino*.jar %{buildroot}%{_javadir}/%{name}/plugins/lang-javascript/rhino.jar
 
 #ACP (add new plugins)

@@ -55,12 +55,12 @@
 	    <!--  OFFLINE -->
 		<mkdir dir="offlinerepo"/>
 		<copy todir="offlinerepo">
-			<fileset dir="${infinit.e-prereqs.rpm.location}/RPMS/noarch/" includes="offline"/>
+			<fileset dir="${infinit.e-prereqs.rpm.location}/RPMS/noarch/" includes="*offline*.rpm"/>
 			<fileset dir="${infinit.e-hadoop.rpm.location}/RPMS/noarch/" includes="*offline*.rpm"/>
 			<fileset dir="${infinit.e-elasticsearch.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
 			<fileset dir="${infinit.e-install.rpm.location}/ARTIFACTS/" includes="*.sh"/>
 		</copy>
-		<zip destfile="infinit.e-preinstall-bundle.zip" basedir="offlinerepo"/>			    
+		<tar destfile="infinit.e-preinstall-offline-bundle.tar" basedir="offlinerepo"/>			    
 	</target>
 	
 </project>

@@ -1,0 +1,132 @@
+################################################################################
+# infinite.configuration.properties
+################################################################################
+################################################################################
+# YOU MAY FIND IT USEFUL TO SET THESE AND THEN RUN
+#  /opt/infinite-home/scripts/rewrite_property_files.sh
+################################################################################
+################################################################################
+# Basic Infinit.e Settings
+################################################################################
+# Default admin and test user passwords
+admin.email=infinite_default@ikanow.com
+admin.password=infinit.e!2013
+# Just used for continuous monitoring - nobody else should log-into this
+test.user.email=test_user@ikanow.com
+test.user.password=infinit.e!2013
+################################################################################
+# EMail Server Settings
+mail.server=smtp.gmail.com
+mail.username=
+mail.password=
+url.root=
+################################################################################
+# EMail Addresses for log files etc.
+log.files.mail.from=
+log.files.mail.to=
+################################################################################
+# Extractor type selection, e.g. opencalais or alchemyapi
+extractor.entity.default=textrank
+extractor.text.default=boilerpipe
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+# THESE PROBABLY DON'T NEED TO BE SET
+################################################################################
+################################################################################
+# Software as a service (SAAS) settings
+app.saas=false
+app.saas.trusted.dns=
+################################################################################
+# Amazon services properties
+# use.aws: 0=false, 1=true
+use.aws=0
+################################################################################
+# API Search Test Terms and Expected Results
+# .terms="*" "something" "something" ...
+api.search.test.terms=""
+api.search.expected.results=-1
+################################################################################
+# Amazon AWS Settings
+################################################################################
+# AWS keys
+aws.access.key=
+aws.secret.key=
+s3.gpg.passphrase=none
+################################################################################
+# MongoDB Settings
+################################################################################
+# Server Address/IP, e.g.: db.server=127.0.0.1
+db.server=127.0.0.1
+db.port=27017
+db.capacity=10000000
+db.config.servers=127.0.0.1
+db.replica.sets=127.0.0.1
+db.cluster.subnet=127.
+# db.sharded: 0=false, 1=true
+db.sharded=1
+# The location from which to fetch the geo.bson dump used for feature.geo
+db.geo_archive=http://www.ikanow.com/infinit.e-preinstall/artifacts/geo.bson.tar.gz
+db.oplog=256
+################################################################################
+# Access timeout
+access.timeout=1800
+################################################################################
+# Elasticsearch Properties
+################################################################################
+# Cluster name and URL
+elastic.cluster=paas-singlenode-cluster
+elastic.url=127.0.0.1:9300
+################################################################################
+# Discovery mode = ec2 or zen:
+elastic.node.discovery=zen
+################################################################################
+# ES nodes, e.g.: elastic.search.nodes='NODE1:9300','NODE2:9300','NODE3:9300'
+# (not needed for cloud)
+elastic.search.nodes=127.0.0.1:9300
+################################################################################
+# Cluster properties
+elastic.search.min_peers=0
+elastic.max_replicas=1
+#####################################################
+# Hadoop config path
+hadoop.configpath=/mnt/opt/hadoop-infinite/mapreduce/
+# Standalone Hadoop
+hadoop.local_mode=true
+#####################################################
+# Harvester Properties
+harvester.types=File,Database,Feed
+harvest.mintime.ms=60000
+harvest.source.mintime.ms=
+harvest.maxdocs_persource=5000
+harvest.threads=file:5,database:5,feed:5
+harvest.feed.wait=10000
+harvest.feed.useragent=Mozilla/5.0 (Windows NT 6.1; WOW64; rv:11.0) Gecko/20100101 Firefox/11.0
+################################################################################
+# Alchemy/Open Calais Properties
+################################################################################
+# Alchemy and Open Calais Keys
+extractor.key.alchemyapi=00000000
+extractor.key.opencalais=00000000
+# Alchemy extraction level
+# 1==people postproc, 2==geo postproc, 3==both
+app.alchemy.postproc=3
+################################################################################
+# Interface Related Properties for the AppConstants.js file found in:
+# /mnt/opt/infinite-tomcat/interface-engine/webapps/ROOT/
+# Commenting ui.end.point.url defaults it to the domain from which the GUI is loaded
+################################################################################
+#
+ui.domain.url=
+#ui.end.point.url=
+# Forgot password URL: (SaaS only, ie integrated with a CMS)
+# (relative to ui.domain.url):
+ui.forgot.password=forgot-password/
+# Logout URL: (SaaS only, ie integrated with a CMS)
+# (relative to ui.domain.url):
+ui.logout=?action=logout
+################################################################################
+# Google maps API key for the root URL of the site (http://localhost/)
+# Register for a key at: http://code.google.com/apis/maps/signup.html
+google.maps.api.key=dummy
