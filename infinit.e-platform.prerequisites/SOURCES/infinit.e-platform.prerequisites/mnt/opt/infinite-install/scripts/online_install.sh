@@ -73,10 +73,10 @@ cd /etc/yum.repos.d
 # This repo is a little bit flaky and the current ones work fine, so just use local caches
 if cat /etc/redhat-release | grep -iq "centos.*release 6"; then
 	wget http://s3tools.org/repo/RHEL_6/s3tools.repo
-	rpm -Uvh s3cmd-el6.1.0.0-4.1.x86_64.rpm
+	rpm -Uvh $INSTALL_FILES_DIR/rpms/s3cmd-el6.1.0.0-4.1.x86_64.rpm
 else
 	wget http://s3tools.org/repo/RHEL_5/s3tools.repo
-	rpm -Uvh s3cmd-el5.1.0.0-4.1.x86_64.rpm
+	rpm -Uvh $INSTALL_FILES_DIR/rpms/s3cmd-el6.1.0.0-4.1.x86_64.rpm
 fi
 #yes | yum install s3cmd -y
 sleep 5
