@@ -141,6 +141,10 @@ ui.end.point.url=http://MY_REST_ENDPOINT/api/
 # 1.15] Maps API key:
 #-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+# 1.16] Enterprise variables
+#-------------------------------------------------------------------------------
+
 ##############################################################################################################
 #-------------------------------------------------------------------------------
 # 2] PARAMETERS THAT CAN NORMALLY BE LEFT AT THEIR DEFAULT
@@ -306,3 +310,14 @@ ui.logout=?action=logout
 # Just needs to be a dummy value for MapQuest open API
 google.maps.api.key=dummy
 
+#-------------------------------------------------------------------------------
+# 2.16] Enterprise variables - ignore for non-enterprise installs
+#-------------------------------------------------------------------------------
+# The location of the case manager app server - leave blank but commented in
+# to point to <domain>/caseserver
+# NOTE THAT THE DOMAIN MUST MATCH THE URL OF THE MAIN GUI OR AUTHENTICATION WON'T WORK
+#app.case.api.url=
+# The location of the case manager GUI - leave blank but commented in to point to
+# <domain>:8090/casemanager (redirects to 8090/nuxeo)
+# NOTE THAT THE DOMAIN MUST MATCH THE URL OF THE MAIN GUI OR AUTHENTICATION WON'T WORK
+#app.case.url=
