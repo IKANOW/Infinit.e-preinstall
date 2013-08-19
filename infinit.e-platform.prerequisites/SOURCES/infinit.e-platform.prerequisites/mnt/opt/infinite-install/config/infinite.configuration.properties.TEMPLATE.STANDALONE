@@ -202,7 +202,7 @@ s3.gpg.passphrase=
 db.server=localhost
 db.port= 27017
 # db.sharded - 0 = false and 1 = true
-db.sharded=0
+db.sharded=1
 # The max number of documents to store (eg 10M). Docs will be dropped in order of age.
 # (Not currently supported):
 db.capacity=10000000
@@ -259,7 +259,7 @@ harvest.threads=file:5,database:5,feed:20
 #harvest.disable_aggregation=false
 # This parameter uses the Java Security Manager to prevent scripts accessing local network services (at the expense of some performance)
 # It can be turned off for uses of the platform where sources must be approved before being added (etc)
-harvest.security=true
+harvest.security=false
 # This is a comma-separated list of hosts in the following format "http://<HOST>[:<PORT>]" or "socks://<HOST>:<PORT>"
 # When specified, all requests for external content from the harvester are proxied (round-robin) through the specified hosts 
 harvest.proxy=
@@ -274,8 +274,8 @@ hadoop.configpath=/mnt/opt/hadoop-infinite/mapreduce
 #-------------------------------------------------------------------------------
 # Alchemy and Open Calais Keys:
 # (Obtain from alchemyapi.com or opencalais.com)
-extractor.key.alchemyapi=
-extractor.key.opencalais=
+extractor.key.alchemyapi=dummy
+extractor.key.opencalais=dummy
 #----------------------------------------------
 # Entity extraction type selection: opencalais or alchemyapi or none
 # ("textrank" uses the statistical properties of the document to pull out phrases likely to be of significance.
