@@ -1,5 +1,5 @@
 #!/bin/bash
-yum -y --nogpgcheck localinstall infinit.e-platform.prerequisites.online
+yum -y --nogpgcheck localinstall infinit.e-platform.prerequisites.offline*.rpm
                                                 
 cd /opt/infinite-install/
 sh install.sh apinode --slow
@@ -22,11 +22,11 @@ while [ true ]; do
 done
 
 cd -
-yum -y --nogpgcheck localinstall infinit.e-hadoop-installer.online
-yum -y --nogpgcheck localinstall infinit.e-config
-yum -y --nogpgcheck localinstall infinit.e-index-engine
-yum -y --nogpgcheck localinstall infinit.e-db-instance
-yum -y --nogpgcheck localinstall infinit.e-processing-engine
-yum -y --nogpgcheck localinstall infinit.e-interface-engine
+yum -y --nogpgcheck localinstall infinit.e-hadoop-installer.offline*.rpm
+yum -y --nogpgcheck localinstall infinit.e-config*.rpm
+yum -y --nogpgcheck localinstall infinit.e-index-engine*.rpm
+yum -y --nogpgcheck localinstall infinit.e-db-instance*.rpm
+yum -y --nogpgcheck localinstall infinit.e-processing-engine*.rpm
+yum -y --nogpgcheck localinstall infinit.e-interface-engine*.rpm
 
 echo "Note standalone Hadoop not installed, to do so run /opt/hadoop-infinite/install.sh (not necessary for single node installations)"
