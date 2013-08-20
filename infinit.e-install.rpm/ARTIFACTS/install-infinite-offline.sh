@@ -1,5 +1,7 @@
 #!/bin/bash
 yum -y --nogpgcheck localinstall infinit.e-platform.prerequisites.offline*.rpm
+yum -y --nogpgcheck localupgrade elasticsearch*.rpm 
+	#(platform pre-reqs doesn't necessarily have the most up-to-date es installed, but it's also part of the bundle)
                                                 
 cd /opt/infinite-install/
 sh install.sh apinode --slow
