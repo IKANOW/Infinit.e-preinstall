@@ -17,7 +17,7 @@ while [ true ]; do
 			echo "Untrue! /opt/infinite-install/config/infinite.configuration.properties does not exist..."
 		fi
 	elif [ "$yc" = "c" ]; then
-		cp /opt/infinite-install/example_configurations/infinite.configuration.properties.BASIC_SINGLE_SERVER /opt/infinite-install/config/infinite.configuration.properties
+		cp ./example_configurations/infinite.configuration.properties.BASIC_SINGLE_SERVER /opt/infinite-install/config/infinite.configuration.properties
 		break;
 	else
 		echo '"y" or "c" please, lower case.'
