@@ -1,6 +1,7 @@
 #!/bin/bash
-yum -y --nogpgcheck localinstall infinit.e-platform.prerequisites.offline*.rpm
-yum -y --nogpgcheck localupgrade elasticsearch*.rpm 
+NOREPO='--disablerepo=*'
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-platform.prerequisites.offline*.rpm
+yum $NOREPO -y --nogpgcheck localupgrade elasticsearch*.rpm 
 	#(platform pre-reqs doesn't necessarily have the most up-to-date es installed, but it's also part of the bundle)
                                                 
 cd /opt/infinite-install/
@@ -24,11 +25,11 @@ while [ true ]; do
 done
 
 cd -
-yum -y --nogpgcheck localinstall infinit.e-hadoop-installer.offline*.rpm
-yum -y --nogpgcheck localinstall infinit.e-config*.rpm
-yum -y --nogpgcheck localinstall infinit.e-index-engine*.rpm
-yum -y --nogpgcheck localinstall infinit.e-db-instance*.rpm
-yum -y --nogpgcheck localinstall infinit.e-processing-engine*.rpm
-yum -y --nogpgcheck localinstall infinit.e-interface-engine*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-hadoop-installer.offline*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-config*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-index-engine*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-db-instance*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-processing-engine*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-interface-engine*.rpm
 
 echo "Note standalone Hadoop not installed, to do so run /opt/hadoop-infinite/install.sh (not necessary for single node installations)"

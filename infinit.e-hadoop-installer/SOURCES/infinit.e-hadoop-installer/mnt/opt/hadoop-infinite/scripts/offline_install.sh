@@ -5,11 +5,7 @@
 # $1 = Install mode = 'node' or 'full' install
 ################################################################################
 INSTALL_MODE=$1
-
-################################################################################
-#echo "Copy repo file needed for offline installation to /etc/yum.repos.d"
-################################################################################
-#cp /mnt/opt/hadoop-infinite/etc/yum.repos.d/cloudera.repo /etc/yum.repos.d/
+NOREPO='--disablerepo=* --enablerepo=cloudera,cloudera-manager'
 
 ################################################################################
 echo "modprobe capability"
@@ -28,36 +24,36 @@ usermod -G hadoop tomcat
 echo "Create local yum repository"
 ################################################################################
 cd /mnt/opt/hadoop-infinite/rpms
-yes | yum localinstall createrepo-0.4.11-3.el5.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall createrepo-0.4.11-3.el5.noarch.rpm --nogpgcheck
 createrepo /mnt/opt/hadoop-infinite/rpms
 
 ################################################################################
 echo "Install hadoop and hue rpms via yum localinstall"
 ################################################################################
 cd /mnt/opt/hadoop-infinite/rpms
-yes | yum localinstall redhat-lsb-4.0-2.1.4.el5.x86_64.rpm --nogpgcheck
-yes | yum localinstall hadoop-0.20-0.20.2+923.194-1.noarch.rpm --nogpgcheck
-yes | yum localinstall hadoop-0.20-native-0.20.2+923.194-1.x86_64.rpm --nogpgcheck
-yes | yum localinstall hadoop-0.20-sbin-0.20.2+923.194-1.x86_64.rpm --nogpgcheck
-yes | yum localinstall hue-plugins-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hadoop-zookeeper-3.3.4+19.3-1.noarch.rpm --nogpgcheck
-yes | yum localinstall hadoop-hbase-0.90.4+49.137-1.noarch.rpm --nogpgcheck
-yes | yum localinstall oozie-client-2.3.2+27.12-1.noarch.rpm --nogpgcheck
-yes | yum localinstall oozie-2.3.2+27.12-1.noarch.rpm --nogpgcheck
-yes | yum localinstall cyrus-sasl-gssapi-2.1.22-5.el5_4.3.x86_64.rpm --nogpgcheck
-yes | yum localinstall libxslt-1.1.17-2.el5_2.2.x86_64.rpm --nogpgcheck
-yes | yum localinstall hue-common-1.2.0.0+114.4-2.x86_64.rpm --nogpgcheck
-yes | yum localinstall hue-help-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hue-filebrowser-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hue-about-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hue-jobbrowser-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hue-jobsub-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hadoop-hive-0.7.1+42.27-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hue-beeswax-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hue-proxy-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hue-shell-1.2.0.0+114.4-2.x86_64.rpm --nogpgcheck
-yes | yum localinstall hue-useradmin-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
-yes | yum localinstall hue-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall redhat-lsb-4.0-2.1.4.el5.x86_64.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hadoop-0.20-0.20.2+923.194-1.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hadoop-0.20-native-0.20.2+923.194-1.x86_64.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hadoop-0.20-sbin-0.20.2+923.194-1.x86_64.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-plugins-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hadoop-zookeeper-3.3.4+19.3-1.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hadoop-hbase-0.90.4+49.137-1.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall oozie-client-2.3.2+27.12-1.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall oozie-2.3.2+27.12-1.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall cyrus-sasl-gssapi-2.1.22-5.el5_4.3.x86_64.rpm --nogpgcheck
+yes | yum $NOREPO localinstall libxslt-1.1.17-2.el5_2.2.x86_64.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-common-1.2.0.0+114.4-2.x86_64.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-help-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-filebrowser-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-about-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-jobbrowser-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-jobsub-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hadoop-hive-0.7.1+42.27-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-beeswax-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-proxy-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-shell-1.2.0.0+114.4-2.x86_64.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-useradmin-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
+yes | yum $NOREPO localinstall hue-1.2.0.0+114.4-2.noarch.rpm --nogpgcheck
 sleep 5
 
 ################################################################################
@@ -97,9 +93,9 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	echo "Install postgresql-server 8.1"
 	################################################################################
 	cd /mnt/opt/hadoop-infinite/rpms/
-	yes | yum localinstall postgresql-libs-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
-	yes | yum localinstall postgresql-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
-	yes | yum localinstall postgresql-server-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
+	yes | yum $NOREPO localinstall postgresql-libs-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
+	yes | yum $NOREPO localinstall postgresql-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
+	yes | yum $NOREPO localinstall postgresql-server-8.1.23-1.el5_7.3.x86_64.rpm --nogpgcheck
 	sleep 5
 	
 	################################################################################
@@ -116,6 +112,10 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	################################################################################
 	echo "Move .repo files to /etc/yum.repos.d"
 	################################################################################
+	#(backup and remove existing yum repos, which may not be needed)
+	mkdir /mnt/opt/hadoop-infinite/etc/yum.repos.d/backup
+	mv  /etc/yum.repos.d/*.repo backup
+	
 	cd /mnt/opt/hadoop-infinite/etc/yum.repos.d
 	cp cloudera-manager.repo /etc/yum.repos.d
 	sleep 5
@@ -157,5 +157,7 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	echo "Remove cloudera related repo files"
 	################################################################################
 	rm -rf /etc/yum.repos.d/cloudera*
+	#(replace backed-up repos)	
+	mv  /mnt/opt/hadoop-infinite/etc/yum.repos.d/backup/*.repo /etc/yum.repos.d/
 
 fi

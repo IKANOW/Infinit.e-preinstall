@@ -6,6 +6,8 @@
 # DB Node    - 
 ################################################################################
 
+NOREPO='--disablerepo=* --enablerepo=infinite'
+
 ################################################################################
 # Commandline arguments
 ################################################################################
@@ -22,6 +24,15 @@ if [ $# -gt 0 ]; then
 fi
 echo "Off-line (Disconnected) Installation: $NODE_TYPE"
 
+if uname -a | grep -q amzn; then
+	echo "CentOS Linux release 6 (Amazon Linux)" > /etc/redhat-release
+		#(Amazon is close enough to Redhat for us to make this present, ie it's not debian etc)
+		#(this precise string is required for Cloudera hadoop to install) 
+fi
+if cat /etc/redhat-release | grep -iq "centos.*release 6"; then
+	#This file needs to be removed for Centos6 (etc) installs:
+	rm /opt/infinite-install/rpms/dependencies/eclipse-ecj-*.rpm
+fi
 
 ################################################################################
 # Directory install files are copied too
@@ -30,11 +41,11 @@ INSTALL_FILES_DIR="/mnt/opt/infinite-install"
 
 
 ################################################################################
-echo "Create yum repo for /mnt/opt/infinite-install/rpms/dependencies -"
+echo "Create yum $NOREPO repo for /mnt/opt/infinite-install/rpms/dependencies -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms/dependencies
-yes | yum localinstall libxml2-python-*.rpm --nogpgcheck
-yes | yum localinstall createrepo-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall libxml2-python-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall createrepo-*.rpm --nogpgcheck
 createrepo $INSTALL_FILES_DIR/rpms/dependencies
 sleep 5
 
@@ -50,7 +61,7 @@ sleep 5
 echo "Install rpm-build -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
-yes | yum localinstall rpm-build-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall rpm-build-*.rpm --nogpgcheck
 sleep 5
 
 
@@ -58,8 +69,8 @@ sleep 5
 echo "Install jpackage-utils (jpackage.org) and yum-priorities -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
-yes | yum localinstall jpackage-utils-*.rpm --nogpgcheck
-yes | yum localinstall yum-priorities-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall jpackage-utils-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall yum-priorities-*.rpm --nogpgcheck
 sleep 5
 
 
@@ -67,7 +78,7 @@ sleep 5
 echo "Install s3cmd -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
-yes | yum localinstall s3cmd-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall s3cmd-*.rpm --nogpgcheck
 sleep 5
 
 
@@ -91,12 +102,12 @@ echo "Install Tomcat -"
 cd $INSTALL_FILES_DIR/rpms
 rpm -Uvh jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
 cd $INSTALL_FILES_DIR/rpms/dependencies
-yes | yum localinstall pango-*.rpm --nogpgcheck
-yes | yum localinstall gtk2-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall pango-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall gtk2-*.rpm --nogpgcheck
 cd $INSTALL_FILES_DIR/rpms
-yes | yum localinstall tomcat6-*.rpm --nogpgcheck
-yes | yum localinstall tomcat6-admin-webapps-*.rpm --nogpgcheck
-yes | yum localinstall tomcat6-webapps-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall tomcat6-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall tomcat6-admin-webapps-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall tomcat6-webapps-*.rpm --nogpgcheck
 chkconfig tomcat6 off
 sleep 5
 # Some versions of tomcat appear to force tomcat user to /sbin/nologin, so change it back:
@@ -113,8 +124,8 @@ sudo chown `id -u` /data/db
 echo "Install MongoDB -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
-yes | yum localinstall mongo-10gen-*.rpm --nogpgcheck
-yes | yum localinstall mongo-10gen-server-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall mongo-10gen-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall mongo-10gen-server-*.rpm --nogpgcheck
 sleep 10
 
 
@@ -123,7 +134,7 @@ echo "Install elasticsearch for APINodes Only -"
 ################################################################################
 if [ "$NODE_TYPE" = "APINode" ]; then
 	cd $INSTALL_FILES_DIR/rpms
-	yes | yum localinstall elasticsearch-*.rpm --nogpgcheck
+	yes | yum $NOREPO localinstall elasticsearch-*.rpm --nogpgcheck
 fi
 
 
@@ -131,7 +142,7 @@ fi
 echo "Install curl -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
-yes | yum localinstall curl-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall curl-*.rpm --nogpgcheck
 
 
 echo "################################################################################"
