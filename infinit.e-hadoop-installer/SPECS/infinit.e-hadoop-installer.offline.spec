@@ -12,7 +12,6 @@ URL: 		http://www.ikanow.com
 Requires: 	tomcat6
 BuildArch: 	noarch
 Prefix: /mnt/opt
-Requires: 	jdk >= 1.6
 %description
 infinit.e-hadoop-installer.offline
 ###########################################################################
