@@ -6,6 +6,7 @@
 # DB Node    - 
 ################################################################################
 
+NONOREPO='--disablerepo=*'
 NOREPO='--disablerepo=* --enablerepo=infinite'
 
 ################################################################################
@@ -41,11 +42,11 @@ INSTALL_FILES_DIR="/mnt/opt/infinite-install"
 
 
 ################################################################################
-echo "Create yum $NOREPO repo for /mnt/opt/infinite-install/rpms/dependencies -"
+echo "Create yum repo for /mnt/opt/infinite-install/rpms/dependencies -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms/dependencies
-yes | yum $NOREPO localinstall libxml2-python-*.rpm --nogpgcheck
-yes | yum $NOREPO localinstall createrepo-*.rpm --nogpgcheck
+yes | yum $NONOREPO localinstall libxml2-python-*.rpm --nogpgcheck
+yes | yum $NONOREPO localinstall createrepo-*.rpm --nogpgcheck
 createrepo $INSTALL_FILES_DIR/rpms/dependencies
 sleep 5
 

@@ -1,9 +1,9 @@
 #!/bin/bash
 NOREPO='--disablerepo=*'
 yum $NOREPO -y --nogpgcheck localinstall infinit.e-platform.prerequisites.offline*.rpm
-yum $NOREPO -y --nogpgcheck localupgrade elasticsearch*.rpm 
-	#(platform pre-reqs doesn't necessarily have the most up-to-date es installed, but it's also part of the bundle)
+yum $NOREPO -y --nogpgcheck localinstall elasticsearch*.rpm 
                                                 
+cp ./example_configurations/infinite.configuration.properties.BASIC_SINGLE_SERVER /opt/infinite-install/config
 cd /opt/infinite-install/
 sh install.sh apinode --slow
 
@@ -17,7 +17,7 @@ while [ true ]; do
 			echo "Untrue! /opt/infinite-install/config/infinite.configuration.properties does not exist..."
 		fi
 	elif [ "$yc" = "c" ]; then
-		cp ./example_configurations/infinite.configuration.properties.BASIC_SINGLE_SERVER /opt/infinite-install/config/infinite.configuration.properties
+		cp /opt/infinite-install/config/infinite.configuration.properties.BASIC_SINGLE_SERVER /opt/infinite-install/config/infinite.configuration.properties
 		break;
 	else
 		echo '"y" or "c" please, lower case.'
