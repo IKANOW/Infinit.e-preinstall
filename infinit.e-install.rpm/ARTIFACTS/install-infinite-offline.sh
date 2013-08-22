@@ -1,6 +1,9 @@
 #!/bin/bash
-yum -y --nogpgcheck localinstall infinit.e-platform.prerequisites.online
+NOREPO='--disablerepo=*'
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-platform.prerequisites.offline*.rpm
+yum $NOREPO -y --nogpgcheck localinstall elasticsearch*.rpm 
                                                 
+cp ./example_configurations/infinite.configuration.properties.BASIC_SINGLE_SERVER /opt/infinite-install/config
 cd /opt/infinite-install/
 sh install.sh apinode --slow
 
@@ -14,7 +17,7 @@ while [ true ]; do
 			echo "Untrue! /opt/infinite-install/config/infinite.configuration.properties does not exist..."
 		fi
 	elif [ "$yc" = "c" ]; then
-		cp /opt/infinite-install/example_configurations/infinite.configuration.properties.BASIC_SINGLE_SERVER /opt/infinite-install/config/infinite.configuration.properties
+		cp /opt/infinite-install/config/infinite.configuration.properties.BASIC_SINGLE_SERVER /opt/infinite-install/config/infinite.configuration.properties
 		break;
 	else
 		echo '"y" or "c" please, lower case.'
@@ -22,11 +25,11 @@ while [ true ]; do
 done
 
 cd -
-yum -y --nogpgcheck localinstall infinit.e-hadoop-installer.online
-yum -y --nogpgcheck localinstall infinit.e-config
-yum -y --nogpgcheck localinstall infinit.e-index-engine
-yum -y --nogpgcheck localinstall infinit.e-db-instance
-yum -y --nogpgcheck localinstall infinit.e-processing-engine
-yum -y --nogpgcheck localinstall infinit.e-interface-engine
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-hadoop-installer.offline*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-config*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-index-engine*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-db-instance*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-processing-engine*.rpm
+yum $NOREPO -y --nogpgcheck localinstall infinit.e-interface-engine*.rpm
 
 echo "Note standalone Hadoop not installed, to do so run /opt/hadoop-infinite/install.sh (not necessary for single node installations)"
