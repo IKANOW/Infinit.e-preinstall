@@ -299,6 +299,8 @@ hadoop.configpath=/mnt/opt/hadoop-infinite/mapreduce
 # 1==people postproc, 2==geo postproc, 3==both
 # (This uses some hard-coded heuristics to work around known AlchemyAPI errors)
 app.alchemy.postproc=3
+#This should list any custom extractor class names
+#extractor.entity.custom=
 
 #-------------------------------------------------------------------------------
 # 2.14] Interface Related Properties for the AppConstants.js file found in:
