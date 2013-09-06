@@ -257,12 +257,22 @@ harvest.threads=file:5,database:5,feed:20
 #harvest.distribtion.batch.harvest=20
 # This disables entity and association aggregation. For almost all applications you will not want to set this
 #harvest.disable_aggregation=false
+# This controls what % of 1 CPU is used to update entity and association counts and synchronization, shouldn't need to change it
+# (Reducing it will speed up raw harvest speeds, Increasing it will keep entity etc freqs more up-to-date)
+#harvest.aggregation.duty_cycle=0.5
 # This parameter uses the Java Security Manager to prevent scripts accessing local network services (at the expense of some performance)
 # It can be turned off for uses of the platform where sources must be approved before being added (etc)
 harvest.security=false
 # This is a comma-separated list of hosts in the following format "http://<HOST>[:<PORT>]" or "socks://<HOST>:<PORT>"
 # When specified, all requests for external content from the harvester are proxied (round-robin) through the specified hosts 
 harvest.proxy=
+# Content controls:
+#This is the maximum size of content (before gzip) that will be stored (truncated above this)
+#store.maxcontent=16000000
+#If true (default false), stores the raw content of a document (as well as the post-processed text)
+#store.rawcontent=false
+#If true (default false), then the doc_content.gzip_content also contains the JSON metadata, stored as a string 
+#store.metadata_as_content=false
 
 #-------------------------------------------------------------------------------
 # 2.12] Hadoop Properties
