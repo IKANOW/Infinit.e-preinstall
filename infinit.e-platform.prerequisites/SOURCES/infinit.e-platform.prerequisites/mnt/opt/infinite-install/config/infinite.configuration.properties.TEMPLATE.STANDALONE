@@ -126,6 +126,8 @@ hadoop.local_mode=true
 # (Will normally end "/api/") 
 # If this is left commented out, it defaults to the browser domain (ie location of GUI)
 #ui.end.point.url=http://MY_REST_ENDPOINT/api/
+#You can use this to set a different logo
+#ui.logo.url=
 
 #-------------------------------------------------------------------------------
 # 1.15] Maps API key:
@@ -317,6 +319,10 @@ ui.forgot.password=forgot-password/
 # Logout URL: (SaaS only, ie integrated with a CMS)
 # (relative to ui.domain.url):
 ui.logout=?action=logout
+# If using a different search engine than google (eg something internal), set this
+#ui.externalsearch.name=Google
+#This URL has the search terms appended at the end (URL encoded)
+#ui.externalsearch.url=
 
 #-------------------------------------------------------------------------------
 # 2.15] Maps API key:
