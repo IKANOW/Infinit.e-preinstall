@@ -77,10 +77,6 @@ db.cluster.subnet=
 #-------------------------------------------------------------------------------
 # The passphrase for the toncat.keystore, if SSL is installed (leave blank otherwise)
 ssl.passphrase=
-# Regexes to allow/block REST commands from remote clients
-# eg "^/api/(auth/login|auth/logout/knowledge)"
-#remote.access.allow=
-#remote.access.deny=
 
 #-------------------------------------------------------------------------------
 # 1.10] Elasticsearch Properties
@@ -221,6 +217,16 @@ db.geo_archive=/opt/infinite-install/data/feature/geo.bson.tar.gz
 #-------------------------------------------------------------------------------
 # Inactivity timeout in seconds
 access.timeout=1800
+# Regexes to allow/block REST commands from remote clients
+# eg "^/api/(auth/login|auth/logout/knowledge)"
+#remote.access.allow=
+#remote.access.deny=
+# Uncomment ui.logging, set to true: in order to log any success:false or HTTP errors from the API, except:
+# If you specify the ui.logging.api.regex, it should start with either '*' or '!' and then the regex:
+# if it starts with '*' then it will log any api call with a substring matching the regex
+# if is starts with '!' (or nothign at all) then it will show errors only, and filter them according to the regex
+#ui.logging=true
+#ui.logging.api.regex=
 
 #-------------------------------------------------------------------------------
 # 2.10] Elasticsearch Properties
