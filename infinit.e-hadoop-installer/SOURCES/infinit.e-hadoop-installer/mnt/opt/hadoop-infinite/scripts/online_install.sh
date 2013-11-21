@@ -60,7 +60,9 @@ fi
 ################################################################################
 if [ "$INSTALL_MODE" = "full" ]; then
 	#(on some OS versions appear to need different permissions)
+	yum install -y postgresql-server
 	mkdir -p /var/run/postgresql
+	chown postgres.postgres /var/run/postgresql
 	chmod a+wrx /var/run/postgresql
 
 	cd /mnt/opt/hadoop-infinite/

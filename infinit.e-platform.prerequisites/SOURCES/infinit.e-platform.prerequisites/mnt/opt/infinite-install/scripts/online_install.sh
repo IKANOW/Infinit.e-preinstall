@@ -78,7 +78,7 @@ else
 	wget http://s3tools.org/repo/RHEL_5/s3tools.repo
 	rpm -Uvh $INSTALL_FILES_DIR/rpms/s3cmd-el5-1.0.0-4.1.x86_64.rpm
 fi
-#yes | yum install s3cmd -y
+yes | yum install dos2unix
 sleep 5
 
 

@@ -51,6 +51,7 @@ infinit.e-hadoop-installer.offline
 %defattr(-,tomcat,tomcat)
 %dir /mnt/opt/hadoop-infinite/
 %dir /mnt/opt/hadoop-infinite/mapreduce/
+%dir /mnt/opt/hadoop-infinite/jars/
 
 ###########################################################################
 # Cloudera-manager installation application

@@ -41,6 +41,14 @@ infinit.e-hadoop-installer.online
 	if [ $1 -eq 1 ]; then
 		cp /mnt/opt/hadoop-infinite/scripts/online_install.sh /mnt/opt/hadoop-infinite/install.sh
 	fi
+	
+	if [ -d /raidarray ]; then
+		mkdir /raidarray/dfs
+		mkdir /raidarray/mapred
+		ln -sf /raidarray/dfs /mnt/dfs
+		ln -sf /raidarray/mapred /mnt/mapred
+		#(can't set any permissions yet)
+	fi
 
 ###########################################################################
 # FILE LISTS
@@ -51,6 +59,7 @@ infinit.e-hadoop-installer.online
 %defattr(-,tomcat,tomcat)
 %dir /mnt/opt/hadoop-infinite/
 %dir /mnt/opt/hadoop-infinite/mapreduce/
+%dir /mnt/opt/hadoop-infinite/jars/
 
 ###########################################################################
 # Cloudera-manager installation application

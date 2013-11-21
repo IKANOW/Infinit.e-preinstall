@@ -80,6 +80,7 @@ echo "Install s3cmd -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
 yes | yum $NOREPO localinstall s3cmd-*.rpm --nogpgcheck
+yes | yum $NOREPO localinstall dos2unix-*.rpm --nogpgcheck
 sleep 5
 
 

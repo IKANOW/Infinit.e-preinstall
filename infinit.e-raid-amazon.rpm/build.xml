@@ -91,7 +91,12 @@
 		       excludes=".svn" 
 			/>
 		<copy file="${dir.specs}/${ant.project.name}.spec" tofile="${dir.specs}/${ant.project.name}_tmp.spec"/>
+		<copy file="${dir.specs}/infinit.e-raid10-amazon.spec" tofile="${dir.specs}/infinit.e-raid10-amazon_tmp.spec"/>
 		<replace file="${dir.specs}/${ant.project.name}_tmp.spec">
+			<replacefilter token="INFINITE_VERSION" value="${infinite_version}"/>
+			<replacefilter token="INFINITE_RELEASE" value="${infinite_release}"/>
+		</replace>
+		<replace file="${dir.specs}/infinit.e-raid10-amazon_tmp.spec">
 			<replacefilter token="INFINITE_VERSION" value="${infinite_version}"/>
 			<replacefilter token="INFINITE_RELEASE" value="${infinite_release}"/>
 		</replace>
@@ -102,8 +107,15 @@
 			specFile="${ant.project.name}_tmp.spec"
 			failOnError="true"
 			/>
+		<rpm
+			topDir="."
+			command="-bb --buildroot ${basedir}/BUILD"
+			specFile="infinit.e-raid10-amazon_tmp.spec"
+			failOnError="true"
+			/>
 		<delete file="${dir.src}/${ant.project.name}.tgz"/>
 		<delete file="${dir.specs}/${ant.project.name}_tmp.spec"/>
+		<delete file="${dir.specs}/infinit.e-raid10-amazon_tmp.spec"/>
 	</target>
 	
 </project>

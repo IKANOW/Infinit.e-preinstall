@@ -3,7 +3,7 @@
 # Spec file for Infinit.e system configuration.
 #
 Summary: Infinit.e RAID installation for Amazon EC2 m1.xlarge instances
-Name: infinit.e-raid-amazon
+Name: infinit.e-raid10-amazon
 Version: INFINITE_VERSION
 Release: INFINITE_RELEASE
 License: None
@@ -12,7 +12,7 @@ BuildArch: noarch
 Prefix: /mnt
 
 %description
-Infinit.e RAID installation for Amazon EC2 m1.xlarge instances
+Infinit.e RAID 10 installation for Amazon EC2 m1.xlarge instances
 
 ###########################################################################
 #
@@ -25,23 +25,23 @@ Infinit.e RAID installation for Amazon EC2 m1.xlarge instances
 	#zcat $RPM_SOURCE_DIR/infinit.e-raid-amazon.tgz | tar -xvf -
 
 %pre
-	# (Nothing to do)		
+	# (Nothing to do)				
 	
 %post
 	if [ -z "$RPM_INSTALL_PREFIX" ]; then
 		RPM_INSTALL_PREFIX=/mnt
-	fi
-		
+	fi	
+
 	if [ $1 -eq 1 ]; then
 #
 # THIS IS AN INSTALL ONLY
 #
 		echo "Building RAID array with mount point at $RPM_INSTALL_PREFIX"
-
+		
 		if [ ! -d $RPM_INSTALL_PREFIX ]; then
 			mkdir -p $RPM_INSTALL_PREFIX
 		fi
-		
+
 		EXT="ext3"
 		if df | grep -q "xvda"; then
 			EXT="ext4"
@@ -63,7 +63,7 @@ Infinit.e RAID installation for Amazon EC2 m1.xlarge instances
 		echo "Found $NUM_DEVICES devices to use for RAID: $DEVICELIST"
 
 		# Install RAID
-		mdadm --create /dev/md0 --run --level=0 --homehost=local --name=0 --chunk=256 --raid-devices=$NUM_DEVICES $DEVICELIST
+		mdadm --create /dev/md0 --run --level=10 --homehost=local --name=0 --chunk=256 --raid-devices=$NUM_DEVICES $DEVICELIST
 		pvcreate /dev/md0
 		vgcreate -s 64M data_vg /dev/md0
 		lvcreate -l 100%vg -n data_vol data_vg
