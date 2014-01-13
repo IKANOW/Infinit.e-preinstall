@@ -49,6 +49,8 @@ infinit.e-hadoop-installer.online
 		ln -sf /raidarray/mapred /mnt/mapred
 		#(can't set any permissions yet)
 	fi
+	#Fix for old mongo jar left in Hadoop folder:
+	rm -f /usr/lib/hadoop/lib/mongo-2.7.2.jar
 
 ###########################################################################
 # FILE LISTS
@@ -69,9 +71,13 @@ infinit.e-hadoop-installer.online
 ###########################################################################
 # jars
 ###########################################################################
-/mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar
 
 ###########################################################################
 # Install scripts
 ###########################################################################
 /mnt/opt/hadoop-infinite/scripts/online_install.sh
+
+###########################################################################
+# Maintenance scripts
+###########################################################################
+%attr(-,root,root) /etc/cron.d/infinite-hadoop

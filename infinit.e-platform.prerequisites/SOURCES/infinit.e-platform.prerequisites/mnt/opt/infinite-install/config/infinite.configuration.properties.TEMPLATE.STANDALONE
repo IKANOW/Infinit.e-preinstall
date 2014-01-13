@@ -210,7 +210,7 @@ db.capacity=10000000
 # (In offline mode it's always here:)
 db.geo_archive=/opt/infinite-install/data/feature/geo.bson.tar.gz
 #Example HTTP locations
-#db.geo_archive=http://www.ikanow.com/infinit.e-preinstall/geo.bson.tar.gz
+#db.geo_archive=http://yum.ikanow.com/infinit.e-preinstall/artifacts/geo.bson.tar.gz
 
 #-------------------------------------------------------------------------------
 # 2.9] UI settings

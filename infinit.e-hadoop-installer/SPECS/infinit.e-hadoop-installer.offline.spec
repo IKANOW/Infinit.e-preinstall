@@ -41,6 +41,8 @@ infinit.e-hadoop-installer.offline
 	if [ $1 -eq 1 ]; then
 		cp /mnt/opt/hadoop-infinite/scripts/offline_install.sh /mnt/opt/hadoop-infinite/install.sh	
 	fi
+	#Fix for old mongo jar left in Hadoop folder:
+	rm -f /usr/lib/hadoop/lib/mongo-2.7.2.jar
 
 ###########################################################################
 # FILE LISTS
@@ -111,7 +113,6 @@ infinit.e-hadoop-installer.offline
 ###########################################################################
 # jars
 ###########################################################################
-/mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar
 
 ###########################################################################
 # SimpleWebServer webserver

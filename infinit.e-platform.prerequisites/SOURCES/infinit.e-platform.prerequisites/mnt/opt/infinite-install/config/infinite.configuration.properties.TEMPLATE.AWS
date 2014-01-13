@@ -218,7 +218,7 @@ db.cluster.subnet=
 # can start s3://, http:// or https://, else is assumed to be a file, eg
 #db.geo_archive=s3://config.saas.infinite.ikanow.com/geo.bson.tar.gz
 # Can always be retrieved here
-db.geo_archive=http://www.ikanow.com/infinit.e-preinstall/geo.bson.tar.gz
+db.geo_archive=http://yum.ikanow.com/infinit.e-preinstall/artifacts/geo.bson.tar.gz
 
 #-------------------------------------------------------------------------------
 # 2.9] UI settings

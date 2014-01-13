@@ -63,16 +63,12 @@ echo "Disable autostart for Hue and Oozie"
 /sbin/chkconfig oozie off
 
 ################################################################################
-echo "Copy mongo-2.7.2.jar to /usr/lib/hadoop/lib"
-################################################################################
-cp /mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar /usr/lib/hadoop/lib
-
-################################################################################
 echo "Create directories required by Hadoop"
 ################################################################################
 mkdir -p /mnt/opt/hadoop-infinite/mapreduce/xmlFiles/
 mkdir -p /mnt/opt/hadoop-infinite/mapreduce/jars/
 mkdir -p /mnt/opt/hadoop-infinite/mapreduce/hadoop/
+chown -R tomcat.tomcat /mnt/opt/hadoop-infinite/
 
 ################################################################################
 # 

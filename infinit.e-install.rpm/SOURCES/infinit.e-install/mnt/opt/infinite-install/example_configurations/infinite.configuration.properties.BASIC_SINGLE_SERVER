@@ -67,7 +67,7 @@ db.cluster.subnet=127.
 # db.sharded: 0=false, 1=true
 db.sharded=1
 # The location from which to fetch the geo.bson dump used for feature.geo
-db.geo_archive=http://www.ikanow.com/infinit.e-preinstall/artifacts/geo.bson.tar.gz
+db.geo_archive=http://yum.ikanow.com/infinit.e-preinstall/artifacts/geo.bson.tar.gz
 db.oplog=256
 ################################################################################
 # Access timeout

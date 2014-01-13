@@ -38,11 +38,6 @@ echo "Disable autostart for Hue and Oozie"
 /sbin/chkconfig oozie off
 
 ################################################################################
-echo "Copy mongo-2.7.2.jar to /usr/lib/hadoop/lib"
-################################################################################
-cp /mnt/opt/hadoop-infinite/jars/mongo-2.7.2.jar /usr/lib/hadoop/lib
-	
-################################################################################
 echo "Create directories required by Hadoop"
 ################################################################################
 mkdir -p /mnt/opt/hadoop-infinite/mapreduce/xmlFiles/
@@ -54,6 +49,7 @@ if grep -q "^ec2-user" /etc/passwd; then
 	chmod -R g+w /mnt/opt/hadoop-infinite/
 	usermod -G tomcat ec2-user
 fi
+chown -R tomcat.tomcat /mnt/opt/hadoop-infinite/
 
 ################################################################################
 # Install the cloudera manager applications
