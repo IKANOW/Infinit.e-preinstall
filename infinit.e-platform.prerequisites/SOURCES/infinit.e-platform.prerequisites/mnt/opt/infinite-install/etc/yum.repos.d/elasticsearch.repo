@@ -1,0 +1,5 @@
+[elasticsearch-1.0]
+name=Elasticsearch repository for 1.0.x packages
+baseurl=http://packages.elasticsearch.org/elasticsearch/1.0/centos
+gpgcheck=0
+enabled=1

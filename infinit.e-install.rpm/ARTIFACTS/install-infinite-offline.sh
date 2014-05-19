@@ -1,11 +1,10 @@
 #!/bin/bash
 NOREPO='--disablerepo=*'
 yum $NOREPO -y --nogpgcheck localinstall infinit.e-platform.prerequisites.offline*.rpm
-yum $NOREPO -y --nogpgcheck localinstall elasticsearch*.rpm 
                                                 
 cp ./example_configurations/infinite.configuration.properties.BASIC_SINGLE_SERVER /opt/infinite-install/config
 cd /opt/infinite-install/
-sh install.sh apinode --slow
+sh install.sh apinode_latest --slow
 
 echo 'Now go to /opt/infinite-install/config and edit infinite.configuration.properties, for more details see: https://ikanow.jira.com/wiki/pages/viewpage.action?pageId=8519753'
 while [ true ]; do

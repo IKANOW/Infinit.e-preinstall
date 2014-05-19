@@ -12,18 +12,49 @@ NOREPO='--disablerepo=* --enablerepo=infinite'
 ################################################################################
 # Commandline arguments
 ################################################################################
-# $1 - APINode or DBNode (API is default) 
+# apinode_(latest|v0.3|v0.2|v0.1) 
+# dbnode_(latest|v0.3|v0.2|v0.1)
+# apinode_latest is default
 ################################################################################
 NODE_TYPE="APINode"
+ES_VERSION="1.0"
+MONGODB_VERSION="2.4"
 if [ $# -gt 0 ]; then
   case $1 in
+    dbnode_latest )
+     NODE_TYPE="DBNode" ;;
+    dbnode_v0.3 )
+     NODE_TYPE="DBNode" ;;
     dbnode )
-      NODE_TYPE="DBNode" ;;
+     NODE_TYPE="DBNode" ;;        
+    dbnode_v0.2 )
+     NODE_TYPE="DBNode" ;;
+    dbnode_v0.1 )
+     NODE_TYPE="DBNode" 
+     MONGODB_VERSION="2.2"
+    	;;	     
+                                                                                                                                                                                                                                                                
+    apinode_latest )
+     NODE_TYPE="APINode" ;;
+    apinode_v0.3 )
+     NODE_TYPE="APINode" ;;
+    apinode_v0.2 )
+     NODE_TYPE="APINode"
+     ES_VERSION="0.19"
+    ;; 
+    apinode_v0.1 )
+     NODE_TYPE="APINode"
+     MONGODB_VERSION="2.2"
+     ES_VERSION="0.19" 
+    ;; 
     apinode )
-      NODE_TYPE="APINode" ;;
+     NODE_TYPE="APINode"
+     ES_VERSION="0.19" 
+    ;;
   esac
+ shift
 fi
-echo "Off-line (Disconnected) Installation: $NODE_TYPE"
+echo "Off-line (Disconnected) Installation: $NODE_TYPE (es=$ES_VERSION mongo=$MONGODB_VERSION)"
 
 if uname -a | grep -q amzn; then
 	echo "CentOS Linux release 6 (Amazon Linux)" > /etc/redhat-release
@@ -126,8 +157,15 @@ sudo chown `id -u` /data/db
 echo "Install MongoDB -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
-yes | yum $NOREPO localinstall mongo-10gen-*.rpm --nogpgcheck
-yes | yum $NOREPO localinstall mongo-10gen-server-*.rpm --nogpgcheck
+if [ "$MONGODB_VERSION" = "2.4" ]; then
+	yes | yum $NOREPO localinstall mongo-10gen-*.rpm --nogpgcheck
+	yes | yum $NOREPO localinstall mongo-10gen-server-*.rpm --nogpgcheck
+else
+	if ! rpm -qa | grep -qa mongo-10gen-server-2.2.3; then
+		echo "*** 2.2 not available - download, transfer, and install by hand"
+		exit -1
+	fi	
+fi
 sleep 10
 
 
@@ -136,9 +174,12 @@ echo "Install elasticsearch for APINodes Only -"
 ################################################################################
 if [ "$NODE_TYPE" = "APINode" ]; then
 	cd $INSTALL_FILES_DIR/rpms
-	yes | yum $NOREPO localinstall elasticsearch-*.rpm --nogpgcheck
+	if [ "$ES_VERSION" = "1.0" ]; then
+		yes | yum $NOREPO localinstall elasticsearch-1.0*.rpm --nogpgcheck
+		else
+		yes | yum $NOREPO localinstall elasticsearch-0.19*.rpm --nogpgcheck
+	fi
 fi
-
 
 ################################################################################
 echo "Install curl -"

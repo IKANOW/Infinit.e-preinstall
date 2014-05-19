@@ -10,21 +10,52 @@
 ################################################################################
 # Commandline arguments
 ################################################################################
-# $1 - APINode or DBNode (API is default) 
-# $FASTARG is "--fast" to bypassing installing latest java/jpackage (for AMIs)
+# apinode_(latest|v0.3|v0.2|v0.1) [--fast] 
+# dbnode_(latest|v0.3|v0.2|v0.1) [--fast]
+# apinode_latest is default
+# "--fast" bypasses installing latest java/jpackage (for AMIs)
 ################################################################################
 NODE_TYPE="APINode"
+ES_VERSION="1.0"
+MONGODB_VERSION="2.4"
 if [ $# -gt 0 ]; then
   case $1 in
+    dbnode_latest )
+     NODE_TYPE="DBNode" ;;
+    dbnode_v0.3 )
+     NODE_TYPE="DBNode" ;;
     dbnode )
-      NODE_TYPE="DBNode" ;;
+     NODE_TYPE="DBNode" ;;        
+    dbnode_v0.2 )
+     NODE_TYPE="DBNode" ;;
+    dbnode_v0.1 )
+     NODE_TYPE="DBNode" 
+     MONGODB_VERSION="2.2"
+    	;;	     
+                                                                                                                                                                                                                                                                
+    apinode_latest )
+     NODE_TYPE="APINode" ;;
+    apinode_v0.3 )
+     NODE_TYPE="APINode" ;;
+    apinode_v0.2 )
+     NODE_TYPE="APINode"
+     ES_VERSION="0.19"
+    ;; 
+    apinode_v0.1 )
+     NODE_TYPE="APINode"
+     MONGODB_VERSION="2.2"
+     ES_VERSION="0.19" 
+    ;; 
     apinode )
-      NODE_TYPE="APINode" ;;
+     NODE_TYPE="APINode"
+     ES_VERSION="0.19" 
+    ;;
   esac
+ shift
 fi
-echo "Online Installation: $NODE_TYPE"
-
 FASTARG=$2
+echo "Online Installation: $NODE_TYPE (es=$ES_VERSION mongo=$MONGODB_VERSION fast=$FASTARG)"
+
 if uname -a | grep -q amzn; then
 	echo "CentOS Linux release 6 (Amazon Linux)" > /etc/redhat-release
 		#(Amazon is close enough to Redhat for us to make this present, ie it's not debian etc)
@@ -36,6 +67,10 @@ fi
 ################################################################################
 INSTALL_FILES_DIR="/mnt/opt/infinite-install"
 
+################################################################################
+echo "Checking for heartbleed fix -"
+################################################################################
+yes | yum update openssl openssl-devel -y
 
 ################################################################################
 echo "Create yum repo for /mnt/opt/infinite-install/rpms/dependencies -"
@@ -112,7 +147,6 @@ if [ "$FASTARG" != "--fast" ]; then
 	
 	cd /etc/yum.repos.d
 	wget 'http://www.jpackage.org/jpackage50.repo'
-	yes | yum update -y
 	yes | yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps -y
 	chkconfig tomcat6 off
 	sleep 5
@@ -132,10 +166,11 @@ sudo chown `id -u` /data/db
 echo "Install MongoDB -"
 ################################################################################
 cp $INSTALL_FILES_DIR/etc/yum.repos.d/10gen-mongodb.repo /etc/yum.repos.d/
-if [ "$FASTARG" != "--fast" ]; then
-	yes | yum update -y
+if [ "$MONGODB_VERSION" = "2.4" ]; then
+	yes | yum install mongo-10gen-2.4.10 mongo-10gen-server-2.4.10 -y --exclude=mongodb-org*
+else
+	yes | yum install mongo-10gen-2.2.3 mongo-10gen-server-2.2.3 -y --exclude=mongodb-org*
 fi
-yes | yum install mongo-10gen mongo-10gen-server -y
 sleep 10
 
 
@@ -143,11 +178,16 @@ sleep 10
 echo "Install elasticsearch for APINodes Only -"
 ################################################################################
 if [ "$NODE_TYPE" = "APINode" ]; then
-	if [ ! -f /etc/yum.repos.d/ikanow.repo ]; then
-		curl -O 'http://www.ikanow.com/infinit.e-preinstall/ikanow.repo'
-		cp ikanow.repo /etc/yum.repos.d/
-	fi
-	yes | yum install elasticsearch -y
+	cp $INSTALL_FILES_DIR/etc/yum.repos.d/elasticsearch.repo /etc/yum.repos.d/
+	if [ "$ES_VERSION" = "1.0" ]; then
+		yes | yum install elasticsearch -y -x  --disablerepo=* --enablerepo=elasticsearch*
+	else
+		if [ ! -f /etc/yum.repos.d/ikanow.repo ]; then
+			curl -O 'http://www.ikanow.com/infinit.e-preinstall/ikanow.repo'
+			cp ikanow.repo /etc/yum.repos.d/
+		fi
+		yes | yum install elasticsearch -y --disablerepo=* --enablerepo=ikanow*
+fi
 	sleep 5
 fi
 
@@ -162,14 +202,6 @@ echo "Install extra Python dependency needed for MongoDB monitoring"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
 rpm -Uvh python-devel-2.4.3-27.el5_5.3.x86_64.rpm
-
-################################################################################
-echo "Update the Yum repository one last time"
-################################################################################
-if [ "$FASTARG" != "--fast" ]; then
-	yes | yum update -y
-fi
-
 
 echo "################################################################################"
 echo "IMPORTANT NOTES:"

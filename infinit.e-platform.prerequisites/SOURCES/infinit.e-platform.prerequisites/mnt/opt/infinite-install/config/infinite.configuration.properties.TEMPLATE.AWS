@@ -346,9 +346,9 @@ google.maps.api.key=dummy
 #app.case.url=local
 # The location of the case manager GUI - Reverse Proxies requests to <domain>:8090/casemanager
 # If the case manager server is located on a different domain name, change casemanager.master to be the domain name of that server.
-casemanager.master=localhost
+casemanager.master=localhost.localdomain
 # The location of the splunk monitor server - Reverse Proxies requests to <domain>:8090/splunk
 # If the splunk server is located on a different domain, change monitor.master to be the domain name of that server.
-monitor.master=localhost
+monitor.master=localhost.localdomain
 #This is the name of the domain which the SSL certificates bound to. If it is not set, clients will get a domain mismatch error when connecting to the enterprise server.
 httpd.domainName=notset.mydomainname.com

@@ -62,6 +62,7 @@ infinit.e-platform.prerequisites.online
 # yum repo files
 ###########################################################################
 %attr(-,root,root) /mnt/opt/infinite-install/etc/yum.repos.d/10gen-mongodb.repo
+%attr(-,root,root) /mnt/opt/infinite-install/etc/yum.repos.d/elasticsearch.repo
 
 ###########################################################################
 # rpms to install
