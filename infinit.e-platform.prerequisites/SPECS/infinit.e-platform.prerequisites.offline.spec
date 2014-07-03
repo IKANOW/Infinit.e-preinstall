@@ -154,13 +154,13 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/time-1.7-27.2.2.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat5-jsp-2.0-api-5.5.27-7.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat5-servlet-2.4-api-5.5.27-7.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-6.0.29-1.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-admin-webapps-6.0.29-1.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-el-1.0-api-6.0.29-1.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-jsp-2.1-api-6.0.29-1.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-lib-6.0.29-1.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-servlet-2.5-api-6.0.29-1.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-webapps-6.0.29-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-6.0.36-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-admin-webapps-6.0.36-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-el-1.0-api-6.0.36-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-jsp-2.1-api-6.0.36-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-lib-6.0.36-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-servlet-2.5-api-6.0.36-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tomcat6-webapps-6.0.36-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/ttmkfdir-3.0.9-23.el5.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/tzdata-java-2011l-4.el5.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/dependencies/unzip-5.52-3.el5.x86_64.rpm
@@ -186,7 +186,9 @@ infinit.e-platform.prerequisites.offline
 # rpms to install
 ###########################################################################
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/curl-7.15.5-9.el5_7.4.x86_64.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/dos2unix-3.1-27.2.el5.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/elasticsearch-0.19.11-3.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/elasticsearch-1.0.1.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/jpackage-utils-5.0.0-2.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/jre-6u30-linux-x64-rpm.bin
@@ -194,9 +196,9 @@ infinit.e-platform.prerequisites.offline
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/mongo-10gen-2.4.5-mongodb_1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/mongo-10gen-server-2.4.5-mongodb_1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/rpm-build-4.4.2.3-22.el5_7.2.x86_64.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-6.0.29-1.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-admin-webapps-6.0.29-1.jpp5.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-webapps-6.0.29-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-6.0.36-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-admin-webapps-6.0.36-1.jpp5.noarch.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-webapps-6.0.36-1.jpp5.noarch.rpm
 #%attr(-,root,root) /mnt/opt/infinite-install/rpms/yum-downloadonly-1.1.16-16.el5.centos.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/yum-priorities-1.1.16-16.el5.noarch.rpm
 

@@ -85,7 +85,7 @@ ssl.passphrase=
 # Any unique name within the EC2 cluster/subnet: 
 elastic.cluster=
 #----------------------------------------------
-# ES nodes, e.g.: elastic.search.nodes='NODE1:9300','NODE2:9300','NODE3:9300':
+# ES nodes, e.g.: elastic.search.nodes=['NODE1:9300','NODE2:9300','NODE3:9300']
 # Needed if discovery.mode=zen (not EC2/AWS), a set of IPs to try (>= 1 must be running elasticsearch)
 elastic.search.nodes=
 # If any node sees less than this number of connections, it will take itself down

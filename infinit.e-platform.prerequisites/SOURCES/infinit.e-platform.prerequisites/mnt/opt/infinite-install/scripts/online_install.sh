@@ -107,10 +107,8 @@ cd /etc/yum.repos.d
 
 # This repo is a little bit flaky and the current ones work fine, so just use local caches
 if cat /etc/redhat-release | grep -iq "centos.*release 6"; then
-	wget http://s3tools.org/repo/RHEL_6/s3tools.repo
 	rpm -Uvh $INSTALL_FILES_DIR/rpms/s3cmd-el6-1.0.0-4.1.x86_64.rpm
 else
-	wget http://s3tools.org/repo/RHEL_5/s3tools.repo
 	rpm -Uvh $INSTALL_FILES_DIR/rpms/s3cmd-el5-1.0.0-4.1.x86_64.rpm
 fi
 yes | yum install dos2unix
@@ -178,16 +176,23 @@ sleep 10
 echo "Install elasticsearch for APINodes Only -"
 ################################################################################
 if [ "$NODE_TYPE" = "APINode" ]; then
-	cp $INSTALL_FILES_DIR/etc/yum.repos.d/elasticsearch.repo /etc/yum.repos.d/
 	if [ "$ES_VERSION" = "1.0" ]; then
-		yes | yum install elasticsearch -y -x  --disablerepo=* --enablerepo=elasticsearch*
+		# Centos5 doesn't support the ES repo - will need to install separately
+		if ! cat /etc/redhat-release | grep -iq 'release 5'; then
+			cp $INSTALL_FILES_DIR/etc/yum.repos.d/elasticsearch.repo /etc/yum.repos.d/
+			yes | yum install elasticsearch -y -x  --disablerepo=* --enablerepo=elasticsearch*
+		else
+			curl -o "$INSTALL_FILES_DIR/rpms/elasticsearch-1.0.3.noarch.rpm" -k \
+				'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.3.noarch.rpm'
+			rpm -i "$INSTALL_FILES_DIR/rpms/elasticsearch-1.0.3.noarch.rpm"
+		fi
 	else
 		if [ ! -f /etc/yum.repos.d/ikanow.repo ]; then
 			curl -O 'http://www.ikanow.com/infinit.e-preinstall/ikanow.repo'
 			cp ikanow.repo /etc/yum.repos.d/
 		fi
 		yes | yum install elasticsearch -y --disablerepo=* --enablerepo=ikanow*
-fi
+	fi
 	sleep 5
 fi
 

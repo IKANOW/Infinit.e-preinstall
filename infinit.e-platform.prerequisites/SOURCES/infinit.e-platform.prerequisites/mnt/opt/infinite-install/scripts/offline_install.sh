@@ -132,6 +132,11 @@ ln -sf /usr/java/default/bin/java /usr/bin/java
 ################################################################################
 echo "Install Tomcat -"
 ################################################################################
+#(remove some stuff that can conflict)
+rpm --quiet -ql logwatch && rpm -e --nodeps logwatch
+rpm --quiet -ql smartmontools && rpm -e --nodeps smartmontools
+rpm --quiet -ql mailx && rpm -e --nodeps mailx
+#(tomcat install)
 cd $INSTALL_FILES_DIR/rpms
 rpm -Uvh jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
 cd $INSTALL_FILES_DIR/rpms/dependencies
