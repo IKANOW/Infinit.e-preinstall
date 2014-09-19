@@ -156,13 +156,6 @@ chsh -s /bin/sh tomcat
 ################################################################################
 echo "Install MongoDB -"
 ################################################################################
-echo "Create default data directories -"
-################################################################################
-sudo mkdir -p /data/db/
-sudo chown `id -u` /data/db
-################################################################################
-echo "Install MongoDB -"
-################################################################################
 cp $INSTALL_FILES_DIR/etc/yum.repos.d/10gen-mongodb.repo /etc/yum.repos.d/
 if [ "$MONGODB_VERSION" = "2.4" ]; then
 	yes | yum install mongo-10gen-2.4.10 mongo-10gen-server-2.4.10 -y --exclude=mongodb-org*

@@ -39,7 +39,7 @@ yum -y --nogpgcheck install infinit.e-index-engine
 yum -y --nogpgcheck install infinit.e-db-instance
 yum -y --nogpgcheck install infinit.e-processing-engine
 yum -y --nogpgcheck install infinit.e-interface-engine
-yum -y --nogpgcheck install infinit.e-record-engine && sh /opt/logstash-infinite/scripts/logstash_online_install.sh full
+yum -y --nogpgcheck install infinit.e-record-engine && sh /opt/logstash-infinite/scripts/logstash_install.sh full
 
 echo
 echo "*******************************************"

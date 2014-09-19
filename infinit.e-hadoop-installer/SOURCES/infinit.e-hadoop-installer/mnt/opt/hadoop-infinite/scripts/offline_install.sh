@@ -86,6 +86,12 @@ if [ "$INSTALL_MODE" = "full" ]; then
 	sleep 5
 	
 	################################################################################
+	echo "Install JDK 6u26"
+	################################################################################
+	cd /mnt/opt/hadoop-infinite/rpms/
+	yes | yum $NOREPO localinstall jdk-6u26-linux-amd64.rpm --nogpgcheck
+
+	################################################################################
 	echo "Install postgresql-server 8.1"
 	################################################################################
 	cd /mnt/opt/hadoop-infinite/rpms/

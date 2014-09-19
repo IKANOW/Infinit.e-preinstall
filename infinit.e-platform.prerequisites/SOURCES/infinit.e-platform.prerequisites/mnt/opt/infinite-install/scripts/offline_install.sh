@@ -154,13 +154,6 @@ chsh -s /bin/sh tomcat
 ################################################################################
 echo "Install MongoDB -"
 ################################################################################
-echo "Create default data directories -"
-################################################################################
-sudo mkdir -p /data/db/
-sudo chown `id -u` /data/db
-################################################################################
-echo "Install MongoDB -"
-################################################################################
 cd $INSTALL_FILES_DIR/rpms
 if [ "$MONGODB_VERSION" = "2.4" ]; then
 	yes | yum $NOREPO localinstall mongo-10gen-*.rpm --nogpgcheck

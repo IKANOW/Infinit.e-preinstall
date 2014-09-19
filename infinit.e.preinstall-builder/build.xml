@@ -12,6 +12,7 @@
 	<property name="infinit.e-prereqs.rpm.location" value="${basedir}/../infinit.e-platform.prerequisites"/>	
 	<property name="infinit.e-elasticsearch.rpm.location" value="${basedir}/../infinit.e-elasticsearch.rpm"/>	
 	<property name="infinit.e-hadoop.rpm.location" value="${basedir}/../infinit.e-hadoop-installer"/>	
+	<property name="infinit.e-logstash.rpm.location" value="${basedir}/../infinit.e-logstash-installer"/>	
 	<property name="infinit.e-raid-amazon.rpm.location" value="${basedir}/../infinit.e-raid-amazon.rpm"/>	
 	<property name="infinit.e-install.rpm.location" value="${basedir}/../infinit.e-install.rpm"/>	
 		
@@ -29,6 +30,9 @@
 		<ant antfile="${infinit.e-hadoop.rpm.location}/build.xml">
 			<property name="basedir" value="${infinit.e-hadoop.rpm.location}"/>
 		</ant>
+		<ant antfile="${infinit.e-logstash.rpm.location}/build.xml">
+			<property name="basedir" value="${infinit.e-logstash.rpm.location}"/>
+		</ant>
 		<ant antfile="${infinit.e-raid-amazon.rpm.location}/build.xml">
 			<property name="basedir" value="${infinit.e-raid-amazon.rpm.location}"/>
 		</ant>
@@ -43,6 +47,7 @@
 		<copy todir="repo">
 			<fileset dir="${infinit.e-prereqs.rpm.location}/RPMS/noarch/" includes="*online*.rpm"/>
 			<fileset dir="${infinit.e-hadoop.rpm.location}/RPMS/noarch/" includes="*online*.rpm"/>
+			<fileset dir="${infinit.e-logstash.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
 			<fileset dir="${infinit.e-elasticsearch.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
 			<fileset dir="${infinit.e-raid-amazon.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
 		</copy>
@@ -57,6 +62,7 @@
 		<copy todir="offlinerepo">
 			<fileset dir="${infinit.e-prereqs.rpm.location}/RPMS/noarch/" includes="*offline*.rpm"/>
 			<fileset dir="${infinit.e-hadoop.rpm.location}/RPMS/noarch/" includes="*offline*.rpm"/>
+			<fileset dir="${infinit.e-logstash.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
 			<fileset dir="${infinit.e-install.rpm.location}/ARTIFACTS/" includes="*.sh"/>
 		</copy>
 		<mkdir dir="offlinerepo/example_configurations"/>
