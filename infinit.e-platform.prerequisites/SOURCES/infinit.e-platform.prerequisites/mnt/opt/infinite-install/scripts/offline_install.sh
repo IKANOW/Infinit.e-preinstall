@@ -18,39 +18,21 @@ NOREPO='--disablerepo=* --enablerepo=infinite'
 ################################################################################
 NODE_TYPE="APINode"
 ES_VERSION="1.0"
-MONGODB_VERSION="2.4"
+MONGODB_VERSION="2.6"
 if [ $# -gt 0 ]; then
   case $1 in
     dbnode_latest )
      NODE_TYPE="DBNode" ;;
-    dbnode_v0.3 )
+    dbnode_v0.4 )
      NODE_TYPE="DBNode" ;;
-    dbnode )
-     NODE_TYPE="DBNode" ;;        
-    dbnode_v0.2 )
-     NODE_TYPE="DBNode" ;;
-    dbnode_v0.1 )
-     NODE_TYPE="DBNode" 
-     MONGODB_VERSION="2.2"
-    	;;	     
                                                                                                                                                                                                                                                                 
     apinode_latest )
      NODE_TYPE="APINode" ;;
-    apinode_v0.3 )
+    apinode_v0.4 )
      NODE_TYPE="APINode" ;;
-    apinode_v0.2 )
-     NODE_TYPE="APINode"
-     ES_VERSION="0.19"
-    ;; 
-    apinode_v0.1 )
-     NODE_TYPE="APINode"
-     MONGODB_VERSION="2.2"
-     ES_VERSION="0.19" 
-    ;; 
-    apinode )
-     NODE_TYPE="APINode"
-     ES_VERSION="0.19" 
-    ;;
+    * )
+      echo "v0.4 offline repo does not support older MongoDB/elasticsearch versions - use the S3 archive"
+    ;;            
   esac
  shift
 fi
@@ -119,11 +101,11 @@ sleep 5
 echo "Install Java JRE and JDK -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
-chmod a+x jre-*-linux-x64-rpm.bin
-sh jre-*-linux-x64-rpm.bin
-chmod a+x jdk-*-linux-x64-rpm.bin
-sh jdk-*-linux-x64.bin
-mv jdk1.6.*/ /usr/java/
+rpm -U --force jdk-7*.rpm
+rm -rf /usr/java/latest
+ln -sf /usr/java/jdk1.7.0_71 /usr/java/latest
+rm -rf /usr/java/default
+ln -sf /usr/java/latest /usr/java/default
 sleep 5
 
 #RH installs makes /usr/bin/java point to /etc/alternatives/java (which points to some old version)
@@ -155,28 +137,22 @@ chsh -s /bin/sh tomcat
 echo "Install MongoDB -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
-if [ "$MONGODB_VERSION" = "2.4" ]; then
-	yes | yum $NOREPO localinstall mongo-10gen-*.rpm --nogpgcheck
-	yes | yum $NOREPO localinstall mongo-10gen-server-*.rpm --nogpgcheck
+if [ "$MONGODB_VERSION" = "2.6" ]; then
+	yes | yum $NOREPO localinstall mongodb-org-* --nogpgcheck
 else
-	if ! rpm -qa | grep -qa mongo-10gen-server-2.2.3; then
-		echo "*** 2.2 not available - download, transfer, and install by hand"
-		exit -1
-	fi	
+	echo "MongoDB $MONGODB_VERSION Not supported"
 fi
 sleep 10
 
 
 ################################################################################
-echo "Install elasticsearch for APINodes Only -"
+echo "Install elasticsearch  -"
 ################################################################################
-if [ "$NODE_TYPE" = "APINode" ]; then
-	cd $INSTALL_FILES_DIR/rpms
-	if [ "$ES_VERSION" = "1.0" ]; then
-		yes | yum $NOREPO localinstall elasticsearch-1.0*.rpm --nogpgcheck
-		else
-		yes | yum $NOREPO localinstall elasticsearch-0.19*.rpm --nogpgcheck
-	fi
+cd $INSTALL_FILES_DIR/rpms
+if [ "$ES_VERSION" = "1.0" ]; then
+	yes | yum $NOREPO localinstall elasticsearch-1.0*.rpm --nogpgcheck
+else
+	echo "Elasticsearch $ES_VERSION Not supported"
 fi
 
 ################################################################################

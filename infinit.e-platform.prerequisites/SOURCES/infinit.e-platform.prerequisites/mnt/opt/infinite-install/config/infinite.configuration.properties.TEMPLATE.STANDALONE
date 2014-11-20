@@ -66,10 +66,13 @@ log.files.mail.to=
 #-------------------------------------------------------------------------------
 # MongoDB config server or servers (must be 1 or 3 comma separated IPs/hosts), non-EC2/AWS installations only
 db.config.servers=
+# Replica set configuration (non-EC2/AWS installations only): comma-separated list of either all IPs or all hostnames within a replica set, semi-colon-separated for multiple replica sets
+# (eg "A,B;C,D" where A-D are IP addresses or hostnames would create 2 shards with 2 hosts each "A,B;A,B" would create 2 shards both on the same replica set, etc)
 db.replica.sets=
 #----------------------------------------------
 # db.cluster.subnet - used for non-EC2/AWS only installations to help mongodb configurations
-# identify proper host ip addresses, e.g. 127.0.0.
+# identify proper host ip addresses, e.g. 127.0.0. - these are compared against the IPs in db.replica.sets
+# Can also be one of the following: if blank then assumes that the db.replica.sets will be a list of short hostnames - if "FQDN" then assumes that the db.replica.sets will be a list of fully qualified hostnames
 db.cluster.subnet=
 
 #-------------------------------------------------------------------------------
@@ -240,6 +243,8 @@ bootstrap.mlockall=true
 elastic.url=localhost:9300
 # Number of replicas: 1 is best for small clusters (fails if >1 node down), 2 for bigger clusters
 elastic.max_replicas=1
+# If you know your logstash and elasticsearch versions are matched up, you can improve the output performance by setting this to "binary"
+elastic.logstash=http
 
 #-------------------------------------------------------------------------------
 # 2.11] Harvester Properties

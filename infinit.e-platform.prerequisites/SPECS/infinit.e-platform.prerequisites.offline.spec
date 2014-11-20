@@ -187,14 +187,14 @@ infinit.e-platform.prerequisites.offline
 ###########################################################################
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/curl-7.15.5-9.el5_7.4.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/dos2unix-3.1-27.2.el5.x86_64.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/elasticsearch-0.19.11-3.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/elasticsearch-1.0.1.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/jpackage-utils-5.0.0-2.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/jre-6u30-linux-x64-rpm.bin
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/jdk-6u30-linux-x64.bin
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/mongo-10gen-2.4.5-mongodb_1.x86_64.rpm
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/mongo-10gen-server-2.4.5-mongodb_1.x86_64.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/jdk-7u71-linux-x64.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/mongodb-org-server-2.6.5-1.x86_64.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/mongodb-org-tools-2.6.5-1.x86_64.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/mongodb-org-mongos-2.6.5-1.x86_64.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/mongodb-org-shell-2.6.5-1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/rpm-build-4.4.2.3-22.el5_7.2.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-6.0.36-1.jpp5.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/tomcat6-admin-webapps-6.0.36-1.jpp5.noarch.rpm

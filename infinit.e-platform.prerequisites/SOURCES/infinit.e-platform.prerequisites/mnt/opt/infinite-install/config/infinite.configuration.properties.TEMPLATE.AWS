@@ -212,8 +212,7 @@ db.capacity=10000000
 #Replica set list, unused in AWS mode
 db.replica.sets=
 #----------------------------------------------
-# db.cluster.subnet - used for non-EC2/AWS only installations to help mongodb configurations
-# identify proper host ip addresses, e.g. 127.0.0.
+# db.cluster.subnet, unused in AWS mode
 db.cluster.subnet=
 #----------------------------------------------
 # The location from which to fetch the geo.bson dump used for feature.geo
@@ -243,6 +242,8 @@ access.timeout=1800
 #----------------------------------------------
 # Discovery mode = ec2 (if running on AWS) or zen (specify a list of IPs below):
 elastic.node.discovery=ec2
+# If you know your logstash and elasticsearch versions are matched up, you can improve the output performance by setting this to "binary"
+elastic.logstash=http
 #----------------------------------------------
 # ES nodes, e.g.: elastic.search.nodes=['NODE1:9300','NODE2:9300','NODE3:9300']
 # Needed if discovery.mode=zen (not EC2/AWS), a set of IPs to try (>= 1 must be running elasticsearch)

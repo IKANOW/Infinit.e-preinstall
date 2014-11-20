@@ -17,39 +17,31 @@
 ################################################################################
 NODE_TYPE="APINode"
 ES_VERSION="1.0"
-MONGODB_VERSION="2.4"
+MONGODB_VERSION="2.6"
 if [ $# -gt 0 ]; then
   case $1 in
     dbnode_latest )
-     NODE_TYPE="DBNode" ;;
+     NODE_TYPE="DBNode"
+    ;;
+    dbnode_0.4 )
+     NODE_TYPE="DBNode"
+    ;;
     dbnode_v0.3 )
-     NODE_TYPE="DBNode" ;;
-    dbnode )
-     NODE_TYPE="DBNode" ;;        
-    dbnode_v0.2 )
-     NODE_TYPE="DBNode" ;;
-    dbnode_v0.1 )
      NODE_TYPE="DBNode" 
-     MONGODB_VERSION="2.2"
-    	;;	     
+     MONGODB_VERSION="2.4"
+    ;;
                                                                                                                                                                                                                                                                 
     apinode_latest )
      NODE_TYPE="APINode" ;;
-    apinode_v0.3 )
-     NODE_TYPE="APINode" ;;
-    apinode_v0.2 )
-     NODE_TYPE="APINode"
-     ES_VERSION="0.19"
-    ;; 
-    apinode_v0.1 )
-     NODE_TYPE="APINode"
-     MONGODB_VERSION="2.2"
-     ES_VERSION="0.19" 
-    ;; 
-    apinode )
-     NODE_TYPE="APINode"
-     ES_VERSION="0.19" 
+    apinode_v0.4 )
+     NODE_TYPE="APINode" 
     ;;
+    apinode_v0.3 )
+     NODE_TYPE="APINode" 
+    ;;
+    * )
+      echo "v0.4 online repo does not support older MongoDB/elasticsearch versions - use the S3 archive"
+    ;;    
   esac
  shift
 fi
@@ -116,19 +108,15 @@ sleep 5
 
 
 ################################################################################
-echo "Install Java JRE and JDK -"
+echo "Install Java JDK -"
 ################################################################################
-
-if [ "$FASTARG" != "--fast" ]; then
-
-	cd $INSTALL_FILES_DIR/rpms
-	chmod a+x jre-*-linux-x64-rpm.bin
-	sh jre-*-linux-x64-rpm.bin
-	chmod a+x jdk-*-linux-x64-rpm.bin
-	sh jdk-*-linux-x64.bin
-	mv jdk1.6.*/ /usr/java/
-	sleep 5
-fi
+cd $INSTALL_FILES_DIR/rpms
+rpm -U --force jdk-7*.rpm
+rm -rf /usr/java/latest
+ln -sf /usr/java/jdk1.7.0_71 /usr/java/latest
+rm -rf /usr/java/default
+ln -sf /usr/java/latest /usr/java/default
+sleep 5
 
 #RH installs makes /usr/bin/java point to /etc/alternatives/java (which points to some old version)
 ln -sf /usr/java/default/bin/java /usr/bin/java 
@@ -152,42 +140,36 @@ fi
 # Some versions of tomcat appear to force tomcat user to /sbin/nologin, so change it back:
 chsh -s /bin/sh tomcat
 
-
 ################################################################################
 echo "Install MongoDB -"
 ################################################################################
 cp $INSTALL_FILES_DIR/etc/yum.repos.d/10gen-mongodb.repo /etc/yum.repos.d/
-if [ "$MONGODB_VERSION" = "2.4" ]; then
+if [ "$MONGODB_VERSION" = "2.6" ]; then
+	yes | yum install mongodb-org-2.6
+elif [ "$MONGODB_VERSION" = "2.4" ]; then
 	yes | yum install mongo-10gen-2.4.10 mongo-10gen-server-2.4.10 -y --exclude=mongodb-org*
 else
 	yes | yum install mongo-10gen-2.2.3 mongo-10gen-server-2.2.3 -y --exclude=mongodb-org*
 fi
 sleep 10
 
-
 ################################################################################
-echo "Install elasticsearch for APINodes Only -"
+echo "Install elasticsearch -"
 ################################################################################
-if [ "$NODE_TYPE" = "APINode" ]; then
-	if [ "$ES_VERSION" = "1.0" ]; then
-		# Centos5 doesn't support the ES repo - will need to install separately
-		if ! cat /etc/redhat-release | grep -iq 'release 5'; then
-			cp $INSTALL_FILES_DIR/etc/yum.repos.d/elasticsearch.repo /etc/yum.repos.d/
-			yes | yum install elasticsearch -y -x  --disablerepo=* --enablerepo=elasticsearch*
-		else
-			curl -o "$INSTALL_FILES_DIR/rpms/elasticsearch-1.0.3.noarch.rpm" -k \
-				'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.3.noarch.rpm'
-			rpm -i "$INSTALL_FILES_DIR/rpms/elasticsearch-1.0.3.noarch.rpm"
-		fi
+if [ "$ES_VERSION" = "1.0" ]; then
+	# Centos5 doesn't support the ES repo - will need to install separately
+	if ! cat /etc/redhat-release | grep -iq 'release 5'; then
+		cp $INSTALL_FILES_DIR/etc/yum.repos.d/elasticsearch.repo /etc/yum.repos.d/
+		yes | yum install elasticsearch -y -x  --disablerepo=* --enablerepo=elasticsearch*
 	else
-		if [ ! -f /etc/yum.repos.d/ikanow.repo ]; then
-			curl -O 'http://www.ikanow.com/infinit.e-preinstall/ikanow.repo'
-			cp ikanow.repo /etc/yum.repos.d/
-		fi
-		yes | yum install elasticsearch -y --disablerepo=* --enablerepo=ikanow*
+		curl -o "$INSTALL_FILES_DIR/rpms/elasticsearch-1.0.3.noarch.rpm" -k \
+			'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.3.noarch.rpm'
+		rpm -i "$INSTALL_FILES_DIR/rpms/elasticsearch-1.0.3.noarch.rpm"
 	fi
-	sleep 5
+else
+	echo "Elasticsearch version $ES_VERSION no longer supported"
 fi
+sleep 5
 
 
 ################################################################################
