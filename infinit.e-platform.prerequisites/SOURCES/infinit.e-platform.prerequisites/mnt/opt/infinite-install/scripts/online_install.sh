@@ -145,7 +145,7 @@ echo "Install MongoDB -"
 ################################################################################
 cp $INSTALL_FILES_DIR/etc/yum.repos.d/10gen-mongodb.repo /etc/yum.repos.d/
 if [ "$MONGODB_VERSION" = "2.6" ]; then
-	yes | yum install mongodb-org-2.6
+	yes | yum install mongodb-org-2.6.4
 elif [ "$MONGODB_VERSION" = "2.4" ]; then
 	yes | yum install mongo-10gen-2.4.10 mongo-10gen-server-2.4.10 -y --exclude=mongodb-org*
 else
