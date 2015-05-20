@@ -1,4 +1,4 @@
 [ikanow_prereqs]
 name=Infinit.e Pre-Reqs Repository
-baseurl=http://yum.ikanow.com/infinit.e-preinstall-repo
+baseurl=http://yum.ikanow.com/newest/infinit.e-preinstall-repo
 gpgcheck=0

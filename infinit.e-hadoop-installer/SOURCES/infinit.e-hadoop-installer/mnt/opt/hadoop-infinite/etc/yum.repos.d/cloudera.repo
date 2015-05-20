@@ -1,3 +1,0 @@
-[cloudera]
-name = Cloudera Local Repo Hadoop and Hue installs
-baseurl = file:///mnt/opt/hadoop-infinite/rpms

@@ -16,31 +16,25 @@
 # "--fast" bypasses installing latest java/jpackage (for AMIs)
 ################################################################################
 NODE_TYPE="APINode"
-ES_VERSION="1.0"
+ES_VERSION="1.4"
 MONGODB_VERSION="2.6"
 if [ $# -gt 0 ]; then
   case $1 in
     dbnode_latest )
      NODE_TYPE="DBNode"
     ;;
-    dbnode_0.4 )
+    dbnode_0.5 )
      NODE_TYPE="DBNode"
-    ;;
-    dbnode_v0.3 )
-     NODE_TYPE="DBNode" 
-     MONGODB_VERSION="2.4"
     ;;
                                                                                                                                                                                                                                                                 
     apinode_latest )
-     NODE_TYPE="APINode" ;;
-    apinode_v0.4 )
      NODE_TYPE="APINode" 
     ;;
-    apinode_v0.3 )
+    apinode_v0.5 )
      NODE_TYPE="APINode" 
     ;;
     * )
-      echo "v0.4 online repo does not support older MongoDB/elasticsearch versions - use the S3 archive"
+      echo "v0.5 online repo does not support older MongoDB/elasticsearch versions - use the S3 archive"
     ;;    
   esac
  shift
@@ -111,9 +105,9 @@ sleep 5
 echo "Install Java JDK -"
 ################################################################################
 cd $INSTALL_FILES_DIR/rpms
-rpm -U --force jdk-7*.rpm
+rpm -U --force jdk-8*.rpm
 rm -rf /usr/java/latest
-ln -sf /usr/java/jdk1.7.0_71 /usr/java/latest
+ln -sf /usr/java/jdk1.8.0_40 /usr/java/latest
 rm -rf /usr/java/default
 ln -sf /usr/java/latest /usr/java/default
 sleep 5
@@ -156,16 +150,10 @@ sleep 10
 ################################################################################
 echo "Install elasticsearch -"
 ################################################################################
-if [ "$ES_VERSION" = "1.0" ]; then
-	# Centos5 doesn't support the ES repo - will need to install separately
-	if ! cat /etc/redhat-release | grep -iq 'release 5'; then
-		cp $INSTALL_FILES_DIR/etc/yum.repos.d/elasticsearch.repo /etc/yum.repos.d/
-		yes | yum install elasticsearch -y -x  --disablerepo=* --enablerepo=elasticsearch*
-	else
-		curl -o "$INSTALL_FILES_DIR/rpms/elasticsearch-1.0.3.noarch.rpm" -k \
-			'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.3.noarch.rpm'
-		rpm -i "$INSTALL_FILES_DIR/rpms/elasticsearch-1.0.3.noarch.rpm"
-	fi
+if [ "$ES_VERSION" = "1.4" ]; then
+	
+	cp $INSTALL_FILES_DIR/etc/yum.repos.d/elasticsearch.repo /etc/yum.repos.d/
+	yes | yum install elasticsearch-1.4.2 -y -x  --disablerepo=* --enablerepo=elasticsearch*		
 else
 	echo "Elasticsearch version $ES_VERSION no longer supported"
 fi

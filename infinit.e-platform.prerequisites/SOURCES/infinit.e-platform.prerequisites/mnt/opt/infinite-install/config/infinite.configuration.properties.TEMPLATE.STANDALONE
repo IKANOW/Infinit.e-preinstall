@@ -250,7 +250,7 @@ elastic.logstash=http
 # 2.11] Harvester Properties
 #-------------------------------------------------------------------------------
 # Comma-separated-list from File,Database,Feed (note Database and Feed need jars not bundled with the RPM)
-harvester.types=File,Database,Feed
+harvester.types=File,Database,Feed,Distributed,Post_Processing
 # Web crawling etiquette: the time to way between consecutive accesses to the same site (10s is standard)
 harvest.feed.wait=10000
 # Web crawling etiquette: the default user agent to use

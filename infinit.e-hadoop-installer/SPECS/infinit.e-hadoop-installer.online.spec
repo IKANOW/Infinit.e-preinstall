@@ -51,6 +51,16 @@ infinit.e-hadoop-installer.online
 	fi
 	#Fix for old mongo jar left in Hadoop folder:
 	rm -f /usr/lib/hadoop/lib/mongo-2.7.2.jar
+	
+	#Ensure /opt/hadoop-infinite/lib points to the right place
+	rm -f /opt/hadoop-infinite/lib
+	#TODO: for now just always point to standalone lib
+#	if [ -d /opt/cloudera/parcels/CDH/lib/hadoop/client-0.20 ]; then
+#		ln -sf /opt/cloudera/parcels/CDH/lib/hadoop/client-0.20/ /opt/hadoop-infinite/lib
+#	else  
+#		ln -sf /opt/hadoop-infinite/standalone_lib /opt/hadoop-infinite/lib
+#	fi
+	ln -sf /opt/hadoop-infinite/standalone_lib /opt/hadoop-infinite/lib
 
 ###########################################################################
 # FILE LISTS
@@ -66,16 +76,27 @@ infinit.e-hadoop-installer.online
 ###########################################################################
 # Cloudera-manager installation application
 ###########################################################################
-/mnt/opt/hadoop-infinite/scm-installer.bin
+%attr(755,tomcat,tomcat) /mnt/opt/hadoop-infinite/cloudera-manager-installer.bin
 
 ###########################################################################
 # jars
 ###########################################################################
 
+%dir /mnt/opt/hadoop-infinite/standalone_lib/
+/mnt/opt/hadoop-infinite/standalone_lib/avro.jar
+/mnt/opt/hadoop-infinite/standalone_lib/commons-configuration-1.6.jar
+/mnt/opt/hadoop-infinite/standalone_lib/hadoop-annotations-2.5.0-cdh5.3.1.jar
+/mnt/opt/hadoop-infinite/standalone_lib/hadoop-auth-2.5.0-cdh5.3.1.jar
+/mnt/opt/hadoop-infinite/standalone_lib/hadoop-hdfs-2.5.0-cdh5.3.1.jar
+/mnt/opt/hadoop-infinite/standalone_lib/protobuf-java-2.5.0.jar
+
 ###########################################################################
 # Install scripts
 ###########################################################################
-/mnt/opt/hadoop-infinite/scripts/online_install.sh
+%attr(755,tomcat,tomcat) /mnt/opt/hadoop-infinite/scripts/online_install.sh
+%attr(755,tomcat,tomcat) /mnt/opt/hadoop-infinite/scripts/install_fuse.sh
+%attr(755,tomcat,tomcat) /mnt/opt/hadoop-infinite/scripts/uninstall_cdh3.sh
+%attr(755,tomcat,tomcat) /mnt/opt/hadoop-infinite/scripts/uninstall_cdh5.sh
 
 ###########################################################################
 # Maintenance scripts

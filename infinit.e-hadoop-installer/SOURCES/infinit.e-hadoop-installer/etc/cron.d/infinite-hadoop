@@ -16,8 +16,34 @@
 
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=""
 
 # m h dom mon dow user  command
 
+#COMMENTED OUT THIS CDH3 SPECIFIC BUG
 # Every hour restart Cloudera agent, which has a mem leak
-00 * * * * root	if [ -f /etc/init.d/cloudera-scm-agent ]; then /etc/init.d/cloudera-scm-agent restart; fi
+#00 * * * * root	if [ -f /etc/init.d/cloudera-scm-agent ]; then /etc/init.d/cloudera-scm-agent restart; fi
+
+#Cloudera (CDH5)
+04 00    * * *   root   if [ -d /var/log/cloudera-scm-agent/ ]; then find /var/log/cloudera-scm-agent/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/cloudera-scm-server/ ]; then find /var/log/cloudera-scm-server/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/cloudera-scm-firehose/ ]; then find /var/log/cloudera-scm-firehose/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/cloudera-scm-eventserver/ ]; then find /var/log/cloudera-scm-eventserver/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/cloudera-scm-alertpublisher/ ]; then find /var/log/cloudera-scm-alertpublisher/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+#Lots of Hadoop variants (0.20, MRv1, YARN)
+04 00    * * *   root   if [ -d /var/log/hadoop/ ]; then find /var/log/hadoop/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop/userlogs ]; then find /var/log/hadoop/userlogs -mtime +10 -a -name "job*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop/history ]; then find /var/log/hadoop/history -mtime +2 -a -name "*.xml" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-0.20/ ]; then find /var/log/hadoop-0.20/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-0.20/userlogs ]; then find /var/log/hadoop-0.20/userlogs -mtime +10 -a -name "job*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-0.20/history ]; then find /var/log/hadoop-0.20/history -mtime +2 -a -name "*.xml" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-0.20-mapreduce/ ]; then find /var/log/hadoop-0.20-mapreduce/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-0.20-mapreduce/userlogs ]; then find /var/log/hadoop-0.20-mapreduce/userlogs -mtime +10 -a -name "job*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-0.20-mapreduce/history ]; then find /var/log/hadoop-0.20-mapreduce/history -mtime +2 -a -name "*.xml" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-hdfs/ ]; then find /var/log/hadoop-hdfs/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-hdfs/userlogs ]; then find /var/log/hadoop-hdfs/userlogs -mtime +10 -a -name "job*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-hdfs/history ]; then find /var/log/hadoop-hdfs/history -mtime +2 -a -name "*.xml" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-yarn/ ]; then find /var/log/hadoop-yarn/ -mtime +10 -a -name "*log*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-yarn/userlogs ]; then find /var/log/hadoop-yarn/userlogs -mtime +10 -a -name "job*" | xargs rm -f; fi
+04 00    * * *   root   if [ -d /var/log/hadoop-yarn/history ]; then find /var/log/hadoop-yarn/history -mtime +2 -a -name "*.xml" | xargs rm -f; fi
+

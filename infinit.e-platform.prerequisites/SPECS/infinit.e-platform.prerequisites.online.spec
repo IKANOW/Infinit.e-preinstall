@@ -67,7 +67,7 @@ infinit.e-platform.prerequisites.online
 ###########################################################################
 # rpms to install
 ###########################################################################
-%attr(-,root,root) /mnt/opt/infinite-install/rpms/jdk-7u71-linux-x64.rpm
+%attr(-,root,root) /mnt/opt/infinite-install/rpms/jdk-8u40-linux-x64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/s3cmd-el6-1.0.0-4.1.x86_64.rpm
 %attr(-,root,root) /mnt/opt/infinite-install/rpms/s3cmd-el5-1.0.0-4.1.x86_64.rpm

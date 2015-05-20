@@ -1,4 +1,4 @@
 [ikanow]
 name=Infinit.e Repository
-baseurl=http://yum.ikanow.com/infinit.e-install-repo
+baseurl=http://yum.ikanow.com/newest/infinit.e-install-repo
 gpgcheck=0

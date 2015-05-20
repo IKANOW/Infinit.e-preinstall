@@ -52,19 +52,6 @@
 			<arg value="repo"/>
 		</exec>
 		<zip destfile="infinit.e-preinstall-repo-${infinite_version}-${infinite_release}.zip" basedir="repo"/>
-	    <!--  OFFLINE -->
-		<mkdir dir="offlinerepo"/>
-		<copy todir="offlinerepo">
-			<fileset dir="${infinit.e-prereqs.rpm.location}/RPMS/noarch/" includes="*offline*.rpm"/>
-			<fileset dir="${infinit.e-hadoop.rpm.location}/RPMS/noarch/" includes="*offline*.rpm"/>
-			<fileset dir="${infinit.e-logstash.rpm.location}/RPMS/noarch/" includes="*.rpm"/>
-			<fileset dir="${infinit.e-install.rpm.location}/ARTIFACTS/" includes="*.sh"/>
-		</copy>
-		<mkdir dir="offlinerepo/example_configurations"/>
-		<copy todir="offlinerepo/example_configurations">
-			<fileset dir="${infinit.e-install.rpm.location}/SOURCES/infinit.e-install/mnt/opt/infinite-install/example_configurations" includes="*"/>
-		</copy>
-		<tar destfile="infinit.e-preinstall-offline-bundle.tar" basedir="offlinerepo"/>			    
 	</target>
 	
 </project>

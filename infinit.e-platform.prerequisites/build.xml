@@ -82,30 +82,6 @@
 	create the RPM file
 	================================= -->
 	<target name="rpm" depends="compile" description="Generates ${ant.project.name}-{ant.version}.rpm file in to the '${dir.build.rpm}' directory.">
-		<!-- ====================================================================== 
-		  infinit.e-platform.prerequisites-offline 
-		  ====================================================================== -->
-		<tar tarfile="${dir.src}/${ant.project.name}-offline.tgz" 
-		       basedir="${dir.src}/${ant.project.name}" 
-			   compression="gzip"
-		       includes="**"
-		       excludes=".svn" 
-		/>
-		<copy file="${dir.specs}/${ant.project.name}.offline.spec" tofile="${dir.specs}/${ant.project.name}.offline_tmp.spec"/>
-		<replace file="${dir.specs}/${ant.project.name}.offline_tmp.spec">
-			<replacefilter token="INFINITE_VERSION" value="${infinite_version}"/>
-			<replacefilter token="INFINITE_RELEASE" value="${infinite_release}"/>
-		</replace>
-		<rpm
-			topDir="."
-			command="-bb --buildroot ${basedir}/BUILD"
-			specFile="${ant.project.name}.offline_tmp.spec"
-			failOnError="true"
-		/>
-		<delete file="${dir.src}/${ant.project.name}-offline.tgz"/>
-		<delete file="${dir.specs}/${ant.project.name}.offline_tmp.spec"/>
-		
-		
 		<!-- ======================================================================
 			infinit.e-platform.prerequisites-online 
 		  ====================================================================== -->
