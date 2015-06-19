@@ -84,13 +84,45 @@ infinit.e-hadoop-installer.online
 
 %dir /mnt/opt/hadoop-infinite/standalone_lib/
 /mnt/opt/hadoop-infinite/standalone_lib/avro.jar
+/mnt/opt/hadoop-infinite/standalone_lib/commons-cli-1.2.jar
 /mnt/opt/hadoop-infinite/standalone_lib/commons-configuration-1.6.jar
 /mnt/opt/hadoop-infinite/standalone_lib/hadoop-annotations-2.5.0-cdh5.3.1.jar
 /mnt/opt/hadoop-infinite/standalone_lib/hadoop-auth-2.5.0-cdh5.3.1.jar
+/mnt/opt/hadoop-infinite/standalone_lib/hadoop-common-2.5.0-cdh5.3.1.jar
+/mnt/opt/hadoop-infinite/standalone_lib/hadoop-core-2.5.0-mr1-cdh5.3.1.jar
 /mnt/opt/hadoop-infinite/standalone_lib/hadoop-hdfs-2.5.0-cdh5.3.1.jar
 /mnt/opt/hadoop-infinite/standalone_lib/protobuf-java-2.5.0.jar
+/mnt/opt/hadoop-infinite/standalone_lib/slf4j-api-1.7.12.jar
 
-###########################################################################
+%dir /mnt/opt/hadoop-infinite/standalone_lib_yarn/
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/avro.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/commons-cli-1.2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/commons-configuration-1.6.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-annotations-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-auth-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-common-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-hdfs-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-mapreduce-client-common-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-mapreduce-client-core-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-mapreduce-client-jobclient-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-mapreduce-client-shuffle-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-yarn-api-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-yarn-client-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/hadoop-yarn-common-2.6.0.2.2.4.2-2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/htrace-core-3.0.4.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jackson-core-2.2.3.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jackson-core-asl-1.9.13.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jackson-jaxrs-1.9.13.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jackson-mapper-asl-1.9.13.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jackson-xc-1.9.13.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jaxb-api-2.2.2.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jersey-client-1.9.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jersey-core-1.9.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jetty-util-6.1.26.hwx.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/jsr305-1.3.9.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/protobuf-java-2.5.0.jar
+/mnt/opt/hadoop-infinite/standalone_lib_yarn/slf4j-api-1.7.12.jar
+
 # Install scripts
 ###########################################################################
 %attr(755,tomcat,tomcat) /mnt/opt/hadoop-infinite/scripts/online_install.sh
