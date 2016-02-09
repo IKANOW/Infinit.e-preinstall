@@ -35,11 +35,19 @@ echo "*******************************************"
 echo
 yum -y --nogpgcheck install infinit.e-hadoop-installer.online
 yum -y --nogpgcheck install infinit.e-config
-yum -y --nogpgcheck install infinit.e-index-engine
-yum -y --nogpgcheck install infinit.e-db-instance
-yum -y --nogpgcheck install infinit.e-processing-engine
-yum -y --nogpgcheck install infinit.e-interface-engine
-yum -y --nogpgcheck install infinit.e-record-engine && sh /opt/logstash-infinite/scripts/logstash_install.sh full
+if [ "$1" = "db" ]; then
+	yum -y --nogpgcheck install infinit.e-index-interface
+	yum -y --nogpgcheck install infinit.e-db-instance
+	
+	echo 'DB install all done, you can add data from the full install run on the API nodes'
+	exit 0
+else
+	yum -y --nogpgcheck install infinit.e-index-engine
+	yum -y --nogpgcheck install infinit.e-db-instance
+	yum -y --nogpgcheck install infinit.e-processing-engine
+	yum -y --nogpgcheck install infinit.e-interface-engine
+	yum -y --nogpgcheck install infinit.e-record-engine && sh /opt/logstash-infinite/scripts/logstash_install.sh full
+fi
 
 echo
 echo "*******************************************"
@@ -101,6 +109,7 @@ while [ true ]; do
 		if [ -f /opt/infinite-install/preload_data_netflow.tgz ]; then
 			cd /mnt/infinite_data/netflow
 			tar xzvf /opt/infinite-install/preload_data_netflow.tgz
+		touch /mnt/infinite_data/netflow/*
 		fi		
 		mkdir -p /mnt/infinite_data/enron
 		if [ -f /opt/infinite-install/preload_data_enron.tgz ]; then
@@ -128,6 +137,8 @@ while [ true ]; do
 	fi	
 	cd /opt/infinite-install
 done
+echo "Restarting tomcat to finish"
+service tomcat7-interface-engine restart
 echo
 echo "*******************************************"
 echo
